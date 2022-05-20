@@ -5,8 +5,9 @@ import '../../app_localization.dart';
 import '../../shared/components/components.dart';
 import '../../shared/styles/colors.dart';
 import '../../shared/styles/styles.dart';
+import '../home/home_layout.dart';
+import '../pin_code/pin_code_screen.dart';
 import '../register/register_screen.dart';
-import '../shop_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -31,41 +32,41 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.ltr,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          leading: IconButton(
-            onPressed: () {
-              navigateTo(context, const IntroScreen());
-            },
-            icon: const Icon(
-              Icons.arrow_back,
-              color: secondColor,
-            ),
-          ),
-          actions: [
-            TextButton(
-              child: Text(
-                AppLocalization.of(context)!.translate('skip')!,
-                style: const TextStyle(
-                    color: secondColor, fontWeight: FontWeight.bold),
-              ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10,),
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            elevation: 0,
+            leading: IconButton(
               onPressed: () {
-                navigateAndFinish(context, const ShopScreen());
+                navigateTo(context, const IntroScreen());
               },
+              icon: const Icon(
+                Icons.arrow_back,
+                color: secondColor,
+              ),
             ),
-            const Icon(
-              Icons.arrow_forward_ios,
-              color: secondColor,
-            ),
-          ],
-        ),
-        body: Form(
-          key: formKey,
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
+            actions: [
+              TextButton(
+                child: Text(
+                  AppLocalization.of(context)!.translate('skip')!,
+                  style: const TextStyle(
+                      color: secondColor, fontWeight: FontWeight.bold),
+                ),
+                onPressed: () {
+                  navigateAndFinish(context, const HomeScreen());
+                },
+              ),
+              const Icon(
+                Icons.arrow_forward_ios,
+                color: secondColor,
+              ),
+            ],
+          ),
+          body: Form(
+            key: formKey,
+            child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -126,10 +127,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Text(
-                            AppLocalization.of(context)!
-                                .translate('forget_Password ?')!,
-                            style: black14bold(),
+                          InkWell( onTap: (){navigateTo(context,const PinCodeVerificationScreen());},
+                            child: Text(
+                              AppLocalization.of(context)!
+                                  .translate('forget_Password ?')!,
+                              style: black14bold(),
+                            ),
                           ),
                         ],
                       ),
@@ -142,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   content: Text(AppLocalization.of(context)!.translate('signed_in_successfully')!,),
                                 )
                             );
-                            navigateAndFinish(context, const ShopScreen());
+                            navigateAndFinish(context, const HomeScreen());
                           },
                           text: AppLocalization.of(context)!
                               .translate('sign_in')!,

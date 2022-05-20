@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import '../../../shared/app_cubit/app_cubit.dart';
 import '../../../shared/styles/colors.dart';
 import '../../../shared/styles/icons.dart';
+import '../../app_localization.dart';
+import '../../bottom_nav_bar.dart';
+import '../../modules/intro/intro_screen.dart';
 
 class LanguageModel {
   final String language;
@@ -54,6 +57,8 @@ Widget languageItem(
       ),
     );
 
+
+
 /// Sized Image
 Widget sizedImage(context, img) => SizedBox(
       width: MediaQuery.of(context).size.width * 0.5,
@@ -62,6 +67,47 @@ Widget sizedImage(context, img) => SizedBox(
         image: AssetImage(img),
       ),
     );
+
+/// AppBar
+    getAppBar(
+        context,
+        {String? txt ,
+          IconData? iconBack ,
+          Widget? widgetBack ,
+          IconData? iconTo ,
+          Widget? widgetTo  }){
+      AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () {
+            navigateTo(context,  widgetBack);
+          },
+          icon:  Icon(
+            iconBack!,
+            color: secondColor,
+          ),
+        ),
+        actions: [
+          TextButton(
+            child: Text( txt!,
+             // AppLocalization.of(context)!.translate('skip')!,
+              style: const TextStyle(
+                  color: secondColor, fontWeight: FontWeight.bold),
+            ),
+            onPressed: () {
+              navigateAndFinish(context, widgetTo);
+            },
+          ),
+           Icon(
+            iconTo!,
+            color: secondColor,
+          ),
+        ],
+      );
+    }
+
+
 
 /// Separator divider
 Widget defaultSeparator() => Container(
@@ -103,61 +149,6 @@ Widget defaultButton({
       ),
     );
 
-/// SNACKBAR
-// Widget snackBar ( context , {required txt})=> SnackBar(
-//   content: Text(txt ,style:const TextStyle(color: defTextColor),),
-//   duration:const Duration(seconds: 1),
-//   backgroundColor: Theme.of(context).primaryColor,
-// );
-
-// final snackBar = SnackBar(
-//   elevation: 6.0,
-//   backgroundColor: Configs.current.COLORS_PRIMARY,
-//   behavior: SnackBarBehavior.floating,
-//   content: Text(
-//     "Snack bar test",
-//     style: TextStyle(color: Colors.white),
-//   ),
-// );
-
-// void showToast({
-//   String? text,
-//    ToastColors? color,
-// }) {
-//   Fluttertoast.showToast(
-//     msg: text,
-//     toastLength: Toast.LENGTH_SHORT,
-//     gravity: ToastGravity.BOTTOM,
-//     timeInSecForIosWeb: 1,
-//     backgroundColor: setToastColor(color),
-//     textColor: Colors.white,
-//     fontSize: 16.0,
-//   );
-// }
-//
-// enum ToastColors {
-//   SUCCESS,
-//   ERROR,
-//   WARNING,
-// }
-//
-// Color setToastColor(ToastColors color) {
-//   Color c;
-//
-//   switch (color) {
-//     case ToastColors.ERROR:
-//       c = Colors.red;
-//       break;
-//     case ToastColors.SUCCESS:
-//       c = Colors.green;
-//       break;
-//     case ToastColors.WARNING:
-//       c = Colors.amber;
-//       break;
-//   }
-//
-//   return c;
-// }
 
 ///Navigate.push
 void navigateTo(context, widget) => Navigator.push(
@@ -173,7 +164,10 @@ void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
       MaterialPageRoute(
         builder: (context) => widget,
       ),
-      (Route<dynamic> route) => false,
+     // return false,
+     (route)
+    { return false;}
+
     );
 
 Widget formFeild({

@@ -2,7 +2,6 @@ import 'package:deal_mart/modules/onboarding/onboarding_screen.dart';
 import 'package:deal_mart/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
 import 'app_localization.dart';
 
 void main() async
@@ -60,7 +59,7 @@ class MyApp extends StatelessWidget
                 return supportedLocales.first;
               },
 
-            home: const OnBoardScreen(),
+            home:const OnBoardScreen(),
           );
     //     },
     //   ),

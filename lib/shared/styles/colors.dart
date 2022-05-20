@@ -5,3 +5,4 @@ const secondColor = Colors.black;
 const formContainer =Color(0xffF4F4F4);
  Color? textGray = Colors.grey[400];
 const defTextColor=Colors.white;
+const disableColor= Color(0xffFFEDDE);

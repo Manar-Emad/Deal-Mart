@@ -1,3 +1,4 @@
+import 'package:country_list_pick/country_list_pick.dart';
 import 'package:deal_mart/modules/login/login_screen.dart';
 import 'package:deal_mart/shared/components/components.dart';
 import 'package:deal_mart/shared/styles/colors.dart';
@@ -21,23 +22,23 @@ class _IntroScreenState extends State<IntroScreen> {
   bool visible =false;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          onPressed: () {
-            navigateTo(context, const OnBoardScreen());
-          },
-          icon: const Icon(
-            Icons.arrow_back,
-            color: secondColor,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading: IconButton(
+            onPressed: () {
+              navigateTo(context, const OnBoardScreen());
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+              color: secondColor,
+            ),
           ),
         ),
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
+        body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -48,16 +49,16 @@ class _IntroScreenState extends State<IntroScreen> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    AppLocalization.of(context)!.translate('welcome')!,
+                  Text("welcome",
+                  //  AppLocalization.of(context)!.translate('welcome')!,
                     style: const TextStyle(
                         color: primaryColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 30),
                   ),
                   sizedBoxh1,
-                  Text(
-                    AppLocalization.of(context)!.translate('select_the_country_and_language_of_the_application')!,
+                  Text('select_the_country_and_language_of_the_application',
+                  //  AppLocalization.of(context)!.translate('select_the_country_and_language_of_the_application')!,
                     style:const TextStyle(
                         color: secondColor,
                         fontSize: 20,
@@ -70,7 +71,8 @@ class _IntroScreenState extends State<IntroScreen> {
                     isClikable: false,
                       suffix:const Icon(Icons.keyboard_arrow_down),
                       prefix: Icons.flag,
-                      txt:  AppLocalization.of(context)!.translate('select_country')!,
+                      txt: 'select_country',
+                      //AppLocalization.of(context)!.translate('select_country')!,
                       onTap: () {
                         showModalBottomSheet(
                             context: context,
@@ -92,32 +94,34 @@ class _IntroScreenState extends State<IntroScreen> {
                                       height: MediaQuery.of(context).size.height * 0.007,
                                       width: MediaQuery.of(context).size.width * 0.3,
                                     ),
-                                    /// ////////////////////////////////////////////////
 
-                                    // CountryListPick(
-                                    //   appBar: AppBar(
-                                    //     backgroundColor: primaryColor,
-                                    //     title:Text(AppLocalization.of(context)!.translate('pick_your_country')!,),
-                                    //
-                                    //   ),
-                                    //   theme: CountryTheme(
-                                    //     isShowFlag: true,
-                                    //     isShowTitle: true,
-                                    //     isShowCode: true,
-                                    //     isDownIcon: true,
-                                    //     showEnglishName: true,
-                                    //     labelColor: primaryColor,
-                                    //   ),
-                                    // //  initialSelection: '+62',
-                                    //   // or
-                                    //    initialSelection: 'US',
-                                    //   onChanged: (CountryCode code) {
-                                    //     print(code.name);
-                                    //     print(code.code);
-                                    //     print(code.dialCode);
-                                    //     print(code.flagUri);
-                                    //   },
-                                    // ),
+                                    /// Country List Picker
+                                    CountryListPick(
+                                      appBar: AppBar(
+                                        backgroundColor: primaryColor,
+                                        title:Text("pick_your_country",
+                                       //   AppLocalization.of(context)!.translate('pick_your_country')!,
+                                        ),
+
+                                      ),
+                                      theme: CountryTheme(
+                                        isShowFlag: true,
+                                        isShowTitle: true,
+                                        isShowCode: true,
+                                        isDownIcon: true,
+                                        showEnglishName: true,
+                                        labelColor: primaryColor,
+                                      ),
+                                    //  initialSelection: '+62',
+                                      // or
+                                       initialSelection: 'US',
+                                      onChanged: (CountryCode code) {
+                                        print(code.name);
+                                        print(code.code);
+                                        print(code.dialCode);
+                                        print(code.flagUri);
+                                      },
+                                    ),
                                   ],
                                 ),
                               );
@@ -130,7 +134,8 @@ class _IntroScreenState extends State<IntroScreen> {
                     isClikable: false,
                       suffix:const Icon(Icons.keyboard_arrow_down),
                       prefix: Icons.language,
-                      txt:  AppLocalization.of(context)!.translate('select_language')!,
+                      txt:  'select_language',
+                      //AppLocalization.of(context)!.translate('select_language')!,
                       onTap: () {
                         showModalBottomSheet(
                             context: context,
@@ -160,7 +165,9 @@ class _IntroScreenState extends State<IntroScreen> {
                                              selectIcon ;
                                            });
                                          },
-                                           label: Text( AppLocalization.of(context)!.translate('english')!,style: TextStyle(color: textGray),),
+                                           label: Text( 'english'
+                                            // AppLocalization.of(context)!.translate('english')!
+                                             ,style: TextStyle(color: textGray),),
                                            icon: Icon(Icons.check_circle_outline,color: selectIcon? textGray : primaryColor,), ),
                                       //  snackBar(context ,txt: 'English is chosen'),
                                       ],
@@ -173,7 +180,9 @@ class _IntroScreenState extends State<IntroScreen> {
                                             selectIcon ;
                                           });
                                         },
-                                          label: Text(AppLocalization.of(context)!.translate('arabic')!,style: TextStyle(color: textGray),),
+                                          label: Text('arabic'
+                                            //AppLocalization.of(context)!.translate('arabic')!
+                                            ,style: TextStyle(color: textGray),),
                                           icon: Icon(Icons.check_circle_outline,color: selectIcon? textGray : primaryColor,), ),
                                        // snackBar(context ,txt: 'Arabic is chosen'),
 
@@ -198,7 +207,8 @@ class _IntroScreenState extends State<IntroScreen> {
                             const RegisterScreen(),
                           );
                         },
-                        text: AppLocalization.of(context)!.translate('create_account')!,
+                        text: 'create account',
+                    //    AppLocalization.of(context)!.translate('create_account')!,
                             txtColor: primaryColor,
                             color: defTextColor,
                       ),flex: 15,
@@ -209,7 +219,8 @@ class _IntroScreenState extends State<IntroScreen> {
                               function: () {
                                navigateTo(context, LoginScreen());
                               },
-                              text:    AppLocalization.of(context)!.translate('sign_in')!,
+                              text:    'sign in',
+                              //AppLocalization.of(context)!.translate('sign_in')!,
                             txtColor:defTextColor ,
                             color: primaryColor,
 
