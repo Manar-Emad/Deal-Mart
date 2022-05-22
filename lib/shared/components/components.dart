@@ -8,6 +8,8 @@ import '../../../shared/styles/icons.dart';
 import '../../app_localization.dart';
 import '../../bottom_nav_bar.dart';
 import '../../modules/intro/intro_screen.dart';
+import '../styles/sizes.dart';
+import '../styles/styles.dart';
 
 class LanguageModel {
   final String language;
@@ -57,8 +59,6 @@ Widget languageItem(
       ),
     );
 
-
-
 /// Sized Image
 Widget sizedImage(context, img) => SizedBox(
       width: MediaQuery.of(context).size.width * 0.5,
@@ -69,45 +69,43 @@ Widget sizedImage(context, img) => SizedBox(
     );
 
 /// AppBar
-    getAppBar(
-        context,
-        {String? txt ,
-          IconData? iconBack ,
-          Widget? widgetBack ,
-          IconData? iconTo ,
-          Widget? widgetTo  }){
-      AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          onPressed: () {
-            navigateTo(context,  widgetBack);
-          },
-          icon:  Icon(
-            iconBack!,
-            color: secondColor,
-          ),
+getAppBar(context,
+    {String? txt,
+    IconData? iconBack,
+    Widget? widgetBack,
+    IconData? iconTo,
+    Widget? widgetTo}) {
+  AppBar(
+    backgroundColor: Colors.white,
+    elevation: 0,
+    leading: IconButton(
+      onPressed: () {
+        navigateTo(context, widgetBack);
+      },
+      icon: Icon(
+        iconBack!,
+        color: secondColor,
+      ),
+    ),
+    actions: [
+      TextButton(
+        child: Text(
+          txt!,
+          // AppLocalization.of(context)!.translate('skip')!,
+          style:
+              const TextStyle(color: secondColor, fontWeight: FontWeight.bold),
         ),
-        actions: [
-          TextButton(
-            child: Text( txt!,
-             // AppLocalization.of(context)!.translate('skip')!,
-              style: const TextStyle(
-                  color: secondColor, fontWeight: FontWeight.bold),
-            ),
-            onPressed: () {
-              navigateAndFinish(context, widgetTo);
-            },
-          ),
-           Icon(
-            iconTo!,
-            color: secondColor,
-          ),
-        ],
-      );
-    }
-
-
+        onPressed: () {
+          navigateAndFinish(context, widgetTo);
+        },
+      ),
+      Icon(
+        iconTo!,
+        color: secondColor,
+      ),
+    ],
+  );
+}
 
 /// Separator divider
 Widget defaultSeparator() => Container(
@@ -149,7 +147,6 @@ Widget defaultButton({
       ),
     );
 
-
 ///Navigate.push
 void navigateTo(context, widget) => Navigator.push(
       context,
@@ -160,15 +157,14 @@ void navigateTo(context, widget) => Navigator.push(
 
 ///Navigate And Remove
 void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(
-        builder: (context) => widget,
-      ),
-     // return false,
-     (route)
-    { return false;}
-
-    );
+        context,
+        MaterialPageRoute(
+          builder: (context) => widget,
+        ),
+        // return false,
+        (route) {
+      return false;
+    });
 
 Widget formFeild({
   Widget? suffix,
@@ -218,3 +214,50 @@ Widget formFeild({
         ),
       ),
     );
+//
+// Widget itemCard({Color? color, String? txtF,String? txtS , String? txtT ,AssetImage? img}) => Padding(
+//   padding: const EdgeInsets.all(10.0),
+//   child: Row(
+//     children: [
+//       Container(
+//         height: getHeight(context) / 5,
+//         decoration: BoxDecoration(
+//           borderRadius: BorderRadius.circular(10),
+//           color: color,
+//         ),
+//         child: Row(
+//           children: [
+//             Padding(
+//               padding: const EdgeInsets.all(8.0),
+//               child: Column(
+//                 crossAxisAlignment:
+//                 CrossAxisAlignment.start,
+//                 children: [
+//                   Text(
+//                     txtF!,
+//                     style: black22bold(),
+//                   ),
+//                   Text(
+//                     txtS!,
+//                     style: black18regular(),
+//                   ),
+//                   Text(
+//                     txtT!,
+//                     style: black18regular(),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//             SizedBox(
+//               width:getWidth(context)/3.5 ,
+//               height: getHeight(context)/5,
+//               child:  Image(width: getWidth(context)/.5 ,
+//                   height: getHeight(context)/2.5,fit: BoxFit.cover,
+//                   image:img! ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     ],
+//   ),
+// );

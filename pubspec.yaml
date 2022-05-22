@@ -37,10 +37,12 @@ dependencies:
   flutter_bloc: ^8.0.1
   dio: ^4.0.6
   pinput: ^2.2.9
+  carousel_slider: ^4.1.1
   flutter_localizations:
     sdk: flutter
   shared_preferences: ^2.0.15
   pin_code_fields: ^7.4.0
+  conditional_builder_null_safety: ^0.0.6
 
 
 dev_dependencies:

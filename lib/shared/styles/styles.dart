@@ -79,6 +79,11 @@ TextStyle white20bold() => const TextStyle(
       fontWeight: FontWeight.bold,
       color: Colors.white,
     );
+TextStyle white22bold() => const TextStyle(
+  fontSize: 22.0,
+  fontWeight: FontWeight.bold,
+  color: Colors.white,
+);
 
 TextStyle white10regular() => const TextStyle(
       fontSize: 10.0,

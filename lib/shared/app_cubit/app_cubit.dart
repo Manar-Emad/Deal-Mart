@@ -12,6 +12,7 @@ class AppCubit extends Cubit<AppState> {
   AppCubit() : super(AppInitial());
   static AppCubit get(context) => BlocProvider.of(context);
 
+
   int currentIndex = 0;
   List<Widget> bottomScreens = [
 
