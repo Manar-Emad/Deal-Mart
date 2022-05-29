@@ -9,6 +9,8 @@ getWidth(context){
   return MediaQuery.of(context).size.width;
 }
 
+
+
 SizedBox sizedBoxh1=const SizedBox(height: 10,);
 SizedBox sizedBoxh2=const SizedBox(height: 20,);
 SizedBox sizedBoxh3=const SizedBox(height: 30,);

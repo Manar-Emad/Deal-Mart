@@ -1,5 +1,18 @@
 import 'package:flutter/material.dart';
 
+import 'colors.dart';
+
+TextStyle prim18bold() => const TextStyle(
+  fontSize: 18.0,
+  fontWeight: FontWeight.bold,
+  color: primaryColor,
+);
+
+Text txtMaxLines1(String txt) =>  Text(txt,
+  maxLines: 1 ,overflow: TextOverflow.ellipsis,
+);
+
+
 TextStyle black10bold() => const TextStyle(
       fontSize: 10.0,
       fontWeight: FontWeight.bold,

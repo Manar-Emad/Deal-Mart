@@ -214,50 +214,50 @@ Widget formFeild({
         ),
       ),
     );
-//
-// Widget itemCard({Color? color, String? txtF,String? txtS , String? txtT ,AssetImage? img}) => Padding(
-//   padding: const EdgeInsets.all(10.0),
-//   child: Row(
-//     children: [
-//       Container(
-//         height: getHeight(context) / 5,
-//         decoration: BoxDecoration(
-//           borderRadius: BorderRadius.circular(10),
-//           color: color,
-//         ),
-//         child: Row(
-//           children: [
-//             Padding(
-//               padding: const EdgeInsets.all(8.0),
-//               child: Column(
-//                 crossAxisAlignment:
-//                 CrossAxisAlignment.start,
-//                 children: [
-//                   Text(
-//                     txtF!,
-//                     style: black22bold(),
-//                   ),
-//                   Text(
-//                     txtS!,
-//                     style: black18regular(),
-//                   ),
-//                   Text(
-//                     txtT!,
-//                     style: black18regular(),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//             SizedBox(
-//               width:getWidth(context)/3.5 ,
-//               height: getHeight(context)/5,
-//               child:  Image(width: getWidth(context)/.5 ,
-//                   height: getHeight(context)/2.5,fit: BoxFit.cover,
-//                   image:img! ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     ],
-//   ),
-// );
+
+/// Cart Button
+
+Widget cartButton({
+  required Function()? function,
+  required String text,
+  Widget? child,
+  Color? color,
+  Color? txtColor,
+}) =>
+    Padding(
+      padding: const EdgeInsets.only(right: 25),
+      child: Container(
+        decoration: BoxDecoration(
+          color: color,
+          border: Border.all(color: primaryColor),
+          //  color: buttonColor,
+          borderRadius: BorderRadius.circular(
+            10.0,
+          ),
+        ),
+        child: MaterialButton(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 15,right: 15),
+            child: Row(
+              children: [
+                const Icon(Icons.shopping_cart,
+                  color: defTextColor,size: 15,),
+               const Spacer(),
+                Text(
+                  text,
+                  style: (TextStyle(
+                      color: txtColor, fontWeight: FontWeight.bold,
+                      fontSize: 10)),
+                ),
+              ],
+            ),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          padding: const EdgeInsets.all(5),
+          onPressed: function,
+        ),
+      ),
+    );
+

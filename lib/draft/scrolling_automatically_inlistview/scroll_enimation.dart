@@ -7,22 +7,25 @@ import 'package:deal_mart/shared/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../modules/home/sleek_sliders.dart';
 import '../../modules/home/horizontal_list.dart';
 
-class ScrollEnimation extends StatefulWidget {
-  const ScrollEnimation({Key? key}) : super(key: key);
+class ScrollEnimationState extends StatefulWidget {
+   const ScrollEnimationState({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => ScrollEnimationState();
+  State<ScrollEnimationState> createState() => _ScrollEnimationStateState();
 }
 
-class ScrollEnimationState extends State<ScrollEnimation>
-    with SingleTickerProviderStateMixin {
+class _ScrollEnimationStateState extends State<ScrollEnimationState> {
   late AnimationController controller;
+
   late Animation<Offset> offset;
 
   int _currentPage = 0;
+
   late Timer _timer;
+
   final PageController _pageController = PageController(
     viewportFraction: 1,
     initialPage: 0,
@@ -30,7 +33,7 @@ class ScrollEnimationState extends State<ScrollEnimation>
 
   @override
   void initState() {
-    super.initState();
+    // super.initState();
     _timer = Timer.periodic(const Duration(seconds: 5), (Timer timer) {
       if (_currentPage < 2) {
         _currentPage++;
@@ -48,7 +51,7 @@ class ScrollEnimationState extends State<ScrollEnimation>
 
   @override
   void dispose() {
-    super.dispose();
+    // super.dispose();
     _timer.cancel();
   }
 
@@ -57,15 +60,17 @@ class ScrollEnimationState extends State<ScrollEnimation>
     return Scaffold(
       backgroundColor: const Color(0xffF7F7F7),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Column(
             children: [
-              Stack(children: [
-                Container(
-                  color: primaryColor,
-                  height: 200,
-                  width: 600,
-                  child: PageView(
+              SizedBox(
+                height: getHeight(context)/3.7,
+                width: getWidth(context),
+                child: Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                  PageView(
                     controller: _pageController,
                     children: [
                       Container(
@@ -97,65 +102,63 @@ class ScrollEnimationState extends State<ScrollEnimation>
                       ),
                     ],
                   ),
-                ),
-                Container(
-                  height: 200,
-                  width: 600,
-                  color: const Color(0xff191919).withOpacity(.6),
-                ),
-                Positioned(
-                  top: 10,
-                  left: 10,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: CircleAvatar(
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.browse_gallery_outlined),
-                      ),
-                      backgroundColor: primaryColor,
-                    ),
+                  Container(
+                    height: getHeight(context)/3.7,
+                    width: getWidth(context),
+                    //color:Colors.transparent,
+                      color: const Color(0xff191919).withOpacity(.6),
                   ),
-                ),
-                Positioned(
-                  bottom: 10,
-                  right: 10,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: CircleAvatar(
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.volume_off_outlined),
-                      ),
-                      backgroundColor: primaryColor,
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 10,
-                  left: 10,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      children: [
-                        Text(
-                          'New Shopping',
-                          style: white18bold(),
+                  Positioned(
+                    top: 10,
+                    left: 6,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: CircleAvatar(
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.browse_gallery_outlined),
                         ),
-                        sizedBoxh1,
-                        Text(
-                          'Experience!',
-                          style: white22bold(),
-                        ),
-                      ],
+                        backgroundColor: primaryColor,
+                      ),
                     ),
                   ),
-                ),
-                Align(
-                  alignment: AlignmentDirectional.bottomCenter,
-                  child: Row(
-                    // crossAxisAlignment: CrossAxisAlignment.end,
-                    // mainAxisAlignment: MainAxisAlignment.center,
+                  Positioned(
+                    bottom: 10,
+                    right: 10,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: CircleAvatar(
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.volume_off_outlined),
+                        ),
+                        backgroundColor: primaryColor,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 13,
+                    left: 6,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          Text(
+                            'New Shopping',
+                            style: white14bold(),
+                          ),
+                          sizedBoxh1,
+                          Text(
+                            'Experience!',
+                            style: white22bold(),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(10.0),
@@ -173,38 +176,37 @@ class ScrollEnimationState extends State<ScrollEnimation>
                       ),
                     ],
                   ),
-                ),
-              ]),
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Align(
-                  alignment: AlignmentDirectional.bottomStart,
-                  child: SizedBox(
-                    width: getWidth(context) / 4,
-                    child: defaultButton(
-                        function: () {},
-                        text: 'Shop & Win!',
-                        color: primaryColor,
-                        txtColor: defTextColor),
-                  ),
-                ),
+                      Positioned(
+                        bottom: -20,
+                        left: 25,
+                        child: SizedBox(
+                          width: getWidth(context) / 4,
+                          height: getHeight(context)/20,
+                          child: defaultButton(
+                              function: () {},
+                              text: 'Shop & Win!',
+                              color: primaryColor,
+                              txtColor: defTextColor),
+                        ),
+                      ),
+                    ]),
               ),
             ],
           ),
           Expanded(
             child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-               scrollDirection: Axis.vertical,
-              child:ConstrainedBox(
-                constraints: BoxConstraints(
-                  minWidth: getWidth(context),
-                ),
-                child:  Wrap(
-                  children:[
-                    Column(
+                physics: const BouncingScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                child:ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minWidth: getWidth(context),
+                  ),
+                  child:  Padding(
+                    padding: const EdgeInsets.only(top: 15),
+                    child: Column(
                       children: [
                         SizedBox(
-                          height: getHeight(context) / 7,
+                          height: getHeight(context) / 8.1,
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Row(
@@ -234,7 +236,7 @@ class ScrollEnimationState extends State<ScrollEnimation>
                                                 'Top Winners',
                                                 style: black10bold(),
                                               ),
-                                              sizedBoxh1,
+                                              const Spacer(),
                                               const CircleAvatar(
                                                 radius: 10,
                                                 child: Image(
@@ -273,7 +275,7 @@ class ScrollEnimationState extends State<ScrollEnimation>
                                       ],
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
+                                      padding: const EdgeInsets.only(left: 10),
                                       child: Column(
                                         children: [
                                           Row(
@@ -318,18 +320,27 @@ class ScrollEnimationState extends State<ScrollEnimation>
                           scrollDirection:Axis.horizontal ,
                           child: Row(
                             children: [
-                              const HorizontalList(),
-                              Text('Closed soon' ,style: black18bold(),),
+                              const HorizontalList(),sizedBoxh2,
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                            Text('Closed soon' ,style: black18bold(), ),
+                              Text('Hot Deals' ,style: black18bold(), ),
+                              
 
                             ],
                           ),
                         ),
+
                       ],
                     ),
-
-                  ],
-                ),
-              )
+                  ),
+                )
             ),
           ),
         ],
@@ -337,53 +348,4 @@ class ScrollEnimationState extends State<ScrollEnimation>
     );
   }
 }
-// SizedBox(
-// width: getWidth(context) / 2,
-// child: Row(
-// children: [
-// Padding(
-// padding: const EdgeInsets.all(10.0),
-// child: Container(
-// height: getHeight(context) / 5,
-// decoration: BoxDecoration(
-// borderRadius: BorderRadius.circular(10),
-// color: Color(0xffFFE5D1),
-// ),
-// child: Row(
-// children: [
-// Padding(
-// padding: const EdgeInsets.all(8.0),
-// child: Column(
-// crossAxisAlignment:
-// CrossAxisAlignment.start,
-// children: [
-// Text(
-// 'Win a car ',
-// style: black22bold(),
-// ),
-// Text(
-// 'Honda Aquard 2021',
-// style: black18regular(),
-// ),
-// Text(
-// 'and buy iphone x',
-// style: black18regular(),
-// ),
-// ],
-// ),
-// ),
-// SizedBox(
-// width:getWidth(context)/3.5 ,
-// height: getHeight(context)/5,
-// child:  Image(width: getWidth(context)/.5 ,
-// height: getHeight(context)/2.5,fit: BoxFit.cover,
-// image: const AssetImage(
-// 'assets/images/faceimg.jpg')),
-// ),
-// ],
-// ),
-// ),
-// ),
-// ],
-// )
-// ),
+
