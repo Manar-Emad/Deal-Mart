@@ -219,7 +219,7 @@ Widget formFeild({
 
 Widget cartButton({
   required Function()? function,
-  required String text,
+   String? text,
   Widget? child,
   Color? color,
   Color? txtColor,
@@ -244,7 +244,7 @@ Widget cartButton({
                   color: defTextColor,size: 15,),
                const Spacer(),
                 Text(
-                  text,
+                  text!,
                   style: (TextStyle(
                       color: txtColor, fontWeight: FontWeight.bold,
                       fontSize: 10)),

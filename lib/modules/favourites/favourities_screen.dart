@@ -13,7 +13,7 @@ class FavouritiesScreen extends StatefulWidget {
 }
 
 class _FavouritiesScreenState extends State<FavouritiesScreen> {
-  int itemCount = 0;
+  int itemCount = 10;
 
   void toggleListContents() {
     setState(() {
@@ -91,7 +91,7 @@ Widget cardBuilder(context)=>Padding(
          // spreadRadius: 5,
           // blurRadius: 7,
           offset: Offset(
-          10 , 20), // changes position of shadow
+          0 , 3), // changes position of shadow
         ),
       ],
     ),

@@ -1,18 +1,10 @@
-import 'package:bloc/bloc.dart';
-import 'package:deal_mart/draft_file.dart';
-import 'package:deal_mart/modules/onboarding/onboarding_screen.dart';
 import 'package:deal_mart/shared/app_cubit/app_cubit.dart';
 import 'package:deal_mart/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'app_localization.dart';
-import 'draft/scrolling_automatically_inlistview/scroll_enimation.dart';
-import 'draft2.dart';
 import 'modules/cart/cart_screen.dart';
-import 'modules/details/details_screen.dart';
-import 'modules/favourites/favourities_screen.dart';
-import 'modules/home/hot_deals_list.dart';
 import 'my_bloc_observer.dart';
 
 void main() async
@@ -80,7 +72,7 @@ class MyApp extends StatelessWidget {
               return supportedLocales.first;
             },
 
-            home:CartScreen(),
+            home:const CartScreen(),
             //FavouritiesScreen(),
            // DetailsScreen(),
             //HotDealsList(),
