@@ -13,7 +13,7 @@ class FavouritiesScreen extends StatefulWidget {
 }
 
 class _FavouritiesScreenState extends State<FavouritiesScreen> {
-  int itemCount = 10;
+  int itemCount = 0;
 
   void toggleListContents() {
     setState(() {
@@ -116,7 +116,7 @@ Widget cardBuilder(context)=>Padding(
 
                       TextButton(
                         onPressed: (){ navigateTo(context, const WinnerScreen());},
-                        child: const Text('win', style:  TextStyle(color: primaryColor,),),),
+                        child: const Text('win', style:  TextStyle(color: primaryColor,height: 1),),),
                       txtMaxLines1('Honda accord 2021 7999' ,),
                       Text(' EGP',style: TextStyle(color: textGray),),
                     ],

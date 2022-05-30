@@ -9,6 +9,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'app_localization.dart';
 import 'draft/scrolling_automatically_inlistview/scroll_enimation.dart';
 import 'draft2.dart';
+import 'modules/cart/cart_screen.dart';
 import 'modules/details/details_screen.dart';
 import 'modules/favourites/favourities_screen.dart';
 import 'modules/home/hot_deals_list.dart';
@@ -79,7 +80,9 @@ class MyApp extends StatelessWidget {
               return supportedLocales.first;
             },
 
-            home: DetailsScreen(),
+            home:CartScreen(),
+            //FavouritiesScreen(),
+           // DetailsScreen(),
             //HotDealsList(),
             //ScrollEnimationState(),
             //const OnBoardScreen(),
