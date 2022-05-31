@@ -1,4 +1,3 @@
-import 'package:deal_mart/app_localization.dart';
 import 'package:deal_mart/shared/styles/sizes.dart';
 import 'package:flutter/material.dart';
 import '../../shared/components/components.dart';
@@ -89,7 +88,7 @@ class PasswordRecoveryScreen extends StatelessWidget {
               ),
             ),
             sizedBoxh2,
-            defaultButton(
+            defaultButton(context,
               color: primaryColor,txtColor: defTextColor,
                 function: (){navigateTo(context,const HomeScreen());},
                 text: 'confirm',

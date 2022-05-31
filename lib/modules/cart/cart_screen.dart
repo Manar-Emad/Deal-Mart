@@ -1,10 +1,9 @@
+import 'package:deal_mart/modules/map/address_screen.dart';
+import 'package:deal_mart/shared/components/components.dart';
 import 'package:flutter/material.dart';
-
-import '../../shared/components/components.dart';
 import '../../shared/styles/colors.dart';
 import '../../shared/styles/sizes.dart';
 import '../../shared/styles/styles.dart';
-import '../winners/winners_screen.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -21,49 +20,59 @@ class _CartScreenState extends State<CartScreen> {
       backgroundColor: scaffoldColor,
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          //scrollDirection: Axis.vertical,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                child: Text(
-                  'Cart',
-                  style: black20bold(),
-                ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              child: Text(
+                'Cart',
+                style: black20bold(),
               ),
-              /// listview
-              // ListView.builder(
-              //     shrinkWrap: true,
-              //     physics: const NeverScrollableScrollPhysics(),
-              //     itemCount: 2,
-              //     itemBuilder: (context, index) {
-              //       return cardBuilder(context);
-              //     }),
-              cardBuilder(context),
-              const Spacer(),
-              Row(
+            ),
+            /// listview
+            // ListView.builder(
+            //     shrinkWrap: true,
+            //     physics: const NeverScrollableScrollPhysics(),
+            //     itemCount: 2,
+            //     itemBuilder: (context, index) {
+            //       return cardBuilder(context);
+            //     }),
+            cardBuilder(context),
+            sizedBoxh2,
+            cardBuilder(context),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Icon(Icons.wallet_giftcard_rounded),
-                  Text('you will make',style: black10bold(),),
-                  const Text('2',style:TextStyle(color: greenTxt,fontWeight: FontWeight.bold,fontSize: 10)),
-                  Text('copon from the purchase',style: black10bold(),),
+                  const Padding(
+                    padding:  EdgeInsets.all(10.0),
+                    child:  CircleAvatar(child: Icon(Icons.wallet_giftcard_rounded,size: 13,color: defTextColor,),
+                      backgroundColor: primaryColor,
+                      radius: 12,
+                    ),
+                  ),
+
+                  Text('you will make',style: black14bold(),),
+                const  Padding(
+                    padding:  EdgeInsets.all(2.0),
+                    child:  Text('2',style:TextStyle(color: greenTxt,fontSize: 14,fontWeight: FontWeight.bold,)),
+                  ),
+                  Text('copon from the purchase',style: black14bold(),),
                 ],
               ),
-              // cartButton(function: (){},
-              // color: primaryColor,
-              //   txtColor: defTextColor,
-              //   child: Row(
-              //     children: [
-              //
-              //     ],
-              //   ),
-              // ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 50),
+              child: defaultButton2(function: (){navigateTo(context, const AddressScreen());}, text: 'Finish the order and pay',
+                  txtColor:defTextColor,color: primaryColor,text2: '15,998 EGP ', context: context ),
+            ),
 
-            ],
-          ),
+          ],
         ),
       ),
     );
@@ -92,14 +101,14 @@ Widget cardBuilder(context) => Padding(
           child: Row(
             children: [
               Expanded(
-                flex: 5,
+                flex: 4,
                 child: SizedBox(
                   height: getHeight(context) / 5,
                   width: getWidth(context) / 7,
                   child: Column(
                     children: [
                       const Expanded(
-                        flex: 18,
+                        flex: 40,
                         child: Image(
                           image: AssetImage('assets/images/1-(1)-copy.png'),
                           // height: getHeight(context)/4,
@@ -113,7 +122,7 @@ Widget cardBuilder(context) => Padding(
                         flex: 1,
                       ),
                       Expanded(
-                        flex: 6,
+                        flex: 11,
                         child: SizedBox(
                           height: getHeight(context) / 25,
                           width: getWidth(context) / 4,
@@ -193,15 +202,15 @@ Widget cardBuilder(context) => Padding(
                       children: [
                         Text(
                           ' Get',
-                          style: black12bold(),
+                          style: black14bold(),
                         ),
                        const Text(
                           ' 1',
-                          style: TextStyle(fontWeight: FontWeight.bold,fontSize: 12,color: greenTxt),
+                          style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: greenTxt),
                         ),
                         Text(
                           ' raffle coupon',
-                          style: black12bold(),
+                          style: black14bold(),
                         ),
                       ],
                     ),
@@ -210,6 +219,60 @@ Widget cardBuilder(context) => Padding(
               ),
             ],
           ),
+        ),
+      ),
+    );
+
+Widget defaultButton2({ required BuildContext context,
+  required Function()? function,
+  required String text,
+  Widget? child,
+  Color? color,
+  Color? txtColor,
+  String? text2,
+}) =>
+    Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: Container(
+        height: getHeight(context)/13,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: color,
+          border: Border.all(color: primaryColor),
+          //  color: buttonColor,
+          borderRadius: BorderRadius.circular(
+            10.0,
+          ),
+        ),
+        child: MaterialButton(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(child: SizedBox(width: 1,),flex: 5,),
+              Expanded( flex: 7,
+                child: Text(
+                  text,
+                  style: (TextStyle(
+                      color: txtColor, fontSize: 16)),
+                ),
+              ),
+              Expanded(child: SizedBox(width: 1,),flex: 1,),
+              Expanded(
+                flex: 4,
+                child: Text(
+                  text2!,
+                  style: (TextStyle(
+                      color: txtColor, fontSize: 14)),
+                ),
+              ),
+              Expanded(child: SizedBox(width: 1,),flex: 1,),
+            ],
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          padding: const EdgeInsets.all(5),
+          onPressed: function,
         ),
       ),
     );

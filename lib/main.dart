@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'app_localization.dart';
 import 'modules/cart/cart_screen.dart';
+import 'modules/favourites/favourities_screen.dart';
 import 'my_bloc_observer.dart';
 
 void main() async
@@ -72,8 +73,7 @@ class MyApp extends StatelessWidget {
               return supportedLocales.first;
             },
 
-            home:const CartScreen(),
-            //FavouritiesScreen(),
+            home: const FavouritiesScreen(),
            // DetailsScreen(),
             //HotDealsList(),
             //ScrollEnimationState(),

@@ -203,7 +203,9 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                 fontWeight: FontWeight.w400),
           ),
           sizedBoxh2,
-          defaultButton(function: () {
+          defaultButton(
+              context,
+              function: () {
             print('before nav');
             // formKey.currentState!.validate();
             // // conditions for validating

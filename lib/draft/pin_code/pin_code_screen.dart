@@ -210,7 +210,9 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
                         fontWeight: FontWeight.w400),
                   ),
                   sizedBoxh2,
-                  defaultButton(function: () {
+                  defaultButton(
+                      context,
+                      function: () {
                     formKey.currentState!.validate();
                     // conditions for validating
                     if (currentText.length != 4 || currentText != "1234") {

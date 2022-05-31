@@ -115,7 +115,7 @@ Widget defaultSeparator() => Container(
     );
 
 ///Button
-Widget defaultButton({
+Widget defaultButton(BuildContext context, {
   required Function()? function,
   required String text,
   Widget? child,
@@ -123,7 +123,7 @@ Widget defaultButton({
   Color? txtColor,
 }) =>
     Container(
-      height: 40.0,
+      height: getHeight(context)/13,
       width: double.infinity,
       decoration: BoxDecoration(
         color: color,
@@ -137,7 +137,7 @@ Widget defaultButton({
         child: Text(
           text,
           style: (TextStyle(
-              color: txtColor, fontWeight: FontWeight.bold, fontSize: 16)),
+              color: txtColor, fontWeight: FontWeight.bold, fontSize: 14)),
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),

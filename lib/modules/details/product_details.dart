@@ -298,7 +298,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   }),
                 ],
               )
-            : defaultButton(
+            : defaultButton(context,
                 function: () {
                   navigateTo(context, const CartScreen());
                 },

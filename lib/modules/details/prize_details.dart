@@ -151,7 +151,7 @@ class _PrizeDetailsState extends State<PrizeDetails> {
           ),
         ),
         SizedBox(height: getHeight(context)/5,),
-        defaultButton(
+        defaultButton(context,
           function: () {
             navigateTo(context, const CartScreen());
           },
