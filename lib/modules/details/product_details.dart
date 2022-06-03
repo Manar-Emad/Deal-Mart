@@ -222,7 +222,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                           color: Colors.black26,
                         ),
                       ),
-                      Colors.grey,
+                      Colors.grey,BorderRadius.circular(20),
                       /// TABBED MINUS
                       () {},
                   ),
@@ -244,6 +244,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                         ),
                       ),
                       primaryColor,
+                      BorderRadius.circular(20),
                       /// TABBED ADD
                       () {}),
                   sizedBoxw2,
@@ -293,12 +294,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                               ],
                           ),
                            ),
-                      primaryColor, () {
+
+                      primaryColor, BorderRadius.circular(20),
+                          () {
                     navigateTo(context, const CartScreen());
                   }),
                 ],
               )
-            : defaultButton(context,
+            : defaultButton(context,borderColor: primaryColor,
                 function: () {
                   navigateTo(context, const CartScreen());
                 },
@@ -310,6 +313,8 @@ class _ProductDetailsState extends State<ProductDetails> {
     );
   }
 }
+
+
 
 Widget cardProductBuilder(
   context,
@@ -342,6 +347,7 @@ Widget smallContainer(
         context,
         Widget widget,
         Color color,
+        BorderRadius borderRadius,
         Function()? ontap) =>
     Padding(
       padding: const EdgeInsets.symmetric(
@@ -356,22 +362,10 @@ Widget smallContainer(
           //width: getWidth(context) / 5.7,
           decoration: BoxDecoration(
             color: color,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: borderRadius,
           ),
           child: widget,
         ),
       ),
     );
 
-Widget containerBorder(context,Widget widget)=>Padding(
-  padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
-  child:   Container(
-    height: getHeight(context)/30,
-    width: getWidth(context)/8,
-    decoration: BoxDecoration(
-    border: Border.all(color:Colors.grey,width: .5 ),
-    borderRadius: BorderRadius.circular(5),
-  ),
-    child: widget,
-  ),
-);

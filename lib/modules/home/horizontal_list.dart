@@ -22,7 +22,7 @@ class HorizontalList extends StatelessWidget {
           widget:  SizedBox(
             width: getWidth(context) / 6,
             height: getHeight(context)/20,
-            child: defaultButton(context,function: (){}, text: 'Earn',txtColor: secondColor,color: Colors.red),
+            child: defaultButton(context,borderColor: primaryColor,function: (){}, text: 'Earn',txtColor: secondColor,color: Colors.red),
           ),
         ),
         Cateogry(

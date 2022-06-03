@@ -182,7 +182,7 @@ class _ScrollEnimationStateState extends State<ScrollEnimationState> {
                         child: SizedBox(
                           width: getWidth(context) / 4,
                           height: getHeight(context)/20,
-                          child: defaultButton(context,
+                          child: defaultButton(context,borderColor: primaryColor,
                               function: () {},
                               text: 'Shop & Win!',
                               color: primaryColor,

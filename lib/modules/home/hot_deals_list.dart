@@ -101,7 +101,7 @@ class _ContainerDealsState extends State<ContainerDeals> {
                 Row(
                   children: [
                     Expanded(
-                      child: defaultButton(context,
+                      child: defaultButton(context,borderColor: primaryColor,
                         function: () {
                           setState(() {
                             isSelected ;

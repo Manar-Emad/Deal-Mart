@@ -42,11 +42,14 @@ class GoogleMapScreen extends StatelessWidget {
                  Text('Google Map'),
               ],),
           const  Spacer(),
-          defaultButton(context,
-            color: primaryColor,
-            txtColor: defTextColor,
-            function: (){
-              navigateTo(context, const AddressInformation());}, text: 'Choose the area',
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 30 ,horizontal: 20),
+            child: defaultButton(context,borderColor: primaryColor,
+              color: primaryColor,
+              txtColor: defTextColor,
+              function: (){
+                navigateTo(context,  AddressInformation());}, text: 'Choose the area',
+            ),
           ),
 
         ],

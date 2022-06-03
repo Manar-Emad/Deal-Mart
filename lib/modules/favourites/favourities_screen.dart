@@ -82,7 +82,7 @@ class _FavouritiesScreenState extends State<FavouritiesScreen> {
 
 
 Widget cardBuilder(context)=>Padding(
-  padding: const EdgeInsets.symmetric(vertical: 5),
+  padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
   child: GestureDetector(
     onTap: (){navigateTo(context, const DetailsScreen());},
     child: Container(

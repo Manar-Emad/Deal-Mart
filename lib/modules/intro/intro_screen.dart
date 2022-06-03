@@ -198,7 +198,7 @@ class _IntroScreenState extends State<IntroScreen> {
                     children: [
                       Expanded(
                           child: defaultButton(
-                            context,
+                            context,borderColor: primaryColor,
                         function: () {
                           setState(() {
                             isSelected ;
@@ -217,7 +217,7 @@ class _IntroScreenState extends State<IntroScreen> {
                       const Expanded(child: SizedBox(width: 1,),flex: 1,),
                       Expanded(flex:15,
                           child: defaultButton(
-                            context,
+                            context,borderColor: primaryColor,
                               function: () {
                                navigateTo(context, LoginScreen());
                               },

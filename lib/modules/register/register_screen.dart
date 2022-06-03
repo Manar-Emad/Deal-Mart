@@ -155,7 +155,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       suffix: const Icon(Icons.visibility),
                     ),
                     sizedBoxh5,
-                    defaultButton(context,
+                    defaultButton(context,borderColor: primaryColor,
                       color: primaryColor,
                       txtColor: defTextColor,
                       function: () {

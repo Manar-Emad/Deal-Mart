@@ -88,7 +88,7 @@ class PasswordRecoveryScreen extends StatelessWidget {
               ),
             ),
             sizedBoxh2,
-            defaultButton(context,
+            defaultButton(context,borderColor: primaryColor,
               color: primaryColor,txtColor: defTextColor,
                 function: (){navigateTo(context,const HomeScreen());},
                 text: 'confirm',

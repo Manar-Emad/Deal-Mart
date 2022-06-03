@@ -8,4 +8,9 @@ const defTextColor=Colors.white;
 const disableColor= Color(0xffFFEDDE);
 const greenTxt=Color(0xff68CE68);
 const scaffoldColor=Color(0xffF7F7F7);
+const containerColor=Color(0xffEDEDED);
+const buttonColor=Color(0xffC7C7C7);
+
+
+
 

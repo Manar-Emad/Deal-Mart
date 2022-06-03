@@ -107,11 +107,35 @@ getAppBar(context,
   );
 }
 
+Widget defContainer(context, widget)=> Padding(
+  padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+  child: Container(
+    height: getHeight(context) / 6,
+    width: getWidth(context),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      boxShadow: const [
+        BoxShadow(
+          color: defTextColor,
+          // spreadRadius: 5,
+          // blurRadius: 7,
+          offset: Offset(0, 1), // changes position of shadow
+        ),
+      ],
+    ),
+    child: Padding(
+      padding: const EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 5),
+      child: widget,
+    ),
+  ),
+);
+
+
 /// Separator divider
-Widget defaultSeparator() => Container(
+Widget defaultSeparator(Color? color) => Container(
       width: double.infinity,
       height: 1.0,
-      color: Colors.grey[300],
+      color: color,
     );
 
 ///Button
@@ -120,6 +144,7 @@ Widget defaultButton(BuildContext context, {
   required String text,
   Widget? child,
   Color? color,
+   required Color borderColor,
   Color? txtColor,
 }) =>
     Container(
@@ -127,7 +152,7 @@ Widget defaultButton(BuildContext context, {
       width: double.infinity,
       decoration: BoxDecoration(
         color: color,
-        border: Border.all(color: primaryColor),
+        border: Border.all(color: borderColor),
         //  color: buttonColor,
         borderRadius: BorderRadius.circular(
           10.0,
@@ -147,6 +172,20 @@ Widget defaultButton(BuildContext context, {
       ),
     );
 
+///Container Details in Details Screen
+Widget containerBorder(context,Widget widget)=>Padding(
+  padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
+  child:   Container(
+    height: getHeight(context)/30,
+    width: getWidth(context)/8,
+    decoration: BoxDecoration(
+      border: Border.all(color:Colors.grey,width: .5 ),
+      borderRadius: BorderRadius.circular(5),
+    ),
+    child: widget,
+  ),
+);
+
 ///Navigate.push
 void navigateTo(context, widget) => Navigator.push(
       context,
@@ -156,7 +195,8 @@ void navigateTo(context, widget) => Navigator.push(
     );
 
 ///Navigate And Remove
-void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
+void navigateAndFinish(context, widget) =>
+    Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
           builder: (context) => widget,
@@ -166,6 +206,7 @@ void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
       return false;
     });
 
+/// TEXT FORM FEILD
 Widget formFeild({
   Widget? suffix,
   IconData? prefix,
@@ -178,32 +219,45 @@ Widget formFeild({
   VoidCallback? suffixPressed,
   InputBorder? focusedBorder,
   InputBorder? disabledBorder,
-  Function(dynamic val)? onSaved,
   bool? obscureText,
 }) =>
     MaterialButton(
       onPressed: onTap,
       child: TextFormField(
-        onSaved: onSaved,
+        autofocus: true,
+        style: black14bold(),
         enabled: isClikable,
         controller: controller,
         validator: validate,
         keyboardType: type,
         textAlign: TextAlign.start,
         decoration: InputDecoration(
-          enabledBorder: InputBorder.none,
-          focusedBorder: focusedBorder,
-          disabledBorder: disabledBorder,
-          hintTextDirection: TextDirection.ltr,
-          // focusedBorder:  InputBorder.none,
-          // disabledBorder: InputBorder.none,
+          // enabledBorder:const OutlineInputBorder(
+          //     borderRadius: BorderRadius.all(
+          //         Radius.circular(10.0),
+          //     )
+          // ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: const BorderSide(
+              color: formContainer,
+            ),
+              ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: const BorderSide(
+              color: formContainer,
+              width: 2.0,
+            ),
+          ),
           prefixIconColor: primaryColor,
           suffixIconColor: secondColor,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(50),
+            borderRadius: BorderRadius.circular(10),
           ),
           hintText: txt,
-          hintStyle: TextStyle(color: textGray),
+          hintStyle: TextStyle(color: textGray,fontSize: 14,fontWeight: FontWeight.normal),
+          labelStyle: black14bold(),
           filled: true,
           fillColor: formContainer,
           suffixIcon: suffix,
@@ -215,8 +269,8 @@ Widget formFeild({
       ),
     );
 
-/// Cart Button
 
+/// Cart Button with text
 Widget cartButton({
   required Function()? function,
    String? text,

@@ -204,7 +204,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
           ),
           sizedBoxh2,
           defaultButton(
-              context,
+              context,borderColor: primaryColor,
               function: () {
             print('before nav');
             // formKey.currentState!.validate();

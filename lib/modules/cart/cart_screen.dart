@@ -14,64 +14,105 @@ class CartScreen extends StatefulWidget {
 
 class _CartScreenState extends State<CartScreen> {
 
+  int itemCount = 15;
+
+  void toggleListContents() {
+    setState(() {
+      itemCount = itemCount == 0 ? 20 : 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: scaffoldColor,
-      body: Padding(
+      appBar:itemCount>1 ? AppBar(
+        backgroundColor: defTextColor,
+        elevation: 0,
+        title:const Text('Cart',
+          style: TextStyle(color: secondColor,
+              //fontWeight: FontWeight.bold,
+              fontSize: 18),
+        ),
+      ) : AppBar(
+        backgroundColor: defTextColor,
+        elevation: 0,
+        title:const Text('Cart',
+          style: TextStyle(fontWeight: FontWeight.bold,color: secondColor,
+              fontSize: 18),),
+      ),
+      body: itemCount > 1 ? Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              child: Text(
-                'Cart',
-                style: black20bold(),
+            SizedBox(
+              height: getHeight(context)/1.52,
+              child: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: itemCount,
+                        itemBuilder: (context, index) {
+                          return cardBuilder(context);
+                        }),
+                  ],
+                ),
               ),
             ),
-            /// listview
-            // ListView.builder(
-            //     shrinkWrap: true,
-            //     physics: const NeverScrollableScrollPhysics(),
-            //     itemCount: 2,
-            //     itemBuilder: (context, index) {
-            //       return cardBuilder(context);
-            //     }),
-            cardBuilder(context),
-            sizedBoxh2,
-            cardBuilder(context),
             const Spacer(),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Row(mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.center,
+            SizedBox(
+              height: getHeight(context)/4.2,
+              child: Column(
                 children: [
-                  const Padding(
-                    padding:  EdgeInsets.all(10.0),
-                    child:  CircleAvatar(child: Icon(Icons.wallet_giftcard_rounded,size: 13,color: defTextColor,),
-                      backgroundColor: primaryColor,
-                      radius: 12,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Padding(
+                          padding:  EdgeInsets.all(10.0),
+                          child:  CircleAvatar(child: Icon(Icons.wallet_giftcard_rounded,size: 13,color: defTextColor,),
+                            backgroundColor: primaryColor,
+                            radius: 12,
+                          ),
+                        ),
+
+                        Text('you will make',style: black14bold(),),
+                        const  Padding(
+                          padding:  EdgeInsets.all(2.0),
+                          child:  Text('2',style:TextStyle(color: greenTxt,fontSize: 14,fontWeight: FontWeight.bold,)),
+                        ),
+                        Text('copon from the purchase',style: black14bold(),),
+                      ],
                     ),
                   ),
-
-                  Text('you will make',style: black14bold(),),
-                const  Padding(
-                    padding:  EdgeInsets.all(2.0),
-                    child:  Text('2',style:TextStyle(color: greenTxt,fontSize: 14,fontWeight: FontWeight.bold,)),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 50,),
+                    child: defaultButton2(function: (){navigateTo(context, const AddressScreen());}, text: 'Finish the order and pay',
+                        txtColor:defTextColor,color: primaryColor,text2: '15,998 EGP ', context: context ),
                   ),
-                  Text('copon from the purchase',style: black14bold(),),
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 50),
-              child: defaultButton2(function: (){navigateTo(context, const AddressScreen());}, text: 'Finish the order and pay',
-                  txtColor:defTextColor,color: primaryColor,text2: '15,998 EGP ', context: context ),
+          ],
+        ),
+      ) :  Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: 40,
+              backgroundColor: defTextColor,
+              child: Icon(Icons.shopping_cart,color: textGray,size: 40,),
             ),
-
+            sizedBoxh2,
+            const Text('Your cart empty',
+              style: TextStyle(fontSize: 20,color: Colors.black45),),
           ],
         ),
       ),

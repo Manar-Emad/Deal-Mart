@@ -137,7 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                       sizedBoxh3,
-                      defaultButton(context,
+                      defaultButton(context,borderColor: primaryColor,
                           color: primaryColor,
                           function: () {
                             ScaffoldMessenger.of(context).showSnackBar(
@@ -151,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               .translate('sign_in')!,
                           txtColor: defTextColor),
                       sizedBoxh2,
-                      defaultButton(context,
+                      defaultButton(context,borderColor: primaryColor,
                           function: () {
                             ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(

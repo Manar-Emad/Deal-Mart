@@ -41,7 +41,7 @@ class AddressScreen extends StatelessWidget {
             const Spacer(),
         Padding(
                 padding: const EdgeInsets.symmetric(vertical: 50,horizontal: 20),
-                child: defaultButton(context,
+                child: defaultButton(context,borderColor: primaryColor,
                   function: (){navigateTo(context,const GoogleMapScreen());},
                   text: 'Add a new address' ,
                     color: primaryColor,
