@@ -5,6 +5,7 @@ import 'package:deal_mart/shared/styles/sizes.dart';
 import 'package:flutter/material.dart';
 
 import '../../shared/styles/colors.dart';
+import 'add_address.dart';
 
 class GoogleMapScreen extends StatelessWidget {
   const GoogleMapScreen({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class GoogleMapScreen extends StatelessWidget {
         centerTitle: true,
         leading: GestureDetector(
           onTap: () {
-            navigateTo(context, const AddressScreen());
+            navigateTo(context,  AddNewAddress());
           },
           child: const CircleAvatar(
               backgroundColor: defTextColor,

@@ -1,11 +1,11 @@
 import 'package:deal_mart/modules/details/details_screen.dart';
-import 'package:deal_mart/modules/winners/winners_screen.dart';
 import 'package:deal_mart/shared/components/components.dart';
 import 'package:deal_mart/shared/styles/colors.dart';
 import 'package:deal_mart/shared/styles/sizes.dart';
 import 'package:flutter/material.dart';
 import '../../shared/styles/styles.dart';
 import '../cart/cart_screen.dart';
+import '../to_win/winners_screen.dart';
 class FavouritiesScreen extends StatefulWidget {
   const FavouritiesScreen({Key? key}) : super(key: key);
 
@@ -120,7 +120,7 @@ Widget cardBuilder(context)=>Padding(
                         txtMaxLines1('Get a chance to '),
 
                         TextButton(
-                          onPressed: (){ navigateTo(context, const WinnerScreen());},
+                          onPressed: (){ navigateTo(context,  TopWinnersScreen());},
                           child: const Text('win', style:  TextStyle(color: primaryColor,height: 1),),),
                         txtMaxLines1('Honda accord 2021 7999' ,),
                         Text(' EGP',style: TextStyle(color: textGray),),

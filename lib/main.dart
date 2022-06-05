@@ -1,4 +1,5 @@
 import 'package:deal_mart/modules/check_out/check_out_screen.dart';
+import 'package:deal_mart/modules/home/home_layout.dart';
 import 'package:deal_mart/modules/map/adress_information.dart';
 import 'package:deal_mart/shared/app_cubit/app_cubit.dart';
 import 'package:deal_mart/shared/styles/colors.dart';
@@ -9,6 +10,11 @@ import 'app_localization.dart';
 import 'draft/alert_delete/alert_delete.dart';
 import 'modules/cart/cart_screen.dart';
 import 'modules/favourites/favourities_screen.dart';
+import 'modules/map/address_screen.dart';
+import 'modules/orders/order_placed_screen.dart';
+import 'modules/settings/settings_screen.dart';
+import 'modules/to_win/final_winner.dart';
+import 'modules/to_win/winners_screen.dart';
 import 'my_bloc_observer.dart';
 
 void main() async
@@ -30,9 +36,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AppCubit(),
-      child: BlocConsumer<AppCubit, AppState>(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AppCubit(),
+        ),
+      ],
+      child: BlocConsumer<AppCubit,AppState>(
         listener: (context, state) {
           // TODO: implement listener
         },
@@ -76,13 +86,8 @@ class MyApp extends StatelessWidget {
               return supportedLocales.first;
             },
 
-            home:AddressInformation(),
-
-            //CartScreen(),
-           // CheckOutScreen(),
-         //  const FavouritiesScreen(),
-           // DetailsScreen(),
-            //HotDealsList(),
+            home://CartScreen()
+            SettingsScreen(),
             //ScrollEnimationState(),
             //const OnBoardScreen(),
           );

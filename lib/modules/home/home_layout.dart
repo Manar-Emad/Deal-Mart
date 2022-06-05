@@ -11,9 +11,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer(
-      listener: (BuildContext context, Object? state) {},
+      listener: ( context,state) {},
       builder: (context, state) {
-        var cubit = AppCubit.get(context);
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Scaffold(
@@ -26,12 +25,12 @@ class HomeScreen extends StatelessWidget {
             //   // ],
             //   title: Text('Salla'),
             // ),
-            body: cubit.bottomScreens[cubit.currentIndex],
+            body:  AppCubit.get(context).bottomScreens[ AppCubit.get(context).currentIndex],
             bottomNavigationBar: BottomNavigationBar(
               onTap: (index) {
-                cubit.changeBottom(index);
+                AppCubit.get(context).changeBottom(index);
               },
-              currentIndex: cubit.currentIndex,
+              currentIndex:  AppCubit.get(context).currentIndex,
               items: const [
                 BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
                 BottomNavigationBarItem(

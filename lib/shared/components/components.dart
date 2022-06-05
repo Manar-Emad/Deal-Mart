@@ -107,19 +107,20 @@ getAppBar(context,
   );
 }
 
-Widget defContainer(context, widget)=> Padding(
+Widget defContainer(context, widget,{Color? color})=> Padding(
   padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
   child: Container(
-    height: getHeight(context) / 6,
+    height:getHeight(context)/6,
     width: getWidth(context),
     decoration: BoxDecoration(
+      color: color,
       borderRadius: BorderRadius.circular(10),
       boxShadow: const [
         BoxShadow(
           color: defTextColor,
           // spreadRadius: 5,
           // blurRadius: 7,
-          offset: Offset(0, 1), // changes position of shadow
+          offset: Offset(0, 3), // changes position of shadow
         ),
       ],
     ),
@@ -148,7 +149,7 @@ Widget defaultButton(BuildContext context, {
   Color? txtColor,
 }) =>
     Container(
-      height: getHeight(context)/13,
+      height: getHeight(context)/14,
       width: double.infinity,
       decoration: BoxDecoration(
         color: color,

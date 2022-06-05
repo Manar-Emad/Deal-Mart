@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../modules/cart/cart_screen.dart';
 import '../../modules/home/home_layout.dart';
-import '../../modules/profile/profile_screen.dart';
-import '../../modules/winners/winners_screen.dart';
+import '../../modules/settings/settings_screen.dart';
+import '../../modules/to_win/winners_screen.dart';
+
 part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
@@ -18,9 +19,9 @@ class AppCubit extends Cubit<AppState> {
 
     const HomeScreen(),
     const FavouritiesScreen(),
-    const WinnerScreen(),
+     TopWinnersScreen(),
     const CartScreen(),
-    const ProfileScreen(),
+      SettingsScreen(),
   ];
 
   void changeBottom(int index) {

@@ -47,6 +47,7 @@ dependencies:
   #conditional_builder_null_safety: ^0.0.6
   #syncfusion_flutter_gauges: ^20.1.56
   sleek_circular_slider: ^2.0.1
+  flutter_switch: ^0.3.2
 
 
 dev_dependencies:

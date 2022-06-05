@@ -8,6 +8,11 @@ TextStyle prim18bold() => const TextStyle(
   fontWeight: FontWeight.bold,
   color: primaryColor,
 );
+TextStyle prim20bold() => const TextStyle(
+  fontSize: 20.0,
+  fontWeight: FontWeight.bold,
+  color: primaryColor,
+);
 
 ///MaxLines Style
 Text txtMaxLines1(String txt) =>  Text(txt,
@@ -184,6 +189,11 @@ TextStyle visa20bold() => const TextStyle(
 
 TextStyle red12bold() => const TextStyle(
   fontSize: 12.0,
+  fontWeight: FontWeight.bold,
+  color: Colors.red,
+);
+TextStyle red14bold() => const TextStyle(
+  fontSize: 14.0,
   fontWeight: FontWeight.bold,
   color: Colors.red,
 );

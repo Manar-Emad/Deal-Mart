@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../shared/styles/colors.dart';
 import '../../shared/styles/sizes.dart';
 import '../../shared/styles/styles.dart';
+import '../map/add_address.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -93,7 +94,7 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 50,),
-                    child: defaultButton2(function: (){navigateTo(context, const AddressScreen());}, text: 'Finish the order and pay',
+                    child: defaultButton2(function: (){navigateTo(context,  AddNewAddress());}, text: 'Finish the order and pay',
                         txtColor:defTextColor,color: primaryColor,text2: '15,998 EGP ', context: context ),
                   ),
                 ],

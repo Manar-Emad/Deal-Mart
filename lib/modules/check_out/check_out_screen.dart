@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../shared/components/components.dart';
 import '../../shared/styles/colors.dart';
 import '../../shared/styles/sizes.dart';
+import '../orders/order_placed_screen.dart';
 
 final scaffoldState = GlobalKey<ScaffoldState>();
 
@@ -429,25 +430,25 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                           functionIf: (){setState( ()=> tappedCancel=true);},
                           functionElse: (){setState( ()=> tappedCancel=false);},
                         ),
-                        PaymentRow(context: context,
-                         // functionTapped:(){setState((){isVisible = !isVisible;}); },
-                          widgetRadio:  Radio(
-                              value: 3,
-                              groupValue: _value,
-                              activeColor: primaryColor,
-                              onChanged: (value) {
-                                setState(() {
-                                  _value = value;
-                                 // isVisible = !isVisible;
-                                });
-                              }),
-                          visible: isVisible,
-                          txt: 'Pay with card',
-                          icon: Icons.shopping_bag_outlined,
-                          payTxt: 'Visa',
-                          functionIf: (){setState( ()=> tappedCancel=true);},
-                          functionElse: (){setState( ()=> tappedCancel=false);},
-                        ),
+                        // PaymentRow(context: context,
+                        //  // functionTapped:(){setState((){isVisible = !isVisible;}); },
+                        //   widgetRadio:  Radio(
+                        //       value: 3,
+                        //       groupValue: _value,
+                        //       activeColor: primaryColor,
+                        //       onChanged: (value) {
+                        //         setState(() {
+                        //           _value = value;
+                        //          // isVisible = !isVisible;
+                        //         });
+                        //       }),
+                        //   visible: isVisible,
+                        //   txt: 'Pay with card',
+                        //   icon: Icons.shopping_bag_outlined,
+                        //   payTxt: 'Visa',
+                        //   functionIf: (){setState( ()=> tappedCancel=true);},
+                        //   functionElse: (){setState( ()=> tappedCancel=false);},
+                        // ),
                       ],
                     ),
                   ),
@@ -505,7 +506,10 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: itemCount,
                       itemBuilder: (context, index) {
-                        return cardItemsBuilder(context);
+                        return cardItemsBuilder(
+                          context,
+                          '1',
+                        );
                       }),
                 ],
               ),
@@ -585,16 +589,16 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 40,left: 20,top: 10,right: 20),
-                    child: defaultButton(context,
-                        function: (){
-                      navigateTo(context, OrderPlacedScreen());
-                        },
-                        text: isVisaNumAdded? 'Checkout':'Pay and Checkout',
-                        borderColor: buttonColor,txtColor: defTextColor,
-                        color:isVisaNumAdded? buttonColor : primaryColor),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(bottom: 40,left: 20,top: 10,right: 20),
+                  //   child: defaultButton(context,
+                  //       function: (){
+                  //     navigateTo(context, OrderPlacedScreen());
+                  //       },
+                  //       text: isVisaNumAdded? 'Checkout':'Pay and Checkout',
+                  //       borderColor: buttonColor,txtColor: defTextColor,
+                  //       color:isVisaNumAdded? buttonColor : primaryColor),
+                  // ),
                 ],
               ),
             ),),
@@ -817,19 +821,19 @@ class AlertDialogs {
   }
 }
 
-Widget cardItemsBuilder(context) => Padding(
+Widget cardItemsBuilder(context,String txtNum,{Color? shadowColor}) => Padding(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       child: Container(
         height: getHeight(context) / 6,
         width: getWidth(context),
-        decoration: BoxDecoration(
+        decoration: BoxDecoration(color: defTextColor,
           borderRadius: BorderRadius.circular(10),
-          boxShadow: const [
+          boxShadow:  [
             BoxShadow(
-              color: defTextColor,
-              // spreadRadius: 5,
-              // blurRadius: 7,
-              offset: Offset(0, 3), // changes position of shadow
+              color: shadowColor!,
+               // spreadRadius: 5,
+               // blurRadius: 7,
+              offset: Offset(4 , 4), // changes position of shadow
             ),
           ],
         ),
@@ -845,10 +849,10 @@ Widget cardItemsBuilder(context) => Padding(
                   width: getWidth(context) / 7,
                   child: Column(
                     children: [
-                      const Expanded(
+                       const Expanded(
                         flex: 40,
                         child: Image(
-                          image: AssetImage('assets/images/1-(1)-copy.png'),
+                          image: AssetImage('assets/images/1-(1)-copy.png',),
                           // height: getHeight(context)/4,
                           // width: getWidth(context)/6,
                         ),
@@ -869,12 +873,12 @@ Widget cardItemsBuilder(context) => Padding(
                               Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 10),
                                 child: Text(
-                                  'Quantity',
+                                    'Quantity',
                                   style: grey14bold(),
                                 ),
                               ),
                               Text(
-                                '1',
+                                txtNum,
                                 style: black14bold(),
                               ),
                             ],
@@ -896,30 +900,25 @@ Widget cardItemsBuilder(context) => Padding(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 5),
-                          child: Text(
-                            ' laptop dell z21 find dweduw dwuw',
-                            style: black12bold(),
-                            maxLines: 2,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 5),
-                          child: Text(
-                            '7999 EGP ',
-                            style: black14bold(),
-                          ),
-                        ),
-                        Text(
-                          'Win Honda accord 2021',
-                          style: black12bold(),
-                          maxLines: 2,
-                        ),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 5),
+                      child: Text(
+                        ' laptop dell z21 find dweduw dwuw',
+                        style: black12bold(),
+                        maxLines: 2,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 5),
+                      child: Text(
+                        '7999 EGP ',
+                        style: black14bold(),
+                      ),
+                    ),
+                    Text(
+                      'Win Honda accord 2021',
+                      style: black12bold(),
+                      maxLines: 2,
                     ),
                   ],
                 ),
@@ -1042,77 +1041,77 @@ class _PaymentRowState extends State<PaymentRow> {
                       ),
                     );
                   });},
-            child: Row(
-              children: [
-                widgetRadio!,
-                //     Padding(
-                // padding: const EdgeInsets.symmetric(horizontal: 10),
-                // child: Radio(value: 1, groupValue: val,
-                //       onChanged:function),),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Text(
-                    txt!,
-                    style: black14bold(),
-                  ),
-                ),
-
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Icon(
-                    icon,
-                    color: secondColor,
-                  ),
-                ),
-
-              ],
-            ),
+            // child: Row(
+            //   children: [
+            //     widgetRadio!,
+            //     //     Padding(
+            //     // padding: const EdgeInsets.symmetric(horizontal: 10),
+            //     // child: Radio(value: 1, groupValue: val,
+            //     //       onChanged:function),),
+            //     Padding(
+            //       padding: const EdgeInsets.symmetric(horizontal: 10),
+            //       child: Text(
+            //         txt!,
+            //         style: black14bold(),
+            //       ),
+            //     ),
+            //
+            //     const Spacer(),
+            //     Padding(
+            //       padding: const EdgeInsets.symmetric(horizontal: 20),
+            //       child: Icon(
+            //         icon,
+            //         color: secondColor,
+            //       ),
+            //     ),
+            //
+            //   ],
+            // ),
           ),
-          Visibility(
-            visible: isVisibile,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10),
-                    child: Text(
-                      payTxt!,
-                      style: visa20bold(),
-                    ),
-                  ),
-                  Text(
-                    '**** **** **** 5436',
-                    style: black12bold(),
-                  ),
-                  const Spacer(),
-                  TextButton(
-                    child: Text(
-                      'Delete',
-                      style: grey10bold(),
-                    ),
-                    onPressed: () async {
-                      final action =
-                      await AlertDialogs.cancelDeleteDialog(
-                          context!,
-                          'logggg',
-                          'Do you want to delete the card');
-
-                      if (action == DialogAction.cancel) {
-                       // setState(() => tappedCancel = true);
-                        functionIf;
-                      } else {
-                        // setState(() => tappedCancel = false);
-                        functionElse;
-                      }
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
+          // Visibility(
+          //   visible: isVisibile,
+          //   child: Padding(
+          //     padding: const EdgeInsets.symmetric(horizontal: 20),
+          //     child: Row(
+          //       children: [
+          //         Padding(
+          //           padding: const EdgeInsets.symmetric(
+          //               horizontal: 10),
+          //           child: Text(
+          //             payTxt!,
+          //             style: visa20bold(),
+          //           ),
+          //         ),
+          //         Text(
+          //           '**** **** **** 5436',
+          //           style: black12bold(),
+          //         ),
+          //         const Spacer(),
+          //         TextButton(
+          //           child: Text(
+          //             'Delete',
+          //             style: grey10bold(),
+          //           ),
+          //           onPressed: () async {
+          //             final action =
+          //             await AlertDialogs.cancelDeleteDialog(
+          //                 context!,
+          //                 'logggg',
+          //                 'Do you want to delete the card');
+          //
+          //             if (action == DialogAction.cancel) {
+          //              // setState(() => tappedCancel = true);
+          //               functionIf;
+          //             } else {
+          //               // setState(() => tappedCancel = false);
+          //               functionElse;
+          //             }
+          //           },
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ),
         ]
     );
   }
