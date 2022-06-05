@@ -508,7 +508,8 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                       itemBuilder: (context, index) {
                         return cardItemsBuilder(
                           context,
-                          '1',
+                          '1',shadowColor: scaffoldColor,
+                          widget: const SizedBox(height: 1,),
                         );
                       }),
                 ],
@@ -821,7 +822,7 @@ class AlertDialogs {
   }
 }
 
-Widget cardItemsBuilder(context,String txtNum,{Color? shadowColor}) => Padding(
+Widget cardItemsBuilder(context,String txtNum,{Color? shadowColor,Widget? widget}) => Padding(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       child: Container(
         height: getHeight(context) / 6,
@@ -920,6 +921,7 @@ Widget cardItemsBuilder(context,String txtNum,{Color? shadowColor}) => Padding(
                       style: black12bold(),
                       maxLines: 2,
                     ),
+                    widget!,
                   ],
                 ),
               ),

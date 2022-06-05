@@ -27,19 +27,20 @@ Text txtMaxLinesB1(String txt) =>  Text(txt,style: const TextStyle(
 ///Primary Color Bold TextStyle
 TextStyle prim10bold() => const TextStyle(
   fontSize: 10.0,
-  fontWeight: FontWeight.bold,
+  fontWeight: FontWeight.bold,  color: primaryColor
 );
 TextStyle prim12bold() => const TextStyle(
   fontSize: 10.0,
-  fontWeight: FontWeight.bold,
+  fontWeight: FontWeight.bold,  color: primaryColor
 );
 TextStyle prim14bold() => const TextStyle(
   fontSize: 14.0,
   fontWeight: FontWeight.bold,
+  color: primaryColor
 );
 TextStyle prim16bold() => const TextStyle(
   fontSize: 16.0,
-  fontWeight: FontWeight.bold,
+  fontWeight: FontWeight.bold,  color: primaryColor
 );
 
 

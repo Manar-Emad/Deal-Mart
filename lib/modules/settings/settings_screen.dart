@@ -1,4 +1,3 @@
-import 'package:deal_mart/modules/map/address_screen.dart';
 import 'package:deal_mart/modules/orders/my_orders_screen.dart';
 import 'package:deal_mart/modules/settings/profile_screen.dart';
 import 'package:deal_mart/shared/components/components.dart';
@@ -9,9 +8,10 @@ import 'package:flutter_switch/flutter_switch.dart';
 import '../../shared/styles/sizes.dart';
 import '../map/add_address.dart';
 import '../payment/wallet_screen.dart';
+import 'contact_us_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
-   SettingsScreen({Key? key}) : super(key: key);
+   const SettingsScreen({Key? key}) : super(key: key);
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -130,11 +130,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 height: getHeight(context)/4.55,
                 child: defContainer(context,
                     Column(children: [
-                        settingsRow(Icons.add_box, 'My orders', arrowIcon((){navigateTo(context,const MyOrdersScreen());}) ),
+                        settingsRow(Icons.add_box, 'My orders',
+                            arrowIcon((){navigateTo(context, MyOrdersScreen());}) ),
                       defaultSeparator( greySeparatorColor),
-                        settingsRow(Icons.my_location, 'My address', arrowIcon((){navigateTo(context,  AddNewAddress());}) ),
+                        settingsRow(Icons.my_location, 'My address',
+                            arrowIcon((){navigateTo(context,  AddNewAddress());}) ),
                       defaultSeparator( greySeparatorColor),
-                        settingsRow(Icons.person, 'Profile', arrowIcon((){const ProfileScreen();}) ),
+                        settingsRow(Icons.person, 'Profile',
+                            arrowIcon((){const ProfileScreen();}) ),
 
 
                 ],)),
@@ -156,7 +159,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: Text('العربيه',style: black16bold(),),
                           ),
-                          arrowIcon((){navigateTo(context,const MyOrdersScreen());}),
+                          arrowIcon((){}),
                         ],
                       ) ),
                       defaultSeparator( greySeparatorColor),
@@ -170,7 +173,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             child:  Image(image: AssetImage('assets/images/egypt (1).png')),
                           ),
                           ),
-                          arrowIcon((){navigateTo(context,  AddNewAddress());}),
+                          arrowIcon((){}),
                         ],
                       ) ),
                       defaultSeparator( greySeparatorColor),
@@ -186,7 +189,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           child: FlutterSwitch(
                               height: getHeight(context)/37,
                           width: getWidth(context)/13,
-                            inactiveColor: Color(0xffEBE6E6),
+                            inactiveColor: const Color(0xffEBE6E6),
                           activeColor: primaryColor,padding: 0,
                           value: notification,
                           onToggle: ( value) {
@@ -198,7 +201,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                       defaultSeparator( greySeparatorColor),
                       settingsRow(Icons.phone_enabled_outlined, 'Contact us',
-                      arrowIcon((){}),
+                      arrowIcon((){navigateTo(context, const ContactUsScreen());}),
                       ),
                          const Spacer(),
                          Text('Sign out',style: red14bold(),),
@@ -221,7 +224,7 @@ Widget settingsRow(IconData icon,String txt,Widget? widget)=>Column(
           child: Text(txt,style: black14bold(),),
       ),
       const Spacer(),
-       Padding(padding: EdgeInsets.symmetric(horizontal: 10),
+       Padding(padding: const EdgeInsets.symmetric(horizontal: 10),
       child: widget!,
 
       ),
@@ -235,10 +238,3 @@ Widget arrowIcon(Function()? function)=>GestureDetector(
   child:   const Icon(
     Icons.arrow_forward_ios,color: secondColor,size: 15,),
 );
-//
-// Row(children: [
-// Padding(
-// padding: const EdgeInsets.symmetric(horizontal: 10),
-// child:
-// ),
-// ],),

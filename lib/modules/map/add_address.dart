@@ -117,7 +117,7 @@ class _AddNewAddress extends State<AddNewAddress> {
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: defaultButton(context,borderColor: primaryColor,
                     /// TODO NAV TO WHICH SCREEN ?????/????
-                    function: (){navigateTo(context,   SettingsScreen());},
+                    function: (){navigateTo(context,   const SettingsScreen());},
                     text: 'Add a new address',
                 color: primaryColor,
                   txtColor: defTextColor,
