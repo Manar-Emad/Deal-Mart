@@ -63,55 +63,9 @@ class _AddNewAddress extends State<AddNewAddress> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount:itemCount,
                   itemBuilder: (context, index) {
-                    return defContainer(context,
-                      Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 5),
-                            child: Row(
-                              children: [
-                                txtMaxLines1('Elbaron, maddi,cairo'),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 5),
-                            child: Row(
-                              children: [
-                                txtMaxLines1('Abraj sama 28D 1 apartment'),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 5),
-                            child: Row(
-                              children: [
-                                txtMaxLines1('Ahmed mohamed'),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 5),
-                            child: Row(
-                              children: [
-                                txtMaxLines1('01212345673'),
-                              ],
-                            ),
-                          ),
-                          const Spacer(),
-                          Row(
-                            children:  [
-                              Spacer(),
-                              GestureDetector(
-                                  onTap: (){navigateTo(context, const GoogleMapScreen());},
-                                  child: const Text('Edit',style: TextStyle(color: primaryColor),)),
-
-                            ],
-                          )
-
-                        ],
-                      ),
-                    );
+                    return cardAddressInfo(context, GestureDetector(
+                        onTap: (){navigateTo(context,  AddressInformation());},
+                        child: const Text('Edit',style: TextStyle(color: primaryColor),)),);
                   }),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),
@@ -157,4 +111,54 @@ class _AddNewAddress extends State<AddNewAddress> {
   }
 }
 
+Widget cardAddressInfo(context,Widget? widget)=>defContainer(context,
+  Column(
+    children: [
+      Padding(
+        padding: const EdgeInsets.only(bottom: 5),
+        child: Row(
+          children: [
+            txtMaxLinesB1('Elbaron, maddi,cairo'),
+          ],
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(bottom: 5),
+        child: Row(
+          children: [
+            txtMaxLinesB1('Abraj sama 28D 1 apartment'),
+          ],
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(bottom: 5),
+        child: Row(
+          children: [
+            txtMaxLinesB1('Ahmed mohamed'),
+          ],
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(bottom: 5),
+        child: Row(
+          children: [
+            txtMaxLinesB1('01212345673'),
+          ],
+        ),
+      ),
+      const Spacer(),
+      Row(
+        children:  [
+          const Spacer(),
+          widget!,
 
+        ],
+      )
+
+    ],
+  ),
+);
+
+// GestureDetector(
+// onTap: (){navigateTo(context,  AddressInformation());},
+// child: const Text('Edit',style: TextStyle(color: primaryColor),)),

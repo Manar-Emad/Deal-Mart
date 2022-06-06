@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../shared/components/components.dart';
 import '../../shared/styles/colors.dart';
 import '../../shared/styles/sizes.dart';
+import '../map/add_address.dart';
 import '../orders/order_placed_screen.dart';
 
 final scaffoldState = GlobalKey<ScaffoldState>();
@@ -71,61 +72,9 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                       style: black14bold(),
                     ),
                   ),
-                  defContainer(
-                    context,
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 8,),
-                          child: Row(
-                            children: [
-                              txtMaxLinesB1('Elbaron, maddi,cairo'),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 8),
-                          child: Row(
-                            children: [
-                              txtMaxLinesB1('Abraj sama 28D 1 apartment'),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 8),
-                          child: Row(
-                            children: [
-                              txtMaxLinesB1('Ahmed mohamed'),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 8),
-                          child: Row(
-                            children: [
-                              txtMaxLinesB1('01212345673'),
-                            ],
-                          ),
-                        ),
-                        const Spacer(),
-                        Row(
-                          children: const [
-                            Spacer(),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 20),
-                              child: Text(
-                                'Edit',
-                                style: TextStyle(
-                                    color: primaryColor,
-                                    fontWeight: FontWeight.bold,fontSize: 13),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
+                  cardAddressInfo(context,GestureDetector(
+                      onTap: (){navigateTo(context,  AddressInformation());},
+                      child: const Text('Edit',style: TextStyle(color: primaryColor),)),),
                   Padding(
                     padding: const EdgeInsets.only(top: 9, bottom: 3),
                     child: Text(

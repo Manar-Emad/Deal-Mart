@@ -110,7 +110,7 @@ class OrderPlacedScreen extends StatelessWidget {
                           child: defaultButton(
                             context,borderColor: primaryColor,
                             function: () {
-                              navigateTo(context, const OrderDetailsScreen());
+                              navigateTo(context,  OrderDetailsScreen());
                             },
                             text:    'Order details',
                             //AppLocalization.of(context)!.translate('sign_in')!,

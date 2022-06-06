@@ -191,7 +191,7 @@ Widget myOrderCard(context) => Padding(
                               ),
                             ),
                             arrowIcon(() {
-                              navigateTo(context, const OrderDetailsScreen());
+                              navigateTo(context,  OrderDetailsScreen());
                             }),
                           ],
                         ))

@@ -1,4 +1,5 @@
 import 'package:deal_mart/modules/orders/my_orders_screen.dart';
+import 'package:deal_mart/modules/orders/order_details_screen.dart';
 import 'package:deal_mart/shared/app_cubit/app_cubit.dart';
 import 'package:deal_mart/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
@@ -79,8 +80,7 @@ class MyApp extends StatelessWidget {
               return supportedLocales.first;
             },
 
-            home:
-            MyOrdersScreen()
+            home:OrderDetailsScreen()
            // const SettingsScreen(),
             //ScrollEnimationState(),
             //const OnBoardScreen(),
