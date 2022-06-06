@@ -203,10 +203,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       settingsRow(Icons.phone_enabled_outlined, 'Contact us',
                       arrowIcon((){navigateTo(context, const ContactUsScreen());}),
                       ),
-                         const Spacer(),
-                         Text('Sign out',style: red14bold(),),
-
                     ],)),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Text('Sign out',style: red14bold(),),
               ),
         ]),
       ),

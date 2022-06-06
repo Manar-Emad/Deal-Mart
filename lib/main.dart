@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'app_localization.dart';
+import 'bottom_nav_bar.dart';
 import 'modules/settings/settings_screen.dart';
+import 'modules/to_win/winners_screen.dart';
 import 'my_bloc_observer.dart';
 
 void main() async
@@ -77,7 +79,8 @@ class MyApp extends StatelessWidget {
               return supportedLocales.first;
             },
 
-            home:MyOrdersScreen()
+            home:
+            MyOrdersScreen()
            // const SettingsScreen(),
             //ScrollEnimationState(),
             //const OnBoardScreen(),

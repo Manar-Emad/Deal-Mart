@@ -85,7 +85,7 @@ class OrderPlacedScreen extends StatelessWidget {
                     ),
                   ),
                   cardItemsBuilder(context,
-                    '2', shadowColor: scaffoldColor, widget: const SizedBox(height: 1,),),
+                    '2', containerColor: scaffoldColor,),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
                     child: Row(
