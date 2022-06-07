@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:deal_mart/modules/check_out/payment_row.dart';
 import 'package:deal_mart/modules/details/product_details.dart';
 import 'package:deal_mart/modules/map/adress_information.dart';
 import 'package:deal_mart/shared/styles/styles.dart';
@@ -22,7 +23,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
   bool tappedCancel = false;
   bool isVisible = false;
   int itemCount = 1;
-  dynamic _value = 1;
+  dynamic _value = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -82,323 +83,74 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                       style: black14bold(),
                     ),
                   ),
-                  defContainer(
-                    context,
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Column(
-                        //   children: [
-                        //     GestureDetector(
-                        //       onTap: () {
-                        //         isVisible = !isVisible;
-                        //       },
-                        //       child: Row(
-                        //         children: [
-                        //           Padding(
-                        //             padding:
-                        //                 const EdgeInsets.symmetric(horizontal: 10),
-                        //             child: Radio(
-                        //                 value: 3,
-                        //                 groupValue: _value,
-                        //                 activeColor: primaryColor,
-                        //                 onChanged: (value) {
-                        //                   setState(() {
-                        //                     _value = value;
-                        //                   });
-                        //                 }),
-                        //           ),
-                        //           Padding(
-                        //             padding:
-                        //                 const EdgeInsets.symmetric(horizontal:5),
-                        //             child: Text(
-                        //               'Pay with card',
-                        //               style: black14bold(),
-                        //             ),
-                        //           ),
-                        //           const Spacer(),
-                        //           const Padding(
-                        //             padding: EdgeInsets.symmetric(horizontal: 10),
-                        //             child: Icon(
-                        //               Icons.shopping_bag_outlined,
-                        //               color: secondColor,
-                        //             ),
-                        //           ),
-                        //         ],
-                        //       ),
-                        //     ),
-                        //     Visibility(
-                        //       visible: isVisible,
-                        //       child: Padding(
-                        //         padding: const EdgeInsets.symmetric(horizontal: 20),
-                        //         child: Row(
-                        //           children: [
-                        //             Padding(
-                        //               padding: const EdgeInsets.symmetric(
-                        //                   horizontal: 10),
-                        //               child: Text(
-                        //                 'Visa',
-                        //                 style: black10bold(),
-                        //               ),
-                        //             ),
-                        //             Text(
-                        //               '**** **** **** 5436',
-                        //               style: black12bold(),
-                        //             ),
-                        //             const Spacer(),
-                        //             TextButton(
-                        //               child: Text(
-                        //                 'Delete',
-                        //                 style: grey10bold(),
-                        //               ),
-                        //               onPressed: () async {
-                        //                 final action =
-                        //                     await AlertDialogs.cancelDeleteDialog(
-                        //                         context,
-                        //                         'logggg',
-                        //                         'Do you want to delete the card');
-                        //
-                        //                 if (action == DialogAction.cancel) {
-                        //                   setState(() => tappedCancel = true);
-                        //                 } else {
-                        //                   setState(() => tappedCancel = false);
-                        //                 }
-                        //               },
-                        //             ),
-                        //           ],
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
-                        // Column(
-                        //   children: [
-                        //     GestureDetector(
-                        //       onTap: () {
-                        //         isVisible = !isVisible;
-                        //       },
-                        //       child: Row(
-                        //         children: [
-                        //           Padding(
-                        //             padding:
-                        //             const EdgeInsets.symmetric(horizontal: 10),
-                        //             child: Radio(
-                        //                 value: 2,
-                        //                 groupValue: _value,
-                        //                 activeColor: primaryColor,
-                        //                 onChanged: (value) {
-                        //                   setState(() {
-                        //                     _value = value;
-                        //                   });
-                        //                 }),
-                        //           ),
-                        //           Padding(
-                        //             padding:
-                        //             const EdgeInsets.symmetric(horizontal: 5),
-                        //             child: Text(
-                        //               'Pay with card',
-                        //               style: black14bold(),
-                        //             ),
-                        //           ),
-                        //           const Spacer(),
-                        //           const Padding(
-                        //             padding: EdgeInsets.symmetric(horizontal: 10),
-                        //             child: Icon(
-                        //               Icons.shopping_bag_outlined,
-                        //               color: secondColor,
-                        //             ),
-                        //           ),
-                        //         ],
-                        //       ),
-                        //     ),
-                        //     Visibility(
-                        //       visible: isVisible,
-                        //       child: Padding(
-                        //         padding: const EdgeInsets.symmetric(horizontal: 20),
-                        //         child: Row(
-                        //           children: [
-                        //             Padding(
-                        //               padding: const EdgeInsets.symmetric(
-                        //                   horizontal: 10),
-                        //               child: Text(
-                        //                 'Visa',
-                        //                 style: black10bold(),
-                        //               ),
-                        //             ),
-                        //             Text(
-                        //               '**** **** **** 5436',
-                        //               style: black12bold(),
-                        //             ),
-                        //             const Spacer(),
-                        //             TextButton(
-                        //               child: Text(
-                        //                 'Delete',
-                        //                 style: grey10bold(),
-                        //               ),
-                        //               onPressed: () async {
-                        //                 final action =
-                        //                 await AlertDialogs.cancelDeleteDialog(
-                        //                     context,
-                        //                     'logggg',
-                        //                     'Do you want to delete the card');
-                        //
-                        //                 if (action == DialogAction.cancel) {
-                        //                   setState(() => tappedCancel = true);
-                        //                 } else {
-                        //                   setState(() => tappedCancel = false);
-                        //                 }
-                        //               },
-                        //             ),
-                        //           ],
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
-                        // Column(
-                        //   children: [
-                        //     GestureDetector(
-                        //       onTap: () {
-                        //         isVisible = !isVisible;
-                        //       },
-                        //       child: Row(
-                        //         children: [
-                        //           Padding(
-                        //             padding:
-                        //             const EdgeInsets.symmetric(horizontal: 10),
-                        //             child: Radio(
-                        //                 value: 3,
-                        //                 groupValue: _value,
-                        //                 activeColor: primaryColor,
-                        //                 onChanged: (value) {
-                        //                   setState(() {
-                        //                     _value = value;
-                        //                   });
-                        //                 }),
-                        //           ),
-                        //           Padding(
-                        //             padding:
-                        //             const EdgeInsets.symmetric(horizontal: 5),
-                        //             child: Text(
-                        //               'Pay with card',
-                        //               style: black14bold(),
-                        //             ),
-                        //           ),
-                        //           const Spacer(),
-                        //           const Padding(
-                        //             padding: EdgeInsets.symmetric(horizontal: 10),
-                        //             child: Icon(
-                        //               Icons.shopping_bag_outlined,
-                        //               color: secondColor,
-                        //             ),
-                        //           ),
-                        //         ],
-                        //       ),
-                        //     ),
-                        //     Visibility(
-                        //       visible: isVisible,
-                        //       child: Padding(
-                        //         padding: const EdgeInsets.symmetric(horizontal: 20),
-                        //         child: Row(
-                        //           children: [
-                        //             Padding(
-                        //               padding: const EdgeInsets.symmetric(
-                        //                   horizontal: 10),
-                        //               child: Text(
-                        //                 'Visa',
-                        //                 style: black10bold(),
-                        //               ),
-                        //             ),
-                        //             Text(
-                        //               '**** **** **** 5436',
-                        //               style: black12bold(),
-                        //             ),
-                        //             const Spacer(),
-                        //             TextButton(
-                        //               child: Text(
-                        //                 'Delete',
-                        //                 style: grey10bold(),
-                        //               ),
-                        //               onPressed: () async {
-                        //                 final action =
-                        //                 await AlertDialogs.cancelDeleteDialog(
-                        //                     context,
-                        //                     'logggg',
-                        //                     'Do you want to delete the card');
-                        //
-                        //                 if (action == DialogAction.cancel) {
-                        //                   setState(() => tappedCancel = true);
-                        //                 } else {
-                        //                   setState(() => tappedCancel = false);
-                        //                 }
-                        //               },
-                        //             ),
-                        //           ],
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
-                        GestureDetector(
-                          onTap: (){},
-                          child: buildPaymentRow(context: context,
-                          widgetRadio:  Radio(
-                                            value: 1,
-                                            groupValue: _value,
-                                            activeColor: primaryColor,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                _value = value;
-                                               // isVisible = !isVisible;
-                                              });
-                                            }),
-                            /// ////////////////
-                            txt: 'Pay with card',
-                            icon: Icons.shopping_bag_outlined,
+                  SizedBox(
+                    height: getHeight(context)/5,
+                    child: defContainer(
+                      context,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          PaymentRow(
+                            icon: Icons.wallet,
+                            context: context,
                             payTxt: 'Visa',
-                            functionIf: (){setState( ()=> tappedCancel=true);},
-                            functionElse: (){setState( ()=> tappedCancel=false);},
+                            txt: 'Pay with card',
+                            widgetRadio: Radio(
+                                value: 1,
+                                groupValue:_value,
+                                activeColor: primaryColor,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _value = value;
+                                    // isVisible = !isVisible;
+                                  });
+                                }),
+                            functionIf:(){
+                              setState(() => tappedCancel = true);} ,
+                            functionElse: (){
+                              setState(() => tappedCancel = false);} ,
                           ),
-                        ),
-                        buildPaymentRow(context: context,
-                          //functionTapped:(){setState((){isVisible = !isVisible;}); },
-                          widgetRadio:  Radio(
-                              value: 2,
-                              groupValue: _value,
-                              activeColor: primaryColor,
-                              onChanged: (value) {
-                                setState(() {
-                                  _value = value;
-                                 // isVisible = !isVisible;
-                                });
-                              }),
-                          visible: isVisible,
-                          txt: 'Pay with card',
-                          icon: Icons.shopping_bag_outlined,
-                          payTxt: 'Visa',
-                          functionIf: (){setState( ()=> tappedCancel=true);},
-                          functionElse: (){setState( ()=> tappedCancel=false);},
-                        ),
-                        // PaymentRow(context: context,
-                        //  // functionTapped:(){setState((){isVisible = !isVisible;}); },
-                        //   widgetRadio:  Radio(
-                        //       value: 3,
-                        //       groupValue: _value,
-                        //       activeColor: primaryColor,
-                        //       onChanged: (value) {
-                        //         setState(() {
-                        //           _value = value;
-                        //          // isVisible = !isVisible;
-                        //         });
-                        //       }),
-                        //   visible: isVisible,
-                        //   txt: 'Pay with card',
-                        //   icon: Icons.shopping_bag_outlined,
-                        //   payTxt: 'Visa',
-                        //   functionIf: (){setState( ()=> tappedCancel=true);},
-                        //   functionElse: (){setState( ()=> tappedCancel=false);},
-                        // ),
-                      ],
+                          PaymentRow(
+                            icon: Icons.wallet,
+                            context: context,
+                            payTxt: 'Visa',
+                            txt: 'Pay with card',
+                            widgetRadio: Radio(
+                                value: 2,
+                                groupValue: _value,
+                                activeColor: primaryColor,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _value = value;
+                                    // isVisible = !isVisible;
+                                  });
+                                }),
+                            functionIf:(){
+                              setState(() => tappedCancel = true);} ,
+                            functionElse: (){
+                              setState(() => tappedCancel = false);} ,
+                          ),   PaymentRow(
+                            icon: Icons.wallet,
+                            context: context,
+                            payTxt: 'Visa',
+                            txt: 'Pay with card',
+                            widgetRadio: Radio(
+                                value: 3,
+                                groupValue: _value,
+                                activeColor: primaryColor,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _value = value;
+                                    // isVisible = !isVisible;
+                                  });
+                                }),
+                            functionIf:(){
+                              setState(() => tappedCancel = true);} ,
+                            functionElse: (){
+                              setState(() => tappedCancel = false);} ,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Padding(
@@ -560,223 +312,56 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
   }
 }
 
-Widget buildPaymentRow({
-  Widget? widgetRadio,
-  IconData? icon,
-  // Widget? widgetButton,
-  Function? functionIf,
-  Function? functionElse,
-  required BuildContext context,
-  String? txt,
-  bool? visible,
-  // String? visaNum,
-  String? payTxt,
-}) =>
-    Column(
-      children: [
-        GestureDetector(
-          onTap: (){
-            showModalBottomSheet(
-                context: context,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(25.0),),),
-                builder: (context) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: SizedBox(
-                      height: getHeight(context)/1.9,
-                     // width: getWidth(context),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 5),
-                          child: Center(
-                            child: SizedBox(width: getWidth(context)/5,
-                              child: defaultSeparator(const Color(0xff707070)),),
-                          ),
-                        ),
-                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 5),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children:  [
-                           TextButton(onPressed: (){ Navigator.pop(context);},
-                               child: Text('Cancel',style: grey12bold(),)),
-                          ],),
-                        ),
-                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: Text('Enter the card information',style: black14bold(),),
-                        ),
-                         Padding(
-                           padding: const EdgeInsets.symmetric(vertical: 10),
-                           child: formFeild(txt: 'Cardholder name', controller: TextEditingController(),isClikable: true),
-                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: formFeild(txt: 'Card number',type: TextInputType.phone, isClikable: true),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: Row(children: [
-                            Expanded(
-                              flex:50,
-                              child: formFeild(
-                                txt: 'MM/YY',type: TextInputType.datetime,
-                                isClikable: true,),
-                            ),
-                            const Expanded(child: SizedBox(width: 1,),flex: 1,),
-                            Expanded(
-                              flex: 50,
-                                child: formFeild(txt: 'CVV', type: TextInputType.phone,isClikable: true)),
-                          ],),
-                        ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 5),
-                              child: Icon(Icons.check_circle_outline,color: greenTxt,),
-                            ),
-                            Text('Do not worry the card information is safe',style: black10bold(),),
-                          ],),
-                          defaultButton(context, function: (){
-                            ///TODO
-                            ///اضيف ال visibility
 
-                          },
-                              text: 'Add', borderColor: primaryColor,
-                          color: primaryColor,txtColor: defTextColor,
-                          )
 
-                      ],),
-                    ),
-                  );
-                });},
-          child: Row(
-            children: [
-              widgetRadio!,
-              //     Padding(
-              // padding: const EdgeInsets.symmetric(horizontal: 10),
-              // child: Radio(value: 1, groupValue: val,
-              //       onChanged:function),),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Text(
-                  txt!,
-                  style: black14bold(),
-                ),
-              ),
-
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Icon(
-                  icon,
-                  color: secondColor,
-                ),
-              ),
-
-            ],
-          ),
-        ),
-            Visibility(
-              visible: visible!,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10),
-                      child: Text(
-                        payTxt!,
-                        style: visa20bold(),
-                      ),
-                    ),
-                    Text(
-                      '**** **** **** 5436',
-                      style: black12bold(),
-                    ),
-                    const Spacer(),
-                    TextButton(
-                      child: Text(
-                        'Delete',
-                        style: grey10bold(),
-                      ),
-                      onPressed: () async {
-                        final action =
-                            await AlertDialogs.cancelDeleteDialog(
-                                context,
-                                'logggg',
-                                'Do you want to delete the card');
-
-                        if (action == DialogAction.cancel) {
-                         // setState(() => tappedCancel = true);
-                           functionIf;
-                        } else {
-                         // setState(() => tappedCancel = false);
-                           functionElse;
-                        }
-                      },
-                    ),
-                  ],
-                ),
-              ),
-),
-]
-    );
-
-enum DialogAction { cancel, delete }
-
-class AlertDialogs {
-  static Future<DialogAction?> cancelDeleteDialog(
-    BuildContext context,
-    String title,
-    String body,
-  ) async {
-    var action = await showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            //title: Text('titleeee'),
-            content: Text(body),
-            actions: [
-              FlatButton(
-                onPressed: () {
-                  Navigator.of(context).pop(DialogAction.cancel);
-                },
-                child: Text(
-                  'Cancel',
-                  style: grey12bold(),
-                ),
-              ),
-              FlatButton(
-                onPressed: () {
-                  Navigator.of(context).pop(DialogAction.delete);
-                },
-                child: Text(
-                  'Delete',
-                  style: red12bold(),
-                ),
-              )
-            ],
-          );
-        });
-    return (action != null) ? action = DialogAction.cancel : null;
-  }
-}
+// enum DialogAction { cancel, delete }
+//
+// class AlertDialogs {
+//   static Future<DialogAction?> cancelDeleteDialog(
+//     BuildContext context,
+//     String title,
+//     String body,
+//   ) async {
+//     var action = await showDialog(
+//         context: context,
+//         barrierDismissible: false,
+//         builder: (BuildContext context) {
+//           return AlertDialog(
+//             shape:
+//                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+//             //title: Text('titleeee'),
+//             content: Text(body),
+//             actions: [
+//               FlatButton(
+//                 onPressed: () {
+//                   Navigator.of(context).pop(DialogAction.cancel);
+//                 },
+//                 child: Text(
+//                   'Cancel',
+//                   style: grey12bold(),
+//                 ),
+//               ),
+//               FlatButton(
+//                 onPressed: () {
+//                   Navigator.of(context).pop(DialogAction.delete);
+//                 },
+//                 child: Text(
+//                   'Delete',
+//                   style: red12bold(),
+//                 ),
+//               )
+//             ],
+//           );
+//         });
+//     return (action != null) ? action = DialogAction.cancel : null;
+//   }
+// }
 
 Widget cardItemsBuilder(context,String txtNum,{Color? containerColor,}) => Padding(
       padding: const EdgeInsets.symmetric(vertical: 5,),
       child: Container(
         decoration: BoxDecoration(
-          color: containerColor,
+          color: defTextColor,
           borderRadius: BorderRadius.circular(10),
           boxShadow: const [
             BoxShadow(
@@ -787,7 +372,7 @@ Widget cardItemsBuilder(context,String txtNum,{Color? containerColor,}) => Paddi
             ),
           ],
         ),
-        height: getHeight(context) / 6,
+        height: getHeight(context) / 6.5,
         width: getWidth(context),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
@@ -867,363 +452,3 @@ Widget cardItemsBuilder(context,String txtNum,{Color? containerColor,}) => Paddi
         ),
       ),
     );
-
-
-
-class PaymentRow extends StatefulWidget {
-   PaymentRow({Key? key,context, widgetRadio}) : super(key: key);
-
-  @override
-  State<PaymentRow> createState() => _PaymentRowState();
-}
-
-class _PaymentRowState extends State<PaymentRow> {
-  bool isVisibile= false;
-  bool isVisaNumAdded=false;
-  @override
-  Widget build(BuildContext context) {
-    // Widget? widgetRadio;
-    //     IconData? icon;
-    // // Widget? widgetButton;
-    // Function? functionIf;
-    // Function? functionElse;
-    //  BuildContext? context;
-    // String? txt;
-    // // String? visaNum;
-    // String? payTxt;
-    return Column(
-        children: [
-          GestureDetector(
-            onTap: (){
-              showModalBottomSheet(
-                  context: context,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(25.0),),),
-                  builder: (context) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: SizedBox(
-                        height: getHeight(context)/1.9,
-                        // width: getWidth(context),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 5),
-                              child: Center(
-                                child: SizedBox(width: getWidth(context)/5,
-                                  child: defaultSeparator(const Color(0xff707070)),),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 5),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children:  [
-                                  TextButton(onPressed: (){ Navigator.pop(context);},
-                                      child: Text('Cancel',style: grey12bold(),)),
-                                ],),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: Text('Enter the card information',style: black14bold(),),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: formFeild(txt: 'Cardholder name', controller: TextEditingController(),isClikable: true),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: formFeild(txt: 'Card number',type: TextInputType.phone, isClikable: true),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: Row(children: [
-                                Expanded(
-                                  flex:50,
-                                  child: formFeild(
-                                    txt: 'MM/YY',type: TextInputType.datetime,
-                                    isClikable: true,),
-                                ),
-                                const Expanded(child: SizedBox(width: 1,),flex: 1,),
-                                Expanded(
-                                    flex: 50,
-                                    child: formFeild(txt: 'CVV', type: TextInputType.phone,isClikable: true)),
-                              ],),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 5),
-                                  child: Icon(Icons.check_circle_outline,color: greenTxt,),
-                                ),
-                                Text('Do not worry the card information is safe',style: black10bold(),),
-                              ],),
-                            Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: defaultButton(context, function: (){
-                                ///TODO
-                                ///اضيف ال visibility
-                                setState((){
-                                  isVisibile=!isVisibile;
-                                  isVisaNumAdded=!isVisaNumAdded;
-                                });
-                              },
-                                text: 'Add', borderColor: primaryColor,
-                                color: primaryColor,txtColor: defTextColor,
-                              ),
-                            )
-
-                          ],),
-                      ),
-                    );
-                  });},
-            // child: Row(
-            //   children: [
-            //     widgetRadio!,
-            //     //     Padding(
-            //     // padding: const EdgeInsets.symmetric(horizontal: 10),
-            //     // child: Radio(value: 1, groupValue: val,
-            //     //       onChanged:function),),
-            //     Padding(
-            //       padding: const EdgeInsets.symmetric(horizontal: 10),
-            //       child: Text(
-            //         txt!,
-            //         style: black14bold(),
-            //       ),
-            //     ),
-            //
-            //     const Spacer(),
-            //     Padding(
-            //       padding: const EdgeInsets.symmetric(horizontal: 20),
-            //       child: Icon(
-            //         icon,
-            //         color: secondColor,
-            //       ),
-            //     ),
-            //
-            //   ],
-            // ),
-          ),
-          // Visibility(
-          //   visible: isVisibile,
-          //   child: Padding(
-          //     padding: const EdgeInsets.symmetric(horizontal: 20),
-          //     child: Row(
-          //       children: [
-          //         Padding(
-          //           padding: const EdgeInsets.symmetric(
-          //               horizontal: 10),
-          //           child: Text(
-          //             payTxt!,
-          //             style: visa20bold(),
-          //           ),
-          //         ),
-          //         Text(
-          //           '**** **** **** 5436',
-          //           style: black12bold(),
-          //         ),
-          //         const Spacer(),
-          //         TextButton(
-          //           child: Text(
-          //             'Delete',
-          //             style: grey10bold(),
-          //           ),
-          //           onPressed: () async {
-          //             final action =
-          //             await AlertDialogs.cancelDeleteDialog(
-          //                 context!,
-          //                 'logggg',
-          //                 'Do you want to delete the card');
-          //
-          //             if (action == DialogAction.cancel) {
-          //              // setState(() => tappedCancel = true);
-          //               functionIf;
-          //             } else {
-          //               // setState(() => tappedCancel = false);
-          //               functionElse;
-          //             }
-          //           },
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // ),
-        ]
-    );
-  }
-}
-
-
-
-/// /////////////////////////////////////////////////////
-// Widget buildPaymentRow({
-//   Widget? widgetRadio,
-//   IconData? icon,
-//   // Widget? widgetButton,
-//   Function? functionIf,
-//   Function? functionElse,
-//   required BuildContext context,
-//   String? txt,
-//   bool? visible,
-//   // String? visaNum,
-//   String? payTxt,
-// }) =>
-//     Column(
-//         children: [
-//           GestureDetector(
-//             onTap: (){
-//               showModalBottomSheet(
-//                   context: context,
-//                   shape: const RoundedRectangleBorder(
-//                     borderRadius: BorderRadius.vertical(
-//                       top: Radius.circular(25.0),),),
-//                   builder: (context) {
-//                     return Padding(
-//                       padding: const EdgeInsets.symmetric(horizontal: 10),
-//                       child: SizedBox(
-//                         height: getHeight(context)/1.9,
-//                         // width: getWidth(context),
-//                         child: Column(
-//                           crossAxisAlignment: CrossAxisAlignment.start,
-//                           children: [
-//                             Padding(
-//                               padding: const EdgeInsets.symmetric(vertical: 5),
-//                               child: Center(
-//                                 child: SizedBox(width: getWidth(context)/5,
-//                                   child: defaultSeparator(const Color(0xff707070)),),
-//                               ),
-//                             ),
-//                             Padding(
-//                               padding: const EdgeInsets.symmetric(vertical: 5),
-//                               child: Row(
-//                                 mainAxisAlignment: MainAxisAlignment.end,
-//                                 children:  [
-//                                   TextButton(onPressed: (){ Navigator.pop(context);},
-//                                       child: Text('Cancel',style: grey12bold(),)),
-//                                 ],),
-//                             ),
-//                             Padding(
-//                               padding: const EdgeInsets.symmetric(vertical: 10),
-//                               child: Text('Enter the card information',style: black14bold(),),
-//                             ),
-//                             Padding(
-//                               padding: const EdgeInsets.symmetric(vertical: 10),
-//                               child: formFeild(txt: 'Cardholder name', controller: TextEditingController(),isClikable: true),
-//                             ),
-//                             Padding(
-//                               padding: const EdgeInsets.symmetric(vertical: 10),
-//                               child: formFeild(txt: 'Card number',type: TextInputType.phone, isClikable: true),
-//                             ),
-//                             Padding(
-//                               padding: const EdgeInsets.symmetric(vertical: 10),
-//                               child: Row(children: [
-//                                 Expanded(
-//                                   flex:50,
-//                                   child: formFeild(
-//                                     txt: 'MM/YY',type: TextInputType.datetime,
-//                                     isClikable: true,),
-//                                 ),
-//                                 const Expanded(child: SizedBox(width: 1,),flex: 1,),
-//                                 Expanded(
-//                                     flex: 50,
-//                                     child: formFeild(txt: 'CVV', type: TextInputType.phone,isClikable: true)),
-//                               ],),
-//                             ),
-//                             Row(
-//                               mainAxisAlignment: MainAxisAlignment.center,
-//                               children: [
-//                                 const Padding(
-//                                   padding: EdgeInsets.symmetric(horizontal: 5),
-//                                   child: Icon(Icons.check_circle_outline,color: greenTxt,),
-//                                 ),
-//                                 Text('Do not worry the card information is safe',style: black10bold(),),
-//                               ],),
-//                             defaultButton(context, function: (){
-//                               ///TODO
-//                               ///اضيف ال visibility
-//                               setState((){});
-//                             },
-//                               text: 'Add', borderColor: primaryColor,
-//                               color: primaryColor,txtColor: defTextColor,
-//                             )
-//
-//                           ],),
-//                       ),
-//                     );
-//                   });},
-//             child: Row(
-//               children: [
-//                 widgetRadio!,
-//                 //     Padding(
-//                 // padding: const EdgeInsets.symmetric(horizontal: 10),
-//                 // child: Radio(value: 1, groupValue: val,
-//                 //       onChanged:function),),
-//                 Padding(
-//                   padding: const EdgeInsets.symmetric(horizontal: 10),
-//                   child: Text(
-//                     txt!,
-//                     style: black14bold(),
-//                   ),
-//                 ),
-//
-//                 const Spacer(),
-//                 Padding(
-//                   padding: const EdgeInsets.symmetric(horizontal: 20),
-//                   child: Icon(
-//                     icon,
-//                     color: secondColor,
-//                   ),
-//                 ),
-//
-//               ],
-//             ),
-//           ),
-//           Visibility(
-//             visible: visible!,
-//             child: Padding(
-//               padding: const EdgeInsets.symmetric(horizontal: 20),
-//               child: Row(
-//                 children: [
-//                   Padding(
-//                     padding: const EdgeInsets.symmetric(
-//                         horizontal: 10),
-//                     child: Text(
-//                       payTxt!,
-//                       style: visa20bold(),
-//                     ),
-//                   ),
-//                   Text(
-//                     '**** **** **** 5436',
-//                     style: black12bold(),
-//                   ),
-//                   const Spacer(),
-//                   TextButton(
-//                     child: Text(
-//                       'Delete',
-//                       style: grey10bold(),
-//                     ),
-//                     onPressed: () async {
-//                       final action =
-//                       await AlertDialogs.cancelDeleteDialog(
-//                           context,
-//                           'logggg',
-//                           'Do you want to delete the card');
-//
-//                       if (action == DialogAction.cancel) {
-//                         // setState(() => tappedCancel = true);
-//                         functionIf;
-//                       } else {
-//                         // setState(() => tappedCancel = false);
-//                         functionElse;
-//                       }
-//                     },
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ),
-//         ]
-//     );

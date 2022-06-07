@@ -180,21 +180,22 @@ Widget myOrderCard(context) => Padding(
                           ],
                         ),
                         Positioned(bottom: 10,right: 10,
-                            child: Row(
+                            child: GestureDetector(
+                              onTap: (){ navigateTo(context,  OrderDetailsScreen());},
+                              child: Row(
                           children: [
-                            Padding(
-                              padding:
-                              const EdgeInsets.symmetric(horizontal: 10),
-                              child: Text(
-                                'Order details',
-                                style: black14bold(),
+                              Padding(
+                                padding:
+                                const EdgeInsets.symmetric(horizontal: 10),
+                                child: Text(
+                                  'Order details',
+                                  style: black14bold(),
+                                ),
                               ),
-                            ),
-                            arrowIcon(() {
-                              navigateTo(context,  OrderDetailsScreen());
-                            }),
+                              arrowIcon(() {}),
                           ],
-                        ))
+                        ),
+                            ))
                         ]
                       ),),
                 ],

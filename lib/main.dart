@@ -1,3 +1,4 @@
+import 'package:deal_mart/modules/check_out/check_out_screen.dart';
 import 'package:deal_mart/modules/orders/my_orders_screen.dart';
 import 'package:deal_mart/modules/orders/order_details_screen.dart';
 import 'package:deal_mart/shared/app_cubit/app_cubit.dart';
@@ -6,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'app_localization.dart';
-import 'bottom_nav_bar.dart';
+import 'modules/orders/stepper.dart';
 import 'modules/settings/settings_screen.dart';
 import 'modules/to_win/winners_screen.dart';
 import 'my_bloc_observer.dart';
@@ -80,8 +81,9 @@ class MyApp extends StatelessWidget {
               return supportedLocales.first;
             },
 
-            home:OrderDetailsScreen()
-           // const SettingsScreen(),
+            home:
+            //OrderDetailsScreen()
+            SettingsScreen(),
             //ScrollEnimationState(),
             //const OnBoardScreen(),
           );

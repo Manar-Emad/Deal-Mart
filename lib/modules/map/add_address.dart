@@ -34,7 +34,7 @@ class _AddNewAddress extends State<AddNewAddress> {
               backgroundColor: defTextColor,
               child: Icon(Icons.arrow_back,color: secondColor,),),
           ),/// TODO NAV TO WHICH SCREEN
-          onTap: (){Navigator.pop(context);}),
+          onTap: (){Navigator.popUntil(context, (route) => true);}),
         elevation: 0,
       ) :AppBar(
         backgroundColor: defTextColor,

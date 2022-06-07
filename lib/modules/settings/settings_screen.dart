@@ -207,7 +207,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Text('Sign out',style: red14bold(),),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Sign out',style: red14bold(),),
+                  ],
+                ),
               ),
         ]),
       ),

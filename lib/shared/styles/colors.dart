@@ -13,6 +13,7 @@ const buttonColor=Color(0xffC7C7C7);
 const backgroundIconColor=Color(0xffDCF8DC);
 const yellowColor=Color(0xffF4C136);
 Color? greySeparatorColor=Colors.grey[100];
+Color redColor=Colors.red;
 
 
 

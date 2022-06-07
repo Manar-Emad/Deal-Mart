@@ -1,3 +1,4 @@
+import 'package:deal_mart/modules/orders/stepper.dart';
 import 'package:deal_mart/modules/map/add_address.dart';
 import 'package:deal_mart/modules/orders/my_orders_screen.dart';
 import 'package:deal_mart/shared/styles/colors.dart';
@@ -7,10 +8,19 @@ import '../../shared/components/components.dart';
 import '../../shared/styles/styles.dart';
 import '../check_out/check_out_screen.dart';
 
-class OrderDetailsScreen extends StatelessWidget {
+class OrderDetailsScreen extends StatefulWidget {
    OrderDetailsScreen({Key? key}) : super(key: key);
 
+  @override
+  State<OrderDetailsScreen> createState() => _OrderDetailsScreenState();
+}
+
+class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   int itemCount=2;
+  bool tappedCancel = false;
+   bool isVisibile=true;
+   bool isActive=false;
+   bool canceledOrder=true;
 
   @override
   Widget build(BuildContext context) {
@@ -52,16 +62,60 @@ class OrderDetailsScreen extends StatelessWidget {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      height: getHeight(context)/5,
-                      color: Colors.red,
-                      child:defContainer(context,
-                          Row(children: [
+                    SizedBox(
+                      height: getHeight(context)/9.8,
+                      child: StepperWidget(x:'received',
+                        myValueSetter:(value){
+                        setState((){
+                          if(value==0){
+                            isVisibile=true;
+                            // isActive=true;
+                          }else{
+                            isVisibile=false;
+                            // isActive=false;
+                          }
+                        });
+                        } , ),),
+                    Visibility(
+                      visible: isVisibile,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 20,),
+                        child: SizedBox(
+                          height: getHeight(context)/16,
+                          child: Row(
+                            children: [
+                              const Expanded(child:SizedBox(width: 1,),flex: 1,),
+                              Expanded(
+                                flex: 1,
+                                child: defaultButton(
+                                  context,borderColor: redColor,
+                                  function: () async {
+                              final action =
+                              await AlertDialogs.cancelDeleteDialog(
+                              context,
+                              'Do you want to cancel the order?',
+                              'Cancel','Yes'
+                              );
+                              if (action == DialogAction.cancel) {
+                              setState(() => tappedCancel = true);
+                              }
+                              else {
+                               setState(() => tappedCancel = false);
 
-
-                      ],)) ,),
+                                navigateTo(context, MyOrdersScreen());
+                              }},
+                                  text: 'Cancel order',
+                                  txtColor: redColor,
+                                ),
+                              ),
+                              const Expanded(child: SizedBox(width: 1,),flex: 1,),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 6, bottom: 3),
+                      padding: const EdgeInsets.only(left: 15,right: 15,top: 10, bottom: 3),
                       child: Text(
                         'Address information',
                         style: black14bold(),
@@ -69,7 +123,7 @@ class OrderDetailsScreen extends StatelessWidget {
                     ),
                     cardAddressInfo(context, const SizedBox(width: 1,)),
                     Padding(
-                      padding: const EdgeInsets.only(top: 6, bottom: 3),
+                      padding: const EdgeInsets.only(left: 15,right: 15,top: 10, bottom: 3),
                       child: Text(
                         'Payment information',
                         style: black14bold(),
@@ -81,7 +135,9 @@ class OrderDetailsScreen extends StatelessWidget {
                         Row(children: [
                           const Padding(
                           padding:  EdgeInsets.symmetric(horizontal: 10),
-                          child: Image(image: AssetImage('assets/images/egypt (1).png')),
+                          child: Image(image:
+                          AssetImage('assets/images/Visa_2021.svg.png'),
+                          ),
                         ),
                           Text('**** **** ****5436',style: black12bold(),),
                           const Spacer(),
@@ -92,7 +148,7 @@ class OrderDetailsScreen extends StatelessWidget {
                       ],),),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 6, bottom: 3),
+                      padding: const EdgeInsets.only(left: 15,right: 15,top: 10, bottom: 3),
                       child: Text(
                         'Items (1)',
                         style: black14bold(),
@@ -246,3 +302,4 @@ class OrderDetailsScreen extends StatelessWidget {
     );
   }
 }
+

@@ -6,7 +6,7 @@ import '../../../shared/app_cubit/app_cubit.dart';
 import '../../../shared/styles/colors.dart';
 import '../../../shared/styles/icons.dart';
 import '../../app_localization.dart';
-import '../../bottom_nav_bar.dart';
+import '../../modules/orders/stepper.dart';
 import '../../modules/intro/intro_screen.dart';
 import '../styles/sizes.dart';
 import '../styles/styles.dart';
@@ -67,6 +67,51 @@ Widget sizedImage(context, img) => SizedBox(
         image: AssetImage(img),
       ),
     );
+
+/// ALERT DIALOG
+enum DialogAction { cancel, delete }
+
+class AlertDialogs {
+  static Future<DialogAction?> cancelDeleteDialog(
+      BuildContext context,
+      String body,
+      String cancelTxt,
+      String deleteTxt,
+      ) async {
+    var action = await showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            //title: Text('titleeee'),
+            content: Text(body),
+            actions: [
+              FlatButton(
+                onPressed: () {
+                  Navigator.of(context).pop(DialogAction.cancel);
+                },
+                child: Text(
+                  cancelTxt,
+                  style: grey12bold(),
+                ),
+              ),
+              FlatButton(
+                onPressed: () {
+                  Navigator.of(context).pop(DialogAction.delete);
+                },
+                child: Text(
+                  deleteTxt,
+                  style: red12bold(),
+                ),
+              )
+            ],
+          );
+        });
+    return (action != null) ? action = DialogAction.cancel : null;
+  }
+}
 
 /// AppBar
 getAppBar(context,
