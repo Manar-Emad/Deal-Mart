@@ -67,7 +67,7 @@ class _PinCodeVerificationScreenState extends State<PinCodeVerificationScreen> {
         elevation: 0,
         leading: IconButton(
           onPressed: () {
-            navigateTo(context, const LoginScreen());
+            navigateTo(context, LoginScreen());
           },
           icon: const Icon(
             Icons.close,

@@ -5,6 +5,8 @@ import 'package:deal_mart/shared/styles/sizes.dart';
 import 'package:deal_mart/shared/styles/styles.dart';
 import 'package:flutter/material.dart';
 
+import '../../shared/app_cubit/app_cubit.dart';
+
 class PrizeDetails extends StatefulWidget {
   const PrizeDetails({Key? key}) : super(key: key);
 
@@ -153,7 +155,9 @@ class _PrizeDetailsState extends State<PrizeDetails> {
         SizedBox(height: getHeight(context)/5,),
         defaultButton(context,borderColor: primaryColor,
           function: () {
-            navigateTo(context, const CartScreen());
+            navigateTo(context, AppCubit.get(context).changeBottom(3));
+            /// navigate to cartScreen
+            //navigateTo(context, const CartScreen());
           },
           text: 'Add to Card',
           color: primaryColor,

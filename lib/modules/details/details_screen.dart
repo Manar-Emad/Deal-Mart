@@ -6,6 +6,8 @@ import 'package:deal_mart/shared/styles/colors.dart';
 import 'package:deal_mart/shared/styles/sizes.dart';
 import 'package:flutter/material.dart';
 
+import '../../shared/app_cubit/app_cubit.dart';
+
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen({Key? key}) : super(key: key);
 
@@ -46,7 +48,9 @@ class _DetailsScreenState extends State<DetailsScreen> with SingleTickerProvider
           leading: IconButton(
               icon: const Icon(Icons.arrow_back,color: secondColor,),
               onPressed: () {
-                navigateTo(context, const HomeScreen());
+                navigateTo(context, AppCubit.get(context).changeBottom(0) );
+                /// navigate to homeScreen
+               // navigateTo(context, const HomeScreen());
               }),
         ),
         body: Padding(

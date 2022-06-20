@@ -27,6 +27,8 @@ class _StepperWidgetState extends State<StepperWidget> {
         ),
       child: Theme(
         data: ThemeData(
+          ///TODO THIS
+          ///primarySwatch:  MaterialColor(0xffF48A36, ),
         canvasColor: defTextColor,
         colorScheme: const ColorScheme.light(primary: primaryColor),
           backgroundColor: defTextColor,

@@ -3,6 +3,7 @@ import 'package:deal_mart/shared/styles/sizes.dart';
 import 'package:deal_mart/shared/styles/styles.dart';
 import 'package:flutter/material.dart';
 
+import '../../shared/app_cubit/app_cubit.dart';
 import '../../shared/components/components.dart';
 import '../../shared/styles/colors.dart';
 import '../home/home_layout.dart';
@@ -18,14 +19,16 @@ class FinalWinnersScreen extends StatelessWidget {
         backgroundColor: defTextColor,
         centerTitle: true,
         elevation: 0,
-        title:  Text(
+        title:  const Text(
           'Final Winner',
           style: TextStyle(color: secondColor),
         ),
         leading: IconButton(
             icon: const Icon(Icons.arrow_back,color: secondColor,),
             onPressed: () {
-              navigateTo(context, const HomeScreen());
+              navigateTo(context, AppCubit.get(context).changeBottom(0));
+              /// navigate to homeScreen
+             // navigateTo(context, const HomeScreen());
             }),
       ),
       body: Center(

@@ -1,16 +1,15 @@
+import 'package:deal_mart/modules/cart/cart_screen.dart';
 import 'package:deal_mart/modules/map/adress_information.dart';
 import 'package:deal_mart/modules/map/google_map_screen.dart';
-import 'package:deal_mart/modules/settings/profile_screen.dart';
 import 'package:deal_mart/shared/styles/styles.dart';
 import 'package:flutter/material.dart';
-
+import '../../shared/app_cubit/app_cubit.dart';
 import '../../shared/components/components.dart';
 import '../../shared/styles/colors.dart';
 import '../../shared/styles/sizes.dart';
-import '../check_out/check_out_screen.dart';
 import '../settings/settings_screen.dart';
 class AddNewAddress extends StatefulWidget {
-  AddNewAddress({Key? key}) : super(key: key);
+  const AddNewAddress({Key? key}) : super(key: key);
 
   @override
   State<AddNewAddress> createState() => _AddNewAddress();
@@ -34,7 +33,11 @@ class _AddNewAddress extends State<AddNewAddress> {
               backgroundColor: defTextColor,
               child: Icon(Icons.arrow_back,color: secondColor,),),
           ),/// TODO NAV TO WHICH SCREEN
-          onTap: (){Navigator.popUntil(context, (route) => true);}),
+          onTap: (){
+            navigateTo(context, AppCubit.get(context).changeBottom(3));
+            /// navigate to cartScreen
+            //navigateTo(context,const CartScreen());
+          }),
         elevation: 0,
       ) :AppBar(
         backgroundColor: defTextColor,
@@ -47,7 +50,11 @@ class _AddNewAddress extends State<AddNewAddress> {
               backgroundColor: defTextColor,
               child: Icon(Icons.close,color: secondColor,),),
           ),/// TODO NAV TO WHICH SCREEN
-          onTap: (){Navigator.pop(context);},),
+          onTap: (){
+            navigateTo(context,AppCubit.get(context).changeBottom(3));
+            /// navigate to cartScreen
+            //navigateTo(context,const CartScreen());
+            },),
         elevation: 0,
       ),
       body:itemCount > 0 ?
@@ -71,7 +78,11 @@ class _AddNewAddress extends State<AddNewAddress> {
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: defaultButton(context,borderColor: primaryColor,
                     /// TODO NAV TO WHICH SCREEN ?????/????
-                    function: (){navigateTo(context,   const SettingsScreen());},
+                    function: (){
+                      navigateTo(context, AppCubit.get(context).changeBottom(4) );
+                      /// navigate to settingsScreen
+                //  navigateTo(context,   const SettingsScreen());
+                  },
                     text: 'Add a new address',
                 color: primaryColor,
                   txtColor: defTextColor,
@@ -115,7 +126,7 @@ Widget cardAddressInfo(context,Widget? widget)=>defContainer(context,
   Column(
     children: [
       Padding(
-        padding: const EdgeInsets.only(bottom: 5),
+        padding: const EdgeInsets.only(bottom: 10),
         child: Row(
           children: [
             txtMaxLinesB1('Elbaron, maddi,cairo'),
@@ -123,7 +134,7 @@ Widget cardAddressInfo(context,Widget? widget)=>defContainer(context,
         ),
       ),
       Padding(
-        padding: const EdgeInsets.only(bottom: 5),
+        padding: const EdgeInsets.only(bottom: 10),
         child: Row(
           children: [
             txtMaxLinesB1('Abraj sama 28D 1 apartment'),
@@ -131,7 +142,7 @@ Widget cardAddressInfo(context,Widget? widget)=>defContainer(context,
         ),
       ),
       Padding(
-        padding: const EdgeInsets.only(bottom: 5),
+        padding: const EdgeInsets.only(bottom: 10),
         child: Row(
           children: [
             txtMaxLinesB1('Ahmed mohamed'),
@@ -139,7 +150,7 @@ Widget cardAddressInfo(context,Widget? widget)=>defContainer(context,
         ),
       ),
       Padding(
-        padding: const EdgeInsets.only(bottom: 5),
+        padding: const EdgeInsets.only(bottom: 4),
         child: Row(
           children: [
             txtMaxLinesB1('01212345673'),

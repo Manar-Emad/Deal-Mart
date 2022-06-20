@@ -24,6 +24,8 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
   bool isVisible = false;
   int itemCount = 1;
   dynamic _value = 0;
+  var formKey = GlobalKey<FormState>();
+  bool isVisaNumAdded=false;
 
   @override
   Widget build(BuildContext context) {
@@ -91,6 +93,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           PaymentRow(
+                            isVisible: isVisible,
                             icon: Icons.wallet,
                             context: context,
                             payTxt: 'Visa',
@@ -111,6 +114,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                               setState(() => tappedCancel = false);} ,
                           ),
                           PaymentRow(
+                            isVisible: isVisible,
                             icon: Icons.wallet,
                             context: context,
                             payTxt: 'Visa',
@@ -130,6 +134,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                             functionElse: (){
                               setState(() => tappedCancel = false);} ,
                           ),   PaymentRow(
+                            isVisible:isVisible ,
                             icon: Icons.wallet,
                             context: context,
                             payTxt: 'Visa',
@@ -170,7 +175,129 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                           children: [
                             Expanded(
                               child: formFeild(
-                                  txt: 'Add promo code', isClikable: true),
+                                  txt: 'Add promo code', isClikable: false,
+                                  validate: (value) {
+                                    if (value.isEmpty) {
+                                      return 'please add your promo code';
+                                    }
+                                    return null;
+                                  },
+                                  onTap: (){ showModalBottomSheet(
+                                  context: context,
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(25.0),),),
+                                  builder: (context) {
+                                    return Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                                      child: SizedBox(
+                                        height: getHeight(context)/1.7,
+                                        // width: getWidth(context),
+                                        child: Form(
+                                          key: formKey,
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.symmetric(vertical: 5),
+                                                child: Center(
+                                                  child: SizedBox(width: getWidth(context)/5,
+                                                    child: defaultSeparator(separatorColor),),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.symmetric(vertical: 5),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.end,
+                                                  children:  [
+                                                    TextButton(onPressed: (){ Navigator.pop(context);},
+                                                        child: Text('Cancel',style: grey12bold(),)),
+                                                  ],),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.symmetric(vertical: 10),
+                                                child: Text('Enter the card information',style: black14bold(),),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.symmetric(vertical: 10),
+                                                child: formFeild(txt: 'Cardholder name',
+                                                    validate: (value) {
+                                                      if (value.isEmpty) {
+                                                        return 'please add your Cardholder name';
+                                                      }
+                                                      return null;
+                                                    },
+                                                    controller: TextEditingController(),
+                                                    isClikable: true),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.symmetric(vertical: 10),
+                                                child: formFeild(txt: 'Card number',
+                                                    validate: (value) {
+                                                      if (value.isEmpty) {
+                                                        return 'please add your card number';
+                                                      }
+                                                      return null;
+                                                    },
+                                                    type: TextInputType.phone, isClikable: true),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.symmetric(vertical: 10),
+                                                child: Row(children: [
+                                                  Expanded(
+                                                    flex:50,
+                                                    child: formFeild(
+                                                      txt: 'MM/YY',type: TextInputType.datetime,
+                                                      validate: (value) {
+                                                        if (value.isEmpty) {
+                                                          return 'please enter the date';
+                                                        }
+                                                        return null;
+                                                      },
+                                                      isClikable: true,),
+                                                  ),
+                                                  const Expanded(child: SizedBox(width: 1,),flex: 1,),
+                                                  Expanded(
+                                                      flex: 50,
+                                                      child: formFeild(txt: 'CVV',
+                                                          focusedBorder: InputBorder.none,
+                                                          validate: (value) {
+                                                            if (value.isEmpty) {
+                                                              return 'please add your CVV';
+                                                            }
+                                                            return null;
+                                                          },
+                                                          disabledBorder: InputBorder.none,
+                                                          type: TextInputType.phone,isClikable: true)),
+                                                ],),
+                                              ),
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  const Padding(
+                                                    padding: EdgeInsets.symmetric(horizontal: 5),
+                                                    child: Icon(Icons.check_circle_outline,color: greenTxt,),
+                                                  ),
+                                                  Text('Do not worry the card information is safe',style: black10bold(),),
+                                                ],),
+                                              Padding(
+                                                padding: const EdgeInsets.all(10.0),
+                                                child: defaultButton(context, function: (){
+                                                  if(formKey.currentState!.validate()){
+                                                    print('bottom sheet validate');
+                                                  }
+                                                    Navigator.pop(context);
+                                                },
+                                                  text: 'Add', borderColor: primaryColor,
+                                                  color: primaryColor,txtColor: defTextColor,
+                                                ),
+                                              )
+
+                                            ],),
+                                        ),
+                                      ),
+                                    );
+                                  });}),
                               flex: 15,
                             ),
                             const Expanded(
@@ -185,6 +312,11 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                 child: defaultButton(context, borderColor: greenTxt,
                                     function: () {
                                   print('promo code');
+                                  setState((){
+                                    //isVisaNumAdded=true;
+                                     isVisible=!isVisible;
+                                    isVisaNumAdded=!isVisaNumAdded;
+                                  });
                                 },
                                     text: 'Apply',
                                     color: greenTxt,
@@ -292,16 +424,16 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                       ],
                     ),
                   ),
-                  // Padding(
-                  //   padding: const EdgeInsets.only(bottom: 40,left: 20,top: 10,right: 20),
-                  //   child: defaultButton(context,
-                  //       function: (){
-                  //     navigateTo(context, OrderPlacedScreen());
-                  //       },
-                  //       text: isVisaNumAdded? 'Checkout':'Pay and Checkout',
-                  //       borderColor: buttonColor,txtColor: defTextColor,
-                  //       color:isVisaNumAdded? buttonColor : primaryColor),
-                  // ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 40,left: 20,top: 10,right: 20),
+                    child: defaultButton(context,
+                        function: (){
+                      navigateTo(context, OrderPlacedScreen());
+                        },
+                        text: isVisaNumAdded?'Pay and Checkout' :'Checkout',
+                        borderColor: buttonColor,txtColor: defTextColor,
+                        color:isVisaNumAdded?primaryColor  : buttonColor),
+                  ),
                 ],
               ),
             ),),

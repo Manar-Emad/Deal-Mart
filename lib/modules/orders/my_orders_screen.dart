@@ -4,6 +4,7 @@ import 'package:deal_mart/shared/components/components.dart';
 import 'package:deal_mart/shared/styles/styles.dart';
 import 'package:flutter/material.dart';
 
+import '../../shared/app_cubit/app_cubit.dart';
 import '../../shared/styles/colors.dart';
 import '../../shared/styles/sizes.dart';
 import '../check_out/check_out_screen.dart';
@@ -37,7 +38,9 @@ class MyOrdersScreen extends StatelessWidget {
               ),
             ),
             onTap: () {
-              navigateTo(context, const SettingsScreen());
+              navigateTo(context, AppCubit.get(context).changeBottom(4));
+              /// navigate to settingsScreen
+              //navigateTo(context, const SettingsScreen());
             }),
         elevation: 0,
       ),

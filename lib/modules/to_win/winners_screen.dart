@@ -1,7 +1,7 @@
 import 'package:deal_mart/shared/styles/sizes.dart';
 import 'package:deal_mart/shared/styles/styles.dart';
 import 'package:flutter/material.dart';
-
+import '../../shared/app_cubit/app_cubit.dart';
 import '../../shared/components/components.dart';
 import '../../shared/styles/colors.dart';
 import '../home/home_layout.dart';
@@ -24,7 +24,9 @@ class TopWinnersScreen extends StatelessWidget {
         leading: IconButton(
             icon: const Icon(Icons.arrow_back,color: secondColor,),
             onPressed: () {
-              navigateTo(context, const HomeScreen());
+              navigateTo(context, AppCubit.get(context).changeBottom(0));
+              /// navigate to homeScreen
+            //  navigateTo(context, const HomeScreen());
             }),
       ),
       body: SingleChildScrollView(
@@ -129,7 +131,7 @@ class TopWinnersScreen extends StatelessWidget {
                        ),
                            Positioned(left: 0,right: 0,bottom: 6,
                              child: Image(image:
-                             const AssetImage('assets/images/checkimage.png'),
+                             const AssetImage('assets/images/Group 962.png'),
                                height: getHeight(context)/30,
                                width: getWidth(context)/20,
                                ),

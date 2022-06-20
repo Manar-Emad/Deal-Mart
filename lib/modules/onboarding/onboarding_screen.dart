@@ -1,7 +1,8 @@
+import 'package:deal_mart/shared/network/local/cache_heloer.dart';
 import 'package:deal_mart/shared/styles/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../../app_localization.dart';
+import '../../shared/language/app_localization.dart';
 import '../../shared/components/components.dart';
 import '../../shared/styles/colors.dart';
 import '../../shared/styles/styles.dart';
@@ -33,12 +34,17 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
   var isLast = false;
   final controller = PageController();
 
-  // void submit(context) {
-  //   navigateAndFinish(
-  //     context,
-  //     const IntroScreen(),
-  //   );
-  // }
+  /// بعمل save لل ONBOARDING جوا ال cacheHelper
+  void submit() {
+
+    CacheHelper.saveData(key: 'OnBoarding', value: true).then((value) {
+      if(value!){
+        navigateAndFinish(context, const IntroScreen(),);
+      }
+
+    });
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,9 +90,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                 color: secondColor,
                 fontWeight: FontWeight.bold)
             ,),
-            onPressed: () {
-           navigateAndFinish(context, const IntroScreen());
-          }, ),
+            onPressed: submit ),
              const Icon(Icons.arrow_forward_ios,color: secondColor,),
             ],
           ),
@@ -173,11 +177,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                   child:TextButton(
                     onPressed: () {
                       if (isLast) {
-                        print(  "all ighrt");
-                     // Navigator.push(context, MaterialPageRoute(builder: (context)=>IntroScreen()));
-                        navigateAndFinish(context, IntroScreen());
-                        print(  "all cccccc");
-                      // submit(context);
+                        submit;
                       } else {
                         controller.nextPage(
                           duration: const Duration(milliseconds: 750),

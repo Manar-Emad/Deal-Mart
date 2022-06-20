@@ -1,13 +1,8 @@
-import 'dart:js';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../../shared/app_cubit/app_cubit.dart';
 import '../../../shared/styles/colors.dart';
 import '../../../shared/styles/icons.dart';
-import '../../app_localization.dart';
-import '../../modules/orders/stepper.dart';
-import '../../modules/intro/intro_screen.dart';
+import '../../modules/login/login_screen.dart';
+import '../network/local/cache_heloer.dart';
 import '../styles/sizes.dart';
 import '../styles/styles.dart';
 
@@ -20,7 +15,6 @@ class LanguageModel {
     required this.code,
   });
 }
-
 List<LanguageModel> languageList = [
   LanguageModel(
     language: 'English',
@@ -68,6 +62,84 @@ Widget sizedImage(context, img) => SizedBox(
       ),
     );
 
+/// snackBar Widget
+snackBar({
+  context,
+  String? message,
+  required SnackBarStates state,
+}) {
+  return ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(message!),
+      duration: const Duration(seconds: 2),
+      backgroundColor: chooseSnackBarColor(state),
+      padding: const EdgeInsets.all(10),
+      shape:RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30.0),
+      ) ,
+    ),
+  );
+}
+///enum for snackBar
+enum SnackBarStates{SUCCESS , ERROR ,WARNING}
+
+Color? chooseSnackBarColor(SnackBarStates state){
+  Color color;
+  switch(state){
+    case SnackBarStates.SUCCESS :
+      color= Colors.green;
+      break ;
+    case SnackBarStates.ERROR :
+      color= Colors.red;
+      break ;
+    case SnackBarStates.WARNING :
+      color= Colors.amber;
+      break ;
+
+  }
+  return color;
+}
+
+///SHOW TOAST MESSAGE
+// void showToast({required String text,required ToastStates state}){
+//   Fluttertoast.showToast(
+//       msg: text,
+//       toastLength: Toast.LENGTH_LONG,
+//       gravity: ToastGravity.BOTTOM,
+//       timeInSecForIosWeb: 5,
+//       backgroundColor: chooseToastColor(state),
+//       textColor: Colors.white,
+//       fontSize: 16.0
+//   );
+// }
+// ///enum for toast
+// enum ToastStates{SUCCESS , ERROR ,WARNING}
+//
+// Color? chooseToastColor(ToastStates state){
+//   Color color;
+//   switch(state){
+//     case ToastStates.SUCCESS :
+//       color= Colors.green;
+//       break ;
+//     case ToastStates.ERROR :
+//       color= Colors.red;
+//       break ;
+//     case ToastStates.WARNING :
+//       color= Colors.amber;
+//       break ;
+//
+//   }
+//   return color;
+// }
+
+
+/// black arrow icon
+Widget arrow_forward = const Icon(
+  Icons.arrow_forward_ios,
+  color: secondColor,
+  size: 18,
+);
+
 /// ALERT DIALOG
 enum DialogAction { cancel, delete }
 
@@ -111,6 +183,21 @@ class AlertDialogs {
         });
     return (action != null) ? action = DialogAction.cancel : null;
   }
+}
+
+/// AppBar
+AppBar buildAppBar({String? title}) {
+  return AppBar(
+    elevation: 3,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        bottomLeft: Radius.circular(15),
+        bottomRight: Radius.circular(15),
+      ),
+    ),
+    title: Text(title!),
+    centerTitle: true,
+  );
 }
 
 /// AppBar
@@ -183,6 +270,27 @@ Widget defaultSeparator(Color? color) => Container(
       height: 1.0,
       color: color,
     );
+///Divider
+Widget myDivider(context) {
+  return Divider(
+    color: secondColor.withOpacity(0.15),
+    thickness: 1,
+  );
+}
+
+/// CircularProgressIndicator
+Widget buildCircularProgressIndicator() => const Center(
+  child: CircularProgressIndicator(),
+);
+
+// void Logout(BuildContext context) {
+//   FirebaseAuth.instance.signOut();
+//   CacheHelper.removeData(key: 'uid');
+//   uid = null;
+//   navigateAndFinish(context, LoginScreen());
+//
+//   // CacheHelper.removeData(key: 'qr_read');
+// }
 
 ///Button
 Widget defaultButton(BuildContext context, {
@@ -254,35 +362,33 @@ void navigateAndFinish(context, widget) =>
 
 /// TEXT FORM FEILD
 Widget formFeild({
-  Widget? suffix,
+  IconData? suffix,
+  Color? suffixColor,
   IconData? prefix,
   required String txt,
   required bool isClikable,
   dynamic validate,
+  Function(String)? onSubmit,
   Function()? onTap,
   TextEditingController? controller,
   TextInputType? type,
   VoidCallback? suffixPressed,
   InputBorder? focusedBorder,
   InputBorder? disabledBorder,
-  bool? obscureText,
+  bool? isPassword=false,
 }) =>
     MaterialButton(
       onPressed: onTap,
       child: TextFormField(
+        obscureText: isPassword!,
         autofocus: true,
         style: black14bold(),
         enabled: isClikable,
         controller: controller,
-        validator: validate,
+        validator: validate,onFieldSubmitted: onSubmit,
         keyboardType: type,
         textAlign: TextAlign.start,
         decoration: InputDecoration(
-          // enabledBorder:const OutlineInputBorder(
-          //     borderRadius: BorderRadius.all(
-          //         Radius.circular(10.0),
-          //     )
-          // ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
             borderSide: const BorderSide(
@@ -306,7 +412,7 @@ Widget formFeild({
           labelStyle: black14bold(),
           filled: true,
           fillColor: formContainer,
-          suffixIcon: suffix,
+          suffixIcon: suffix!= null ?IconButton(icon: Icon(suffix,color: suffixColor,),onPressed: suffixPressed,): null,
           prefixIcon: Icon(
             prefix,
             color: primaryColor,
@@ -360,4 +466,13 @@ Widget cartButton({
         ),
       ),
     );
+
+///Bottom Navigation Bar
+BottomNavigationBarItem buildBottomNavigationBarItem({required String icon,required String activeIcon,required String text,}) {
+  return BottomNavigationBarItem(
+    icon: Image.asset('assets/icons/$icon.png'),
+    activeIcon: Image.asset('assets/icons/$activeIcon.png'),
+    label: text,
+  );
+}
 

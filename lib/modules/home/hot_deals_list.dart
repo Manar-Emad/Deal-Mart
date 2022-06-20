@@ -2,6 +2,7 @@ import 'package:deal_mart/modules/cart/cart_screen.dart';
 import 'package:deal_mart/shared/styles/sizes.dart';
 import 'package:deal_mart/shared/styles/styles.dart';
 import 'package:flutter/material.dart';
+import '../../shared/app_cubit/app_cubit.dart';
 import '../../shared/components/components.dart';
 import '../../shared/styles/colors.dart';
 import '../details/details_screen.dart';
@@ -120,7 +121,9 @@ class _ContainerDealsState extends State<ContainerDeals> {
                     const Expanded(child: SizedBox(width: 1,),flex: 1,),
                     Expanded(flex:15,
                       child:cartButton(function: (){
-                        navigateTo(context,const CartScreen() );
+                        navigateTo(context,AppCubit.get(context).changeBottom(3) );
+                        /// navigate to cartScreen
+                    //    navigateTo(context,const CartScreen() );
                       }, text: 'Add to cart ' ,color:primaryColor,txtColor: defTextColor) ,
                     ),
                   ],

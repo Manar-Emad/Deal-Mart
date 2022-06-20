@@ -19,18 +19,13 @@ class ScrollEnimationState extends StatefulWidget {
 
 class _ScrollEnimationStateState extends State<ScrollEnimationState> {
   late AnimationController controller;
-
   late Animation<Offset> offset;
-
   int _currentPage = 0;
-
   late Timer _timer;
-
   final PageController _pageController = PageController(
     viewportFraction: 1,
     initialPage: 0,
   );
-
   @override
   void initState() {
     // super.initState();
@@ -48,13 +43,11 @@ class _ScrollEnimationStateState extends State<ScrollEnimationState> {
       );
     });
   }
-
   @override
   void dispose() {
-    // super.dispose();
+    super.dispose();
     _timer.cancel();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

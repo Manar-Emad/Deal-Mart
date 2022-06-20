@@ -1,6 +1,10 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:deal_mart/modules/cart/cart_cubit.dart';
 import 'package:deal_mart/modules/map/address_screen.dart';
+import 'package:deal_mart/shared/app_cubit/app_cubit.dart';
 import 'package:deal_mart/shared/components/components.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../shared/styles/colors.dart';
 import '../../shared/styles/sizes.dart';
 import '../../shared/styles/styles.dart';
@@ -17,106 +21,133 @@ class _CartScreenState extends State<CartScreen> {
 
   int itemCount = 15;
 
-  void toggleListContents() {
-    setState(() {
-      itemCount = itemCount == 0 ? 20 : 0;
-    });
-  }
+  // void toggleListContents() {
+  //   setState(() {
+  //     itemCount = itemCount == 0 ? 20 : 0;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: scaffoldColor,
-      appBar:itemCount>1 ? AppBar(
-        backgroundColor: defTextColor,
-        elevation: 0,
-        title:const Text('Cart',
-          style: TextStyle(color: secondColor,
-              //fontWeight: FontWeight.bold,
-              fontSize: 18),
-        ),
-      ) : AppBar(
-        backgroundColor: defTextColor,
-        elevation: 0,
-        title:const Text('Cart',
-          style: TextStyle(fontWeight: FontWeight.bold,color: secondColor,
-              fontSize: 18),),
-      ),
-      body: itemCount > 1 ? Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            SizedBox(
-              height: getHeight(context)/1.52,
-              child: SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: itemCount,
-                        itemBuilder: (context, index) {
-                          return cardBuilder(context);
-                        }),
-                  ],
-                ),
-              ),
-            ),
-            const Spacer(),
-            SizedBox(
-              height: getHeight(context)/4.2,
+    return BlocConsumer<CartCubit,CartState>(
+      listener: (context,state){},
+      builder: (context,state){
+        return ConditionalBuilder(
+          condition: state is! CartBuilderSuccessState,
+          builder: (context)=>Scaffold(
+            backgroundColor: scaffoldColor,
+            body: itemCount > 1 ? Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                  SizedBox(
+                    height: getHeight(context)/1.3,
+                    // SingleChildScrollView(
+                    //   physics: const AlwaysScrollableScrollPhysics(),
+                    //   child: Column(
+                    //     crossAxisAlignment: CrossAxisAlignment.start,
+                    //     children: [
+                    //       Padding(
+                    //         padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                    //         child: Text('Cart',style: black22bold(),),
+                    //       ),
+                    //       ListView.builder(
+                    //           shrinkWrap: true,
+                    //           physics: const NeverScrollableScrollPhysics(),
+                    //           itemCount: itemCount,
+                    //           itemBuilder: (context, index) {
+                    //             return cardBuilder(context);
+                    //           }),
+                    //     ],
+                    //   ),
+                    // ),
+                    child: SingleChildScrollView(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                            child: Text('Cart',style: black22bold(),),
+                          ),
+                          ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: itemCount,
+                              itemBuilder: (context, index) {
+                                return cardBuilder(context);
+                              }),
+                        ],
+                      ),
+                    ),
+                  ),
+                  // const Spacer(),
+                  SizedBox(
+                    height: getHeight(context)/7.6,
+                    child: Column(
                       children: [
-                        const Padding(
-                          padding:  EdgeInsets.all(10.0),
-                          child:  CircleAvatar(child: Icon(Icons.wallet_giftcard_rounded,size: 13,color: defTextColor,),
-                            backgroundColor: primaryColor,
-                            radius: 12,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Padding(
+                                padding:  EdgeInsets.all(10.0),
+                                child:  CircleAvatar(child: Icon(Icons.wallet_giftcard_rounded,size: 13,color: defTextColor,),
+                                  backgroundColor: primaryColor,
+                                  radius: 12,
+                                ),
+                              ),
+
+                              Text('you will make',style: black14bold(),),
+                              const  Padding(
+                                padding:  EdgeInsets.all(2.0),
+                                child:  Text('2',style:TextStyle(color: greenTxt,fontSize: 14,fontWeight: FontWeight.bold,)),
+                              ),
+                              Text('copon from the purchase',style: black14bold(),),
+                            ],
                           ),
                         ),
-
-                        Text('you will make',style: black14bold(),),
-                        const  Padding(
-                          padding:  EdgeInsets.all(2.0),
-                          child:  Text('2',style:TextStyle(color: greenTxt,fontSize: 14,fontWeight: FontWeight.bold,)),
+                        SizedBox(
+                          height: getHeight(context)/15,
+                          child: defaultButton2(function: (){navigateTo(context,  AddNewAddress());}, text: 'Finish the order and pay',
+                              txtColor:defTextColor,color: primaryColor,text2: '15,998 EGP ', context: context ),
                         ),
-                        Text('copon from the purchase',style: black14bold(),),
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 50,),
-                    child: defaultButton2(function: (){navigateTo(context,  AddNewAddress());}, text: 'Finish the order and pay',
-                        txtColor:defTextColor,color: primaryColor,text2: '15,998 EGP ', context: context ),
-                  ),
                 ],
               ),
+            ) :
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+                  child: Text('Cart',style: black22bold(),),
+                ),
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircleAvatar(
+                        radius: 40,
+                        backgroundColor: defTextColor,
+                        child: Icon(Icons.shopping_cart,color: textGray,size: 40,),
+                      ),
+                      sizedBoxh2,
+                      const Text('Your cart empty',
+                        style: TextStyle(fontSize: 20,color: Colors.black45),),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ) :  Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: 40,
-              backgroundColor: defTextColor,
-              child: Icon(Icons.shopping_cart,color: textGray,size: 40,),
-            ),
-            sizedBoxh2,
-            const Text('Your cart empty',
-              style: TextStyle(fontSize: 20,color: Colors.black45),),
-          ],
-        ),
-      ),
+          ),
+          fallback:(context)=> const Center(child: CircularProgressIndicator(),),
+        );
+      },
     );
   }
 }
@@ -290,8 +321,8 @@ Widget defaultButton2({ required BuildContext context,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Expanded(child: SizedBox(width: 1,),flex: 5,),
-              Expanded( flex: 7,
+              Expanded(child: SizedBox(width: 1,),flex:4,),
+              Expanded( flex: 8,
                 child: Text(
                   text,
                   style: (TextStyle(

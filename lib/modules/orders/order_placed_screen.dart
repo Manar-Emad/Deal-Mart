@@ -5,11 +5,13 @@ import 'package:deal_mart/shared/styles/colors.dart';
 import 'package:deal_mart/shared/styles/sizes.dart';
 import 'package:flutter/material.dart';
 
+import '../../shared/app_cubit/app_cubit.dart';
 import '../../shared/styles/styles.dart';
 import '../cart/cart_screen.dart';
 import '../check_out/check_out_screen.dart';
 import '../login/login_screen.dart';
 import '../register/register_screen.dart';
+import '../to_win/winners_screen.dart';
 class OrderPlacedScreen extends StatelessWidget {
    OrderPlacedScreen({Key? key}) : super(key: key);
 
@@ -54,7 +56,7 @@ class OrderPlacedScreen extends StatelessWidget {
                     child: Text('Ticket and raffle details',style: black12bold(),),
                   ),
                   SizedBox(
-                    height: getHeight(context)/5,
+                    height: getHeight(context)/5.3,
                     child: defContainer(context,
                         SingleChildScrollView(
                           physics: const AlwaysScrollableScrollPhysics(),
@@ -84,8 +86,12 @@ class OrderPlacedScreen extends StatelessWidget {
                       style: black12bold(),
                     ),
                   ),
-                  cardItemsBuilder(context,
-                    '2', containerColor: scaffoldColor,),
+                  Card(elevation: 2,shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                    child: cardItemsBuilder(context,
+                      '2', containerColor: scaffoldColor,),
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
                     child: Row(
@@ -94,10 +100,9 @@ class OrderPlacedScreen extends StatelessWidget {
                           child: defaultButton(
                             context,borderColor: secondColor,
                             function: () {
-                              navigateAndFinish(
-                                context,
-                                const DetailsScreen(),
-                              );
+                              navigateAndFinish(context, AppCubit.get(context).changeBottom(2));
+                              /// navigate to topWinnerScreen
+                            //  navigateAndFinish(context, TopWinnersScreen(),);
                             },
                             text: 'Details Winners',
                             //    AppLocalization.of(context)!.translate('create_account')!

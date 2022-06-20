@@ -1,4 +1,4 @@
-import 'package:deal_mart/app_localization.dart';
+import 'package:deal_mart/shared/language/app_localization.dart';
 import 'package:deal_mart/shared/styles/sizes.dart';
 import 'package:flutter/material.dart';
 import '../../shared/components/components.dart';

@@ -13,6 +13,11 @@ TextStyle prim20bold() => const TextStyle(
   fontWeight: FontWeight.bold,
   color: primaryColor,
 );
+TextStyle prim24bold() => const TextStyle(
+  fontSize: 24.0,
+  fontWeight: FontWeight.bold,
+  color: primaryColor,
+);
 
 ///MaxLines Style
 Text txtMaxLines1(String txt) =>  Text(txt,
@@ -115,6 +120,12 @@ TextStyle grey14bold() => const TextStyle(
 TextStyle grey16bold() => const TextStyle(
   fontSize: 16.0,
   fontWeight: FontWeight.bold,
+  color: Colors.grey,
+);
+
+
+TextStyle grey12regular() => const TextStyle(
+  fontSize: 12.0,
   color: Colors.grey,
 );
 

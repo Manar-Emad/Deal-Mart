@@ -3,6 +3,7 @@ import 'package:deal_mart/shared/components/components.dart';
 import 'package:deal_mart/shared/styles/colors.dart';
 import 'package:deal_mart/shared/styles/sizes.dart';
 import 'package:flutter/material.dart';
+import '../../shared/app_cubit/app_cubit.dart';
 import '../../shared/styles/styles.dart';
 import '../cart/cart_screen.dart';
 import '../to_win/winners_screen.dart';
@@ -35,7 +36,8 @@ class _FavouritiesScreenState extends State<FavouritiesScreen> {
             //fontWeight: FontWeight.bold,
             fontSize: 18),
         ),
-      ) : AppBar(
+      ) :
+      AppBar(
         backgroundColor: defTextColor,
         elevation: 0,
         title:const Text('Favourite',
@@ -43,23 +45,23 @@ class _FavouritiesScreenState extends State<FavouritiesScreen> {
             fontSize: 18),),
       ),
       body:itemCount > 1 ?
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
+      SingleChildScrollView(
           //scrollDirection: Axis.vertical,
-          child: Column(
-            children: [
-             ListView.builder(
-               shrinkWrap:true,
-               physics:const NeverScrollableScrollPhysics(),
-               itemCount: itemCount,
-                 itemBuilder: (context, index) {
-              return cardBuilder(context);
-             })
-            ],
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              children: [
+               ListView.builder(
+                 shrinkWrap:true,
+                 physics:const NeverScrollableScrollPhysics(),
+                 itemCount: itemCount,
+                   itemBuilder: (context, index) {
+                return cardBuilder(context);
+               })
+              ],
+            ),
           ),
-        ),
-      ) :
+        ):
       Center(
         child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -86,7 +88,7 @@ Widget cardBuilder(context)=>Padding(
   child: GestureDetector(
     onTap: (){navigateTo(context, const DetailsScreen());},
     child: Container(
-      height: getHeight(context)/4,
+      height: getHeight(context)/4.8,
       width: getWidth(context),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
@@ -105,7 +107,7 @@ Widget cardBuilder(context)=>Padding(
           Row(
             children: [
               Image(image: const AssetImage('assets/images/pods.png'),
-                height: getHeight(context)/5,
+                height: getHeight(context)/7,
                 width: getWidth(context)/5,
               ),
               sizedBoxw2,
@@ -114,64 +116,71 @@ Widget cardBuilder(context)=>Padding(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     txtMaxLines1('XIAOMI Mi True Wireless Earbuds XIAOMI Mi True Wireless Earbuds '),
-                    sizedBoxh1,
-                    Row(
-                      children: [
-                        txtMaxLines1('Get a chance to '),
 
-                        TextButton(
-                          onPressed: (){ navigateTo(context,  TopWinnersScreen());},
-                          child: const Text('win', style:  TextStyle(color: primaryColor,height: 1),),),
-                        txtMaxLines1('Honda accord 2021 7999' ,),
-                        Text(' EGP',style: TextStyle(color: textGray),),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Row(
+                        children: [
+                          txtMaxLines1('Get a chance to '),
+
+                          const Text('win', style:  TextStyle(color: primaryColor,height: 1),),
+                          txtMaxLines1('Honda accord 2021' ,),
+                          txtMaxLinesB1(' 7999' ,),
+                          Text(' EGP',style: grey12bold(),),
+                        ],
+                      ),
                     ) ,
                   ],
                 ),
               ),
             ],
           ),
-          Row(
-            children: [
-              /// DELETE ITEM FROM FAV
-            Padding(
-              padding: const EdgeInsets.only(left: 35),
-              child: SizedBox(
-                width: getWidth(context)/7,
-                height: getHeight(context)/20,
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                        child: Icon(
-                            Icons.delete,
-                            color: textGray,size: 20),
-                      backgroundColor: const Color(0xffF4F4F4),
-                    ),
-                  const Spacer(),
-                    Text('Delete',
-                      style: TextStyle(
-                          color: textGray,
-                        fontSize: 10
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Row(
+              children: [
+                /// TODO DELETE ITEM FROM FAV
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 35),
+                child: SizedBox(
+                  width: getWidth(context)/7,
+                  height: getHeight(context)/20,
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                          child: Icon(
+                              Icons.delete,
+                              color: textGray,size: 15),radius: 15,
+                        backgroundColor: const Color(0xffF4F4F4),
                       ),
-                    ),
-                  ],
+                    const Spacer(),
+                      Text('Delete',
+                        style: TextStyle(
+                            color: textGray,
+                          fontSize: 10
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            const Spacer(),
-            SizedBox(
-              width: getWidth(context)/3.4,
-              height: getHeight(context)/21,
-              child: cartButton(function: (){
-                navigateTo(context,const CartScreen());
-              },
-                text: 'Add to cart',
-                txtColor: defTextColor,
-                color: primaryColor,
+              const Spacer(),
+              SizedBox(
+                width: getWidth(context)/3.4,
+                height: getHeight(context)/21,
+                child: cartButton(function: (){
+                  navigateTo(context,AppCubit.get(context).changeBottom(3));
+                  /// navigate to cartScreen
+                  //navigateTo(context,const CartScreen());
+                },
+                  text: 'Add to cart',
+                  txtColor: defTextColor,
+                  color: primaryColor,
+                ),
               ),
-            ),
-              sizedBoxh1,
-          ],),
+                sizedBoxh1,
+            ],),
+          ),
 
         ],
       ),

@@ -1,6 +1,7 @@
 import 'package:deal_mart/modules/orders/stepper.dart';
 import 'package:deal_mart/modules/map/add_address.dart';
 import 'package:deal_mart/modules/orders/my_orders_screen.dart';
+import 'package:deal_mart/shared/app_cubit/app_cubit.dart';
 import 'package:deal_mart/shared/styles/colors.dart';
 import 'package:deal_mart/shared/styles/sizes.dart';
 import 'package:flutter/material.dart';
@@ -101,8 +102,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                               }
                               else {
                                setState(() => tappedCancel = false);
-
-                                navigateTo(context, MyOrdersScreen());
+                               navigateTo(context, MyOrdersScreen());
                               }},
                                   text: 'Cancel order',
                                   txtColor: redColor,

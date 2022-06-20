@@ -1,42 +1,56 @@
-import 'package:deal_mart/modules/check_out/check_out_screen.dart';
-import 'package:deal_mart/modules/orders/my_orders_screen.dart';
-import 'package:deal_mart/modules/orders/order_details_screen.dart';
+import 'dart:js';
+import 'package:deal_mart/modules/intro/intro_screen.dart';
 import 'package:deal_mart/shared/app_cubit/app_cubit.dart';
+import 'package:deal_mart/shared/components/constants.dart';
+import 'package:deal_mart/shared/network/local/cache_heloer.dart';
+import 'package:deal_mart/shared/network/remote/dio_helper.dart';
 import 'package:deal_mart/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'app_localization.dart';
-import 'modules/orders/stepper.dart';
-import 'modules/settings/settings_screen.dart';
-import 'modules/to_win/winners_screen.dart';
+import 'shared/language/app_localization.dart';
+import 'modules/onboarding/onboarding_screen.dart';
 import 'my_bloc_observer.dart';
 
 void main() async
 {
   WidgetsFlutterBinding.ensureInitialized();
+  ///uid = CacheHelper.getDate(key: 'uid');
+
+  DioHelper.init();
+  await CacheHelper.init();
   BlocOverrides.runZoned(
         () {
-      // Use cubits...
-    },
+          AppCubit();},
     blocObserver: MyBlocObserver(),
   );
-  runApp(const MyApp(
-  ));
+  bool onBoarding=CacheHelper.getData(key:'OnBoarding');
+  token=CacheHelper.getData(key:'token');
+  Widget widget;
+
+  if(onBoarding != null){
+    if(token != null) {
+      widget=AppCubit.get(context).changeBottom(0);
+    } else{widget= const IntroScreen();}
+  }else{widget=const OnBoardScreen();}
+
+
+ runApp(  MyApp(startWidget: widget,));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final Widget startWidget;
 
-
+     MyApp({required this.startWidget});
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => AppCubit(),
-        ),
+          create: (BuildContext context) => AppCubit()..getHomeData(),
+        )
       ],
+      ///todo show is Error or true???
       child: BlocConsumer<AppCubit,AppState>(
         listener: (context, state) {
           // TODO: implement listener
@@ -45,6 +59,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
+              //primarySwatch:  Color(0xffF48A36),
               primaryColor: primaryColor,
               scaffoldBackgroundColor: Colors.white,
               bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -58,18 +73,13 @@ class MyApp extends StatelessWidget {
 
             /// LOCALIZATION
             supportedLocales: const [
-
-              Locale("en"),
-              Locale("ar"),
-
+               Locale('en'),
+               Locale("ar"),
             ],
-            localizationsDelegates:
-            [
+            localizationsDelegates: [
               AppLocalization.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
-
-
             ],
             localeResolutionCallback: (locale, supportedLocales) {
               for (var supportedLocale in supportedLocales) {
@@ -81,11 +91,7 @@ class MyApp extends StatelessWidget {
               return supportedLocales.first;
             },
 
-            home:
-            //OrderDetailsScreen()
-            SettingsScreen(),
-            //ScrollEnimationState(),
-            //const OnBoardScreen(),
+            home:startWidget,
           );
         },
       ),
