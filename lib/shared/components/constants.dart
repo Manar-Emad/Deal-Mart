@@ -17,7 +17,6 @@ void signOut(context){
         });
       });
 }
-
 /// print full text
 void printFullText(String text){
   final pattern=RegExp('.{1,800}');
