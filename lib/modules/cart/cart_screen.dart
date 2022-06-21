@@ -33,7 +33,7 @@ class _CartScreenState extends State<CartScreen> {
       listener: (context,state){},
       builder: (context,state){
         return ConditionalBuilder(
-          condition: state is! CartBuilderSuccessState,
+          condition: state is! CarBuilderSuccessState,
           builder: (context)=>Scaffold(
             backgroundColor: scaffoldColor,
             body: itemCount > 1 ? Padding(

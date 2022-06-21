@@ -5,7 +5,7 @@ abstract class CartState {}
 
 class CartInitial extends CartState {}
 
-class CartBuilderSuccessState extends CartState{}
+class CarBuilderSuccessState extends CartState{}
 
 class CardBuilderLoadingState extends CartState{}
 
