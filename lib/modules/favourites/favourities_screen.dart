@@ -168,12 +168,13 @@ Widget cardBuilder(context)=>Padding(
               SizedBox(
                 width: getWidth(context)/3.4,
                 height: getHeight(context)/21,
-                child: cartButton(function: (){
+                child: cartButton(rightPadding:25 ,widget: const Spacer(),
+                  function: (){
                   navigateTo(context,AppCubit.get(context).changeBottom(3));
                   /// navigate to cartScreen
                   //navigateTo(context,const CartScreen());
                 },
-                  text: 'Add to cart',
+                  text: 'Add to cart',fontSize: 10,iconSize: 15,
                   txtColor: defTextColor,
                   color: primaryColor,
                 ),

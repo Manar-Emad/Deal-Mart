@@ -14,21 +14,22 @@ class SleekSliders extends StatelessWidget {
         padding: const EdgeInsets.only(top: 5,bottom: 10,left: 5),
         child: Row(
           children: [
-            // CircleAvatar(
-            //   radius: 5,
-            //   backgroundColor: Colors.red,
-            //   child: Column(
-            //     children: const [
-            //       Image(
-            //         image: AssetImage('assets/images/Component.png'),
-            //       ),
-            //       Text(
-            //         '51/100 sold By Watch Casio Get an iphone',
-            //         maxLines: 3,
-            //       ),
-            //     ],
-            //   ),
-            // ),
+           // SleekSliders(key: ),
+            CircleAvatar(
+              radius: 5,
+              backgroundColor: Colors.red,
+              child: Column(
+                children: const [
+                  Image(
+                    image: AssetImage('assets/images/Component.png'),
+                  ),
+                  Text(
+                    '51/100 sold By Watch Casio Get an iphone',
+                    maxLines: 3,
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

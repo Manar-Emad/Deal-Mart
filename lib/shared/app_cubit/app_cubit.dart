@@ -58,9 +58,9 @@ class AppCubit extends Cubit<AppState> {
     });
   }
 
-  bool isBottomSheetShown = false;
-  void changeBottomSheetState({required bool isShow}) {
-    isBottomSheetShown = isShow;
-    emit(AppChangeBottomSheetState());
-  }
+  // bool isBottomSheetShown = false;
+  // void changeBottomSheetState({required bool isShow}) {
+  //   isBottomSheetShown = isShow;
+  //   emit(AppChangeBottomSheetState());
+  // }
 }

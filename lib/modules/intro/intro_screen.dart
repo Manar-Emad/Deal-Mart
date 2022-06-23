@@ -26,16 +26,12 @@ class _IntroScreenState extends State<IntroScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-        ),
         body: Center(
           child: Column(
-            //mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(height: getHeight(context)/8,),
               Padding(
-                padding: const EdgeInsets.only(bottom: 20),
+                padding: const EdgeInsets.only(bottom: 20,),
                 child: Container(
                   child: sizedImage(context, 'assets/images/logo.png'),
                 ),

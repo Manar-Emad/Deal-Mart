@@ -426,12 +426,15 @@ Widget formFeild({
 Widget cartButton({
   required Function()? function,
    String? text,
-  Widget? child,
   Color? color,
   Color? txtColor,
+  required Widget widget,
+   required double rightPadding,
+   required double fontSize,
+   required double iconSize,
 }) =>
     Padding(
-      padding: const EdgeInsets.only(right: 25),
+      padding:  EdgeInsets.only(right:rightPadding ),
       child: Container(
         decoration: BoxDecoration(
           color: color,
@@ -444,18 +447,21 @@ Widget cartButton({
         child: MaterialButton(
           child: Padding(
             padding: const EdgeInsets.only(left: 15,right: 15),
-            child: Row(
-              children: [
-                const Icon(Icons.shopping_cart,
-                  color: defTextColor,size: 15,),
-               const Spacer(),
-                Text(
-                  text!,
-                  style: (TextStyle(
-                      color: txtColor, fontWeight: FontWeight.bold,
-                      fontSize: 10)),
-                ),
-              ],
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                   Icon(Icons.shopping_cart,
+                    color: defTextColor,size: iconSize,),
+                  widget,
+                  Text(
+                    text!,
+                    style: (TextStyle(
+                        color: txtColor, fontWeight: FontWeight.bold,
+                        fontSize: fontSize)),
+                  ),
+                ],
+              ),
             ),
           ),
           shape: RoundedRectangleBorder(

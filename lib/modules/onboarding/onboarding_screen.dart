@@ -37,7 +37,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
   /// بعمل save لل ONBOARDING جوا ال cacheHelper
   void submit() {
 
-    CacheHelper.saveData(key: 'OnBoarding', value: true).then((value) {
+    CacheHelper.saveData(key: 'onBoarding', value: true).then((value) {
       if(value!){
         navigateAndFinish(context, const IntroScreen(),);
       }

@@ -1,4 +1,5 @@
 import 'dart:js';
+import 'package:deal_mart/modules/home/hot_deals_list.dart';
 import 'package:deal_mart/modules/intro/intro_screen.dart';
 import 'package:deal_mart/shared/app_cubit/app_cubit.dart';
 import 'package:deal_mart/shared/components/constants.dart';
@@ -8,6 +9,8 @@ import 'package:deal_mart/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'draft/scrolling_automatically_inlistview/scroll_enimation.dart';
+import 'modules/home/scroll_enimation.dart';
 import 'shared/language/app_localization.dart';
 import 'modules/onboarding/onboarding_screen.dart';
 import 'my_bloc_observer.dart';
@@ -24,12 +27,12 @@ void main() async
           AppCubit();},
     blocObserver: MyBlocObserver(),
   );
-  bool onBoarding=CacheHelper.getData(key:'OnBoarding');
-  token=CacheHelper.getData(key:'token');
+  bool? onBoarding=CacheHelper.getData(key:'onBoarding');
+  String? token=CacheHelper.getData(key:'token');
   Widget widget;
 
-  if(onBoarding != null){
-    if(token != null) {
+  if(onBoarding !=null ){
+    if(token !=null) {
       widget=AppCubit.get(context).changeBottom(0);
     } else{widget= const IntroScreen();}
   }else{widget=const OnBoardScreen();}
@@ -91,7 +94,8 @@ class MyApp extends StatelessWidget {
               return supportedLocales.first;
             },
 
-            home:startWidget,
+            home: ScrollEnimationState(),
+            //startWidget,
           );
         },
       ),
