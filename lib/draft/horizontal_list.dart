@@ -1,9 +1,8 @@
 import 'package:deal_mart/shared/components/components.dart';
 import 'package:flutter/material.dart';
-
-import '../../shared/styles/colors.dart';
-import '../../shared/styles/sizes.dart';
-import '../../shared/styles/styles.dart';
+import '../shared/styles/colors.dart';
+import '../shared/styles/sizes.dart';
+import '../shared/styles/styles.dart';
 
 class HorizontalList extends StatelessWidget {
   const HorizontalList({Key? key}) : super(key: key);

@@ -29,7 +29,9 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<CartCubit,CartState>(
+    return BlocProvider(
+  create: (context) => CartCubit(),
+  child: BlocConsumer<CartCubit,CartState>(
       listener: (context,state){},
       builder: (context,state){
         return ConditionalBuilder(
@@ -148,7 +150,8 @@ class _CartScreenState extends State<CartScreen> {
           fallback:(context)=> const Center(child: CircularProgressIndicator(),),
         );
       },
-    );
+    ),
+);
   }
 }
 

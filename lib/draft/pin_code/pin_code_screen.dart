@@ -2,12 +2,13 @@ import 'dart:async';
 
 import 'package:deal_mart/modules/login/login_screen.dart';
 import 'package:deal_mart/shared/components/components.dart';
-import 'package:deal_mart/shared/styles/colors.dart';
 import 'package:deal_mart/shared/styles/sizes.dart';
 import 'package:deal_mart/shared/styles/styles.dart';
 import 'package:flutter/material.dart';
 
 import 'package:pin_code_fields/pin_code_fields.dart';
+
+import '../../shared/styles/colors.dart';
 
 // ignore: use_key_in_widget_constructors
 

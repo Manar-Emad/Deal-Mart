@@ -2,11 +2,12 @@ import 'package:deal_mart/modules/cart/cart_screen.dart';
 import 'package:deal_mart/shared/styles/sizes.dart';
 import 'package:deal_mart/shared/styles/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import '../../shared/app_cubit/app_cubit.dart';
 import '../../shared/components/components.dart';
 import '../../shared/styles/colors.dart';
 import '../details/details_screen.dart';
-class ContainerDeals extends StatefulWidget {
+class HotDealsList extends StatefulWidget {
   final String img1 ;
   final String img2;
   final String txt1 ;
@@ -14,7 +15,7 @@ class ContainerDeals extends StatefulWidget {
 
 
 
-   const ContainerDeals({Key? key,
+   const HotDealsList({Key? key,
    required this.img1,
      required this.img2,
      required this.txt1,
@@ -23,62 +24,76 @@ class ContainerDeals extends StatefulWidget {
    }) : super(key: key);
 
   @override
-  State<ContainerDeals> createState() => _ContainerDealsState();
+  State<HotDealsList> createState() => _HotDealsListState();
 }
 
-class _ContainerDealsState extends State<ContainerDeals> {
+class _HotDealsListState extends State<HotDealsList> {
 
   bool isFav = true;
 
   Widget build(BuildContext context) {
     return SizedBox(
-      height: getHeight(context)/2.7,
+      height: getHeight(context)/2.5,
       width: getWidth(context),
       child: defContainer(context, Column(
         children: [
           Expanded(
-            flex: 6,
+            flex: 7,
             child: Row(
               children: [
               Expanded(
-                flex: 4,
+                flex: 3,
                   child: Padding(
                     padding: const EdgeInsets.only(top:30,bottom: 0),
                     child: Image(
                       // height: getHeight(context)/7,
                       //   width: getWidth(context),
-                        image: AssetImage(widget.img1),fit: BoxFit.cover),
+                        image: AssetImage(widget.img1),),
                   )),
                Expanded(
-                flex: 2,
+                flex: 3,
                 child: Padding(
                   padding: const EdgeInsets.symmetric( horizontal: 10,vertical: 5),
-                  child: Column(
-                    children:const [
-                        CircleAvatar(
-                          backgroundColor: formContainer,
-                          radius: 45),],),),),
+                  child: CircleAvatar(
+                    backgroundColor: formContainer,
+                    radius: 45,
+                  child:Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Text('149',style: black12bold(),),
+                    ),
+                      Text('Sold',style: grey10bold(),),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 2,horizontal: 30),
+                        child: defaultSeparator(separatorColor),
+                      ),
+                      Text('Out of',style: grey10bold(),),
+                      Text('200',style: grey12bold(),),
+                  ],),
+                  ),),),
               Expanded(
-                  flex: 4,
+                  flex: 3,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 30,bottom: 0),
                     child: Stack(
+                      alignment: AlignmentDirectional.center,
                         clipBehavior: Clip.none,
                         children: [
-                      Image(
+                      Image(fit: BoxFit.cover,
                           // height: getHeight(context)/5,
                           // width: getWidth(context),
-                          image: AssetImage(widget.img2)),
-                      const Positioned(
-                        right: 75,bottom:45,
-                          child: CircleAvatar(
-                            radius: 10,
-                            backgroundColor: primaryColor,
-                          child: Center(
-                            child: Icon(Icons.wallet_giftcard_sharp,
-                              color: defTextColor,size: 12,),
-                          ),
-                          )),
+                          image: AssetImage(widget.img2),),
+                      const CircleAvatar(
+                        radius: 10,
+                        backgroundColor: primaryColor,
+                      child: Center(
+                        child: Icon(Icons.wallet_giftcard_sharp,
+                          color: defTextColor,size: 13,),
+                      ),
+                      ),
                     ]),
                   )),
             ],),
@@ -107,7 +122,7 @@ class _ContainerDealsState extends State<ContainerDeals> {
             ),
           ),
           Expanded(
-            flex: 2,
+            flex: 3,
             child: Row(
               children: [
                 Expanded(
@@ -133,7 +148,7 @@ class _ContainerDealsState extends State<ContainerDeals> {
                     height: getHeight(context)/12,
                     child: cartButton(rightPadding: 0,
                         function: (){
-                      navigateTo(context,AppCubit.get(context).changeBottom(3) );
+                      navigateTo(context,CartScreen() );
                       /// navigate to cartScreen
                       //    navigateTo(context,const CartScreen() );
                     },widget: const SizedBox(width: 20,),
@@ -146,20 +161,19 @@ class _ContainerDealsState extends State<ContainerDeals> {
               ],
             ),
           ),
-          //const Expanded(flex: 1,child:  SizedBox(height: 1,),),
           Expanded(
-            flex: 1,
+            flex: 3,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+                  padding: EdgeInsets.symmetric(horizontal: 5,),
                   child: CircleAvatar(
                     radius: 11,
                     backgroundColor: primaryColor,
                     child: Center(
                       child: Icon(Icons.wallet_giftcard_sharp,
-                        color: defTextColor,size: 15,),
+                        color: defTextColor,size: 13,),
                     ),
                   ),
                 ),
@@ -168,9 +182,8 @@ class _ContainerDealsState extends State<ContainerDeals> {
               ],
             ),
           ),
-          //const Expanded(flex: 1,child:  SizedBox(height: 1,),),
           Expanded(
-            flex: 1,
+            flex: 2,
             child: Padding(
               padding: const EdgeInsets.only(bottom:5),
               child: Row(

@@ -1,11 +1,11 @@
 import 'package:country_list_pick/country_list_pick.dart';
 import 'package:deal_mart/modules/login/login_screen.dart';
 import 'package:deal_mart/shared/components/components.dart';
-import 'package:deal_mart/shared/styles/colors.dart';
 import 'package:deal_mart/shared/styles/sizes.dart';
 import 'package:deal_mart/shared/styles/styles.dart';
 import 'package:flutter/material.dart';
 import '../../shared/language/app_localization.dart';
+import '../../shared/styles/colors.dart';
 import '../onboarding/onboarding_screen.dart';
 import '../register/register_screen.dart';
 
@@ -29,9 +29,13 @@ class _IntroScreenState extends State<IntroScreen> {
         body: Center(
           child: Column(
             children: [
-              SizedBox(height: getHeight(context)/8,),
+              SizedBox(
+                height: getHeight(context) / 8,
+              ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 20,),
+                padding: const EdgeInsets.only(
+                  bottom: 20,
+                ),
                 child: Container(
                   child: sizedImage(context, 'assets/images/logo.png'),
                 ),
@@ -49,7 +53,7 @@ class _IntroScreenState extends State<IntroScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Text(
-                        'select_the_country_and_language_of_the_application',
+                        'Select the country and language of the application',
                         //  AppLocalization.of(context)!.translate('select_the_country_and_language_of_the_application')!,
                         style: black18bold(),
                       ),
@@ -60,8 +64,8 @@ class _IntroScreenState extends State<IntroScreen> {
                           focusedBorder: InputBorder.none,
                           disabledBorder: InputBorder.none,
                           isClikable: false,
-                          suffix:
-                            Icons.keyboard_arrow_down,suffixColor: secondColor,
+                          suffix: Icons.keyboard_arrow_down,
+                          suffixColor: secondColor,
                           prefix: Icons.flag,
                           txt: 'select_country',
                           //AppLocalization.of(context)!.translate('select_country')!,
@@ -92,24 +96,29 @@ class _IntroScreenState extends State<IntroScreen> {
                                             ),
                                           ),
                                         ),
-                                        SizedBox(
-                                          height: getHeight(context) / 11,
-                                          width: getWidth(context) / 5,
-                                          child: Row(
-                                            children: [
-                                              const Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 10),
-                                                child: Image(
-                                                  image: AssetImage(
-                                                      'assets/images/egypt (1).png'),
+                                        GestureDetector(
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: SizedBox(
+                                            height: getHeight(context) / 11,
+                                            width: getWidth(context) / 5,
+                                            child: Row(
+                                              children: [
+                                                const Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 10),
+                                                  child: Image(
+                                                    image: AssetImage(
+                                                        'assets/images/egypt (1).png'),
+                                                  ),
                                                 ),
-                                              ),
-                                              Text(
-                                                'Egypt',
-                                                style: black14bold(),
-                                              )
-                                            ],
+                                                Text(
+                                                  'Egypt',
+                                                  style: black14bold(),
+                                                )
+                                              ],
+                                            ),
                                           ),
                                         ),
 
@@ -152,8 +161,7 @@ class _IntroScreenState extends State<IntroScreen> {
                           focusedBorder: InputBorder.none,
                           disabledBorder: InputBorder.none,
                           isClikable: false,
-                          suffix:
-                            Icons.keyboard_arrow_down,
+                          suffix: Icons.keyboard_arrow_down,
                           suffixColor: secondColor,
                           prefix: Icons.language,
                           txt: 'select_language',
@@ -191,44 +199,15 @@ class _IntroScreenState extends State<IntroScreen> {
                                           children: [
                                             GestureDetector(
                                                 onTap: () {
-                                                  setState(() {
-                                                    showIcon == 0;
-                                                  });
+                                                  Navigator.pop(context);
                                                 },
-                                                child: const Text('english',
+                                                child: const Text('English',
                                                     style: TextStyle(
                                                         color: secondColor))),
-                                            showIcon == 0
-                                                ? const Icon(
-                                                    Icons.check_circle_outline,
-                                                    color: secondColor,
-                                                  )
-                                                : const SizedBox(
-                                                    width: 1,
-                                                  ),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            GestureDetector(
-                                                onTap: () {
-                                                  setState(() {
-                                                    showIcon == 1;
-                                                  });
-                                                },
-                                                child: const Text('english',
-                                                    style: TextStyle(
-                                                        color: secondColor))),
-                                            showIcon == 1
-                                                ? const Icon(
-                                                    Icons.check_circle_outline,
-                                                    color: secondColor,
-                                                  )
-                                                : const SizedBox(
-                                                    width: 1,
-                                                  ),
+                                            const Icon(
+                                              Icons.check_circle,
+                                              color: primaryColor,
+                                            ),
                                           ],
                                         ),
                                       ],
@@ -242,7 +221,7 @@ class _IntroScreenState extends State<IntroScreen> {
               ),
               const Spacer(),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal:20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
                   children: [
                     Expanded(
@@ -272,7 +251,7 @@ class _IntroScreenState extends State<IntroScreen> {
                       child: defaultButton(
                         context, borderColor: primaryColor,
                         function: () {
-                          navigateTo(context,  LoginScreen());
+                          navigateTo(context, LoginScreen());
                         },
                         text: 'sign in',
                         //AppLocalization.of(context)!.translate('sign_in')!,
@@ -284,7 +263,7 @@ class _IntroScreenState extends State<IntroScreen> {
                 ),
               ),
               SizedBox(
-                height: getHeight(context)/8,
+                height: getHeight(context) / 8,
               ),
             ],
           ),

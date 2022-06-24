@@ -30,7 +30,7 @@ class ContactUsScreen extends StatelessWidget {
               color: secondColor,
             ),
             onPressed: () {
-              navigateTo(context,  AppCubit.get(context).changeBottom(4));
+              navigateTo(context,  SettingsScreen());
               /// navigate to settingsScreen
              // navigateTo(context, const SettingsScreen());
             }),
@@ -78,9 +78,7 @@ class ContactUsScreen extends StatelessWidget {
                     function: (){
                       if(formKey.currentState!.validate()){
                       }
-                      navigateTo(context,  AppCubit.get(context).changeBottom(4));
-                      /// navigate to settingsScreen
-                 // navigateTo(context, const SettingsScreen());
+                  navigateTo(context, const SettingsScreen());
                       },
                     text: 'Send',
                     borderColor: primaryColor,

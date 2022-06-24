@@ -38,7 +38,7 @@ class MyOrdersScreen extends StatelessWidget {
               ),
             ),
             onTap: () {
-              navigateTo(context, AppCubit.get(context).changeBottom(4));
+              navigateTo(context, SettingsScreen());
               /// navigate to settingsScreen
               //navigateTo(context, const SettingsScreen());
             }),

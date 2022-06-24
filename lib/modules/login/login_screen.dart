@@ -1,10 +1,10 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:deal_mart/modules/home/home_layout.dart';
 import 'package:deal_mart/modules/intro/intro_screen.dart';
 import 'package:deal_mart/modules/login/cubit/login_cubit.dart';
-import 'package:deal_mart/shared/network/local/cache_heloer.dart';
+import 'package:deal_mart/shared/network/local/cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../shared/app_cubit/app_cubit.dart';
 import '../../shared/language/app_localization.dart';
 import '../../shared/components/components.dart';
 import '../../shared/styles/colors.dart';
@@ -29,12 +29,14 @@ class LoginScreen extends StatelessWidget {
             if(state.loginModel.status){
               print(state.loginModel.message);
               print(state.loginModel.data?.token);
-
               CacheHelper.saveData(key: 'token', value:state.loginModel.data?.token).
               then((value){
-                navigateAndFinish(context,AppCubit.get(context).changeBottom(0));
+                navigateAndFinish(context,const HomeLayout());
+                snackBar(context: context,
+                  message: 'Login Successful',
+                  state: SnackBarStates.SUCCESS,
+                );
               });
-
             }else{
               print(state.loginModel.message);
               snackBar(context: context,
@@ -69,9 +71,7 @@ class LoginScreen extends StatelessWidget {
                           color: secondColor, fontWeight: FontWeight.bold),
                     ),
                     onPressed: () {
-                      navigateAndFinish(context, AppCubit.get(context).changeBottom(0));
-                      /// navigate to homeScreen
-                      // navigateAndFinish(context, const HomeScreen());
+                      navigateAndFinish(context,const HomeLayout());
                     },
                   ),
                   const Icon(
@@ -182,12 +182,10 @@ class LoginScreen extends StatelessWidget {
                                         LoginCubit.get(context).userLogin(
                                             email: emailController.text,
                                             password: passwordController.text);
+                                         navigateAndFinish(context,const HomeLayout());
 
                                       }
-                                      // navigateAndFinish(context,AppCubit.get(context).changeBottom(0));
-                                      /// navigate to homeScreen
-                                      //  navigateAndFinish(context, const HomeScreen());
-                                    },
+                                   },
                                     text: AppLocalization.of(context)!
                                         .translate('sign_in')!,
                                     txtColor: defTextColor),

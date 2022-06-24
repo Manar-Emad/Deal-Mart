@@ -1,11 +1,11 @@
 import 'package:deal_mart/modules/details/details_screen.dart';
 import 'package:deal_mart/modules/orders/order_details_screen.dart';
 import 'package:deal_mart/shared/components/components.dart';
-import 'package:deal_mart/shared/styles/colors.dart';
 import 'package:deal_mart/shared/styles/sizes.dart';
 import 'package:flutter/material.dart';
 
 import '../../shared/app_cubit/app_cubit.dart';
+import '../../shared/styles/colors.dart';
 import '../../shared/styles/styles.dart';
 import '../cart/cart_screen.dart';
 import '../check_out/check_out_screen.dart';
@@ -100,7 +100,7 @@ class OrderPlacedScreen extends StatelessWidget {
                           child: defaultButton(
                             context,borderColor: secondColor,
                             function: () {
-                              navigateAndFinish(context, AppCubit.get(context).changeBottom(2));
+                              navigateAndFinish(context, TopWinnersScreen());
                               /// navigate to topWinnerScreen
                             //  navigateAndFinish(context, TopWinnersScreen(),);
                             },

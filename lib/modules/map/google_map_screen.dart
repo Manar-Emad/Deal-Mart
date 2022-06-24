@@ -3,7 +3,6 @@ import 'package:deal_mart/modules/map/adress_information.dart';
 import 'package:deal_mart/shared/components/components.dart';
 import 'package:deal_mart/shared/styles/sizes.dart';
 import 'package:flutter/material.dart';
-
 import '../../shared/styles/colors.dart';
 import 'add_address.dart';
 

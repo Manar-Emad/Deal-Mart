@@ -5,6 +5,7 @@ import '../../shared/app_cubit/app_cubit.dart';
 import '../../shared/components/components.dart';
 import '../../shared/styles/colors.dart';
 import '../../shared/styles/sizes.dart';
+import '../settings/settings_screen.dart';
 import 'deposit_history.dart';
 
 class WalletBalanceScreen extends StatefulWidget {
@@ -51,9 +52,7 @@ class _WalletBalanceScreenState extends State<WalletBalanceScreen>
               color: secondColor,
             ),
             onPressed: () {
-              navigateTo(context, AppCubit.get(context).changeBottom(4));
-              /// navigate to settingsScreen
-              //navigateTo(context, const SettingsScreen());
+              navigateTo(context, const SettingsScreen());
             }),
       ),
       body: Column(

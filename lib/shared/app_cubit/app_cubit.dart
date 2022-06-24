@@ -3,15 +3,13 @@ import 'dart:html';
 import 'package:bloc/bloc.dart';
 import 'package:deal_mart/models/home_model.dart';
 import 'package:deal_mart/modules/favourites/favourities_screen.dart';
-import 'package:deal_mart/modules/home/home_screen.dart';
+import 'package:deal_mart/modules/home/scroll_enimation.dart';
+import 'package:deal_mart/modules/to_win/final_winner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../models/cart_model.dart';
 import '../../modules/cart/cart_screen.dart';
-import '../../modules/home/home_layout.dart';
 import '../../modules/settings/settings_screen.dart';
 import '../../modules/to_win/winners_screen.dart';
-import '../components/components.dart';
 import '../components/constants.dart';
 import '../network/end_points.dart';
 import '../network/remote/dio_helper.dart';
@@ -33,7 +31,7 @@ class AppCubit extends Cubit<AppState> {
   List<Widget> bottomScreens = [
     const HomeScreen(),
     const FavouritiesScreen(),
-    TopWinnersScreen(),
+    const FinalWinnersScreen(),
     const CartScreen(),
     const SettingsScreen(),
   ];

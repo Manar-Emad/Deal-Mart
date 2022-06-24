@@ -32,7 +32,7 @@ class ProfileScreen extends StatelessWidget {
               color: secondColor,
             ),
             onPressed: () {
-              navigateTo(context, AppCubit.get(context).changeBottom(4));
+              navigateTo(context, const SettingsScreen());
               /// navigate to settingsScreen
              // navigateTo(context, const SettingsScreen());
             }),
@@ -165,9 +165,7 @@ class ProfileScreen extends StatelessWidget {
                                 function: () {
                                   if(formKey.currentState!.validate()){
                                   }
-                                  navigateTo(context,  AppCubit.get(context).changeBottom(4));
-                                  /// navigate to settingsScreen
-                                 // navigateTo(context,  const SettingsScreen());
+                                  navigateTo(context,  const SettingsScreen());
                                 },
                                 text:    'Save',
                                 //AppLocalization.of(context)!.translate('sign_in')!,

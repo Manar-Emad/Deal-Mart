@@ -24,9 +24,7 @@ class TopWinnersScreen extends StatelessWidget {
         leading: IconButton(
             icon: const Icon(Icons.arrow_back,color: secondColor,),
             onPressed: () {
-              navigateTo(context, AppCubit.get(context).changeBottom(0));
-              /// navigate to homeScreen
-            //  navigateTo(context, const HomeScreen());
+              navigateTo(context, const HomeLayout());
             }),
       ),
       body: SingleChildScrollView(

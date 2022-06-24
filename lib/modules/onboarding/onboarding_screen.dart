@@ -1,4 +1,4 @@
-import 'package:deal_mart/shared/network/local/cache_heloer.dart';
+import 'package:deal_mart/shared/network/local/cache_helper.dart';
 import 'package:deal_mart/shared/styles/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -36,8 +36,8 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
 
   /// بعمل save لل ONBOARDING جوا ال cacheHelper
   void submit() {
-
-    CacheHelper.saveData(key: 'onBoarding', value: true).then((value) {
+    CacheHelper.saveData(key: 'onBoarding', value: true).
+    then((value) {
       if(value!){
         navigateAndFinish(context, const IntroScreen(),);
       }
@@ -177,7 +177,8 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
                   child:TextButton(
                     onPressed: () {
                       if (isLast) {
-                        submit;
+                        /// TODO this dont work????
+                        submit();
                       } else {
                         controller.nextPage(
                           duration: const Duration(milliseconds: 750),

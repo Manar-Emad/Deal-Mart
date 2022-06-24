@@ -2,10 +2,10 @@ import 'package:deal_mart/modules/orders/stepper.dart';
 import 'package:deal_mart/modules/map/add_address.dart';
 import 'package:deal_mart/modules/orders/my_orders_screen.dart';
 import 'package:deal_mart/shared/app_cubit/app_cubit.dart';
-import 'package:deal_mart/shared/styles/colors.dart';
 import 'package:deal_mart/shared/styles/sizes.dart';
 import 'package:flutter/material.dart';
 import '../../shared/components/components.dart';
+import '../../shared/styles/colors.dart';
 import '../../shared/styles/styles.dart';
 import '../check_out/check_out_screen.dart';
 

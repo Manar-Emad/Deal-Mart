@@ -34,7 +34,7 @@ class _AddNewAddress extends State<AddNewAddress> {
               child: Icon(Icons.arrow_back,color: secondColor,),),
           ),/// TODO NAV TO WHICH SCREEN
           onTap: (){
-            navigateTo(context, AppCubit.get(context).changeBottom(3));
+            navigateTo(context, const CartScreen());
             /// navigate to cartScreen
             //navigateTo(context,const CartScreen());
           }),
@@ -51,7 +51,7 @@ class _AddNewAddress extends State<AddNewAddress> {
               child: Icon(Icons.close,color: secondColor,),),
           ),/// TODO NAV TO WHICH SCREEN
           onTap: (){
-            navigateTo(context,AppCubit.get(context).changeBottom(3));
+            navigateTo(context,CartScreen());
             /// navigate to cartScreen
             //navigateTo(context,const CartScreen());
             },),
@@ -79,7 +79,7 @@ class _AddNewAddress extends State<AddNewAddress> {
                 child: defaultButton(context,borderColor: primaryColor,
                     /// TODO NAV TO WHICH SCREEN ?????/????
                     function: (){
-                      navigateTo(context, AppCubit.get(context).changeBottom(4) );
+                      navigateTo(context, SettingsScreen() );
                       /// navigate to settingsScreen
                 //  navigateTo(context,   const SettingsScreen());
                   },

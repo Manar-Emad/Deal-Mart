@@ -4,6 +4,7 @@ import 'package:deal_mart/shared/styles/styles.dart';
 import 'package:flutter/material.dart';
 
 import '../../shared/styles/colors.dart';
+
 class DepositHistory extends StatelessWidget {
    DepositHistory({Key? key}) : super(key: key);
 

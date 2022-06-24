@@ -19,4 +19,16 @@ class LoginErrorState extends LoginState {
   LoginErrorState(this.error);
 }
 
+class AppCreateUserSuccessState extends LoginState {
+  final String uid;
+
+  AppCreateUserSuccessState(this.uid);
+}
+
+class AppCreateUserErrorState extends LoginState {
+  final String error;
+
+  AppCreateUserErrorState(this.error);
+}
+
 class ChangePasswordVisibilityState extends LoginState {}

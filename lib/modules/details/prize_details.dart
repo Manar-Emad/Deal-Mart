@@ -1,11 +1,11 @@
 import 'package:deal_mart/modules/cart/cart_screen.dart';
 import 'package:deal_mart/shared/components/components.dart';
-import 'package:deal_mart/shared/styles/colors.dart';
 import 'package:deal_mart/shared/styles/sizes.dart';
 import 'package:deal_mart/shared/styles/styles.dart';
 import 'package:flutter/material.dart';
 
 import '../../shared/app_cubit/app_cubit.dart';
+import '../../shared/styles/colors.dart';
 
 class PrizeDetails extends StatefulWidget {
   const PrizeDetails({Key? key}) : super(key: key);
@@ -155,7 +155,7 @@ class _PrizeDetailsState extends State<PrizeDetails> {
         SizedBox(height: getHeight(context)/5,),
         defaultButton(context,borderColor: primaryColor,
           function: () {
-            navigateTo(context, AppCubit.get(context).changeBottom(3));
+            navigateTo(context, CartScreen());
             /// navigate to cartScreen
             //navigateTo(context, const CartScreen());
           },

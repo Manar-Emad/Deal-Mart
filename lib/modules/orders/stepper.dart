@@ -1,5 +1,6 @@
-import 'package:deal_mart/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
+
+import '../../shared/styles/colors.dart';
 
 
 class StepperWidget extends StatefulWidget {

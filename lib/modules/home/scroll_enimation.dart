@@ -1,24 +1,23 @@
 import 'dart:async';
-
 import 'package:deal_mart/modules/home/hot_deals_list.dart';
+import 'package:deal_mart/modules/to_win/final_winner.dart';
+import 'package:deal_mart/modules/to_win/winners_screen.dart';
 import 'package:deal_mart/shared/components/components.dart';
-import 'package:deal_mart/shared/styles/colors.dart';
 import 'package:deal_mart/shared/styles/sizes.dart';
 import 'package:deal_mart/shared/styles/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../modules/home/sleek_sliders.dart';
-import '../../modules/home/horizontal_list.dart';
+import '../../shared/styles/colors.dart';
 
-class ScrollEnimationState extends StatefulWidget {
-   const ScrollEnimationState({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<ScrollEnimationState> createState() => _ScrollEnimationStateState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _ScrollEnimationStateState extends State<ScrollEnimationState> {
+class _HomeScreenState extends State<HomeScreen> {
   late AnimationController controller;
   late Animation<Offset> offset;
   int _currentPage = 0;
@@ -58,11 +57,13 @@ class _ScrollEnimationStateState extends State<ScrollEnimationState> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
                   height: getHeight(context)/3.7,
                   width: getWidth(context),
                   child: Stack(
+                    alignment: AlignmentDirectional.bottomCenter,
                       clipBehavior: Clip.none,
                       children: [
                     PageView(
@@ -73,7 +74,7 @@ class _ScrollEnimationStateState extends State<ScrollEnimationState> {
                             image: DecorationImage(
                               image: AssetImage(
                                   'assets/images/first.jpg'), //images[0]
-                              fit: BoxFit.fitWidth,
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
@@ -82,7 +83,7 @@ class _ScrollEnimationStateState extends State<ScrollEnimationState> {
                             image: DecorationImage(
                               image: AssetImage(
                                   'assets/images/second.jpg'), //images[1]
-                              fit: BoxFit.fitWidth,
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
@@ -91,7 +92,7 @@ class _ScrollEnimationStateState extends State<ScrollEnimationState> {
                             image: DecorationImage(
                               image: AssetImage(
                                   'assets/images/third.png'), //images[2]
-                              fit: BoxFit.fitWidth,
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
@@ -100,34 +101,33 @@ class _ScrollEnimationStateState extends State<ScrollEnimationState> {
                     Container(
                       height: getHeight(context)/3.7,
                       width: getWidth(context),
-                      //color:Colors.transparent,
+                      // color:Colors.transparent,
                         color: const Color(0xff191919).withOpacity(.6),
                     ),
-                    Positioned(
+                     Positioned(
                       top: 10,
                       left: 6,
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: CircleAvatar(
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.browse_gallery_outlined),
-                          ),
-                          backgroundColor: primaryColor,
+                          radius: 18,
+                          child:  const Center(
+                              child:  Icon(
+                                  Icons.gif_box,color: defTextColor,size: 25,),
+                            ),
+                          backgroundColor:primaryColor.withOpacity(.5),
                         ),
                       ),
                     ),
-                    Positioned(
+                     Positioned(
                       bottom: 10,
                       right: 10,
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: CircleAvatar(
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.volume_off_outlined),
-                          ),
-                          backgroundColor: primaryColor,
+                          radius: 18,
+                            child: const Center(child:Icon(Icons.volume_off_outlined,color: defTextColor,)),
+                          backgroundColor:primaryColor.withOpacity(.5),
                         ),
                       ),
                     ),
@@ -135,8 +135,9 @@ class _ScrollEnimationStateState extends State<ScrollEnimationState> {
                       bottom: 13,
                       left: 6,
                       child: Padding(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(10),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               'New Shopping',
@@ -163,9 +164,9 @@ class _ScrollEnimationStateState extends State<ScrollEnimationState> {
                             effect: const ScrollingDotsEffect(
                               dotColor: Colors.grey,
                               activeDotColor: Colors.white,
-                              dotWidth: 5,
-                              dotHeight: 5,
-                              spacing: 5.0,
+                              dotWidth: 7,
+                              dotHeight: 7,
+                              spacing: 7.0,
                             ),
                           ),
                         ),
@@ -213,27 +214,52 @@ class _ScrollEnimationStateState extends State<ScrollEnimationState> {
                                 padding: const EdgeInsets.all(10.0),
                                 child: Row(
                                   children: [
-                                    Column(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 5),
-                                          child: Text(
-                                            'Top Winners',
-                                            style: black10bold(),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                                      child: Column(
+                                        crossAxisAlignment:CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(horizontal: 5),
+                                            child: Text(
+                                              'Top Winners',
+                                              style: black10bold(),
+                                            ),
                                           ),
-                                        ),
-                                        const Spacer(),
-                                        const CircleAvatar(
-                                          radius: 10,
-                                          child: Image(
-                                              image: AssetImage(
-                                                  'assets/images/faceimg.jpg')),
-                                        ),
-                                      ],
+                                          const Spacer(),
+                                          Row(
+                                            children: [
+                                              Container(
+                                                color:Colors.red,
+                                                height: getHeight(context)/25,
+                                                width: getWidth(context)/3,
+                                                child: ListView.builder(
+                                                    scrollDirection: Axis.horizontal,
+                                                        itemCount: 6,
+                                                        shrinkWrap: true,
+                                                        physics: const NeverScrollableScrollPhysics(),
+                                                        itemBuilder:(context,index)=>
+                                                      const CircleAvatar(
+                                                        radius: 11,
+                                                        // child: Image(fit: BoxFit.cover,
+                                                        //     image: AssetImage(
+                                                        //         'assets/images/faceimg.jpg')),
+                                                         ),
+                                                    ),
+                                              ),
+                                               CircleAvatar(
+                                                radius: 8,
+                                                backgroundColor: primaryColor,
+                                                child: Text('17+',style: white7bold(),),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                     const Spacer(),
                                     IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {navigateTo(context,TopWinnersScreen() );},
                                         icon: const Icon(Icons.arrow_forward_ios,size: 18,),
                                         color: textGray)
                                   ],
@@ -267,12 +293,12 @@ class _ScrollEnimationStateState extends State<ScrollEnimationState> {
                                     Row(
                                       children: [
                                         Text(
-                                          'Final Winners',
+                                          'Final Winner',
                                           style: black10bold(),
                                         ),
                                         const Spacer(),
                                         IconButton(
-                                            onPressed: () {},
+                                            onPressed: () {navigateTo(context, const FinalWinnersScreen());},
                                             icon: const Icon(
                                               Icons.arrow_forward_ios,size: 18,),
                                             color: textGray)
@@ -308,15 +334,15 @@ class _ScrollEnimationStateState extends State<ScrollEnimationState> {
                 ),
               ],
             ),
-            const OffersHotDeals()
+            const OffersList()
           ],
         ),
       ),
     );
   }
 }
-class OffersHotDeals extends StatelessWidget {
-  const OffersHotDeals({Key? key}) : super(key: key);
+class OffersList extends StatelessWidget {
+  const OffersList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -342,54 +368,84 @@ class OffersHotDeals extends StatelessWidget {
               itemCount: 15,
               itemBuilder: (BuildContext context, int index) => Padding(
                 padding: const EdgeInsets.symmetric(horizontal:5),
-                child: CircleAvatar(
-                  radius: getWidth(context)/8,
-                  backgroundColor: defTextColor,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 15,bottom: 10,),
+                child: Stack(
+                  alignment: AlignmentDirectional.topEnd,
+                  children: [
+                    CircleAvatar(
+                      radius: getWidth(context)/8,
+                      backgroundColor: defTextColor,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left:40,top:10,bottom: 10,),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                 Stack(
-                                    clipBehavior: Clip.none,
-                                    children: [
-                                      sizedBoxw3,
+                                Stack(
+                                  alignment: AlignmentDirectional.centerEnd,
+                                  clipBehavior: Clip.none,
+                                  children: [
+                                    Image(
+                                      height: getHeight(context)/15,
+                                      width: getWidth(context)/16,
+                                      fit: BoxFit.cover,
+                                      image: const AssetImage('assets/images/iphone.png'),
+                                    ),
+                                   Positioned(
+                                      bottom: 0,
+                                      right: 13,
+                                      child:
                                       Image(
-                                        height: getHeight(context)/15,
+                                        fit: BoxFit.cover,
+                                        height: getHeight(context)/22,
                                         width: getWidth(context)/8,
-                                        image: const AssetImage('assets/images/iphone.png'),
+                                        image: const AssetImage('assets/images/watch.png'),
                                       ),
-                                      Positioned(
-                                        bottom: 0,
-                                        right: 13,
-                                        child: Image(
-                                          height: getHeight(context)/20,
-                                          width: getWidth(context)/6,
-                                          image: const AssetImage('assets/images/watch.png'),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+
+                                  ],
+                                ),
                               ],
                             ),
 
-                        ),
-                        Column(
-                          //   mainAxisAlignment:MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal:20),
+                            child: Column(
+                              mainAxisAlignment:MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text('51',style: grey12regular(),),
+                                    Text('/100 Sold',style:black12regular(),),
+                                  ],
+                                ),
+                                Text('By watch Casio',style: black12regular(),),
+                                Text('Get an iphone',style: black12regular(),),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+
+                    ),
+                      CircleAvatar(
+                        radius: 15,
+                        backgroundColor: primaryColor,
+                        child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text('51/100 Sold',style: black12regular(),),
-                            Text('By watch Casio',style: black12regular(),),
-                            Text('Get an iphone',style: black12regular(),),
+                            Text('232',style: white9bold(),),
+                            Text('EGP',style: white7bold(),),
+
                           ],
                         ),
-                      ],
-                    ),
-
+                      ),
+                  ],
                 ),
+
               ),
             ),
           ),
@@ -408,7 +464,7 @@ class OffersHotDeals extends StatelessWidget {
             //physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (context,index){
-              return const ContainerDeals(
+              return const HotDealsList(
                   img1: 'assets/images/1-(1)-copy.png',
                img2: 'assets/images/giftImage.png',
                   txt1: 'laptop dell z21 xsixni',
