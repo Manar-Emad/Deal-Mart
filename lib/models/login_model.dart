@@ -1,3 +1,4 @@
+
 class LoginModel {
   late bool status;
   String? message;
@@ -46,3 +47,43 @@ class UserData{
   }
 
 }
+
+// class LoginModel {
+//   int? status;
+//   String? message;
+//   int? userId;
+//   String? userName;
+//   String? userEmail;
+//   String? userPhone;
+//
+//   LoginModel(
+//       {this.status,
+//         this.message,
+//         this.userId,
+//         this.userName,
+//         this.userEmail,
+//         this.userPhone});
+//
+//   LoginModel.fromJson(Map<String, dynamic> json) {
+//     status = json['status'];
+//     message = json['message'];
+//     userId = json['userId'];
+//     userName = json['userName'];
+//     userEmail = json['userEmail'];
+//     userPhone = json['userPhone'];
+//   }
+//
+//   Map<String, dynamic> toJson() {
+//     final Map<String, dynamic> data =  <String, dynamic>{};
+//     data['status'] = status;
+//     data['message'] = message;
+//     data['userId'] = userId;
+//     data['userName'] = userName;
+//     data['userEmail'] = userEmail;
+//     data['userPhone'] = userPhone;
+//     return data;
+//   }
+// }
+
+
+

@@ -230,21 +230,30 @@ class _HomeScreenState extends State<HomeScreen> {
                                           Row(
                                             children: [
                                               Container(
-                                                color:Colors.red,
-                                                height: getHeight(context)/25,
-                                                width: getWidth(context)/3,
+                                                //color:Colors.red,
+                                                height: getHeight(context)/23,
+                                               // width: getWidth(context)/3.2,
                                                 child: ListView.builder(
                                                     scrollDirection: Axis.horizontal,
-                                                        itemCount: 6,
+                                                        itemCount: 1,
                                                         shrinkWrap: true,
                                                         physics: const NeverScrollableScrollPhysics(),
                                                         itemBuilder:(context,index)=>
-                                                      const CircleAvatar(
-                                                        radius: 11,
-                                                        // child: Image(fit: BoxFit.cover,
-                                                        //     image: AssetImage(
-                                                        //         'assets/images/faceimg.jpg')),
-                                                         ),
+                                                      Row(
+                                                        children: const[
+                                                          SizedBox(
+                                                            width:5,
+                                                          ),
+                                                           CircleAvatar(
+                                                            radius: 13,
+                                                            child:FittedBox(
+                                                              child: Image(fit: BoxFit.cover,
+                                                                  image: AssetImage(
+                                                                      'assets/images/faceimg.jpg')),
+                                                            ),
+                                                             ),
+                                                        ],
+                                                      ),
                                                     ),
                                               ),
                                                CircleAvatar(

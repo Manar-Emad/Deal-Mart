@@ -1,3 +1,4 @@
+import 'package:deal_mart/modules/login/login_screen.dart';
 import 'package:deal_mart/shared/styles/sizes.dart';
 import 'package:flutter/material.dart';
 import '../../draft/pin_code/pin_code_screen.dart';
@@ -93,10 +94,11 @@ class PasswordRecoveryScreen extends StatelessWidget {
             defaultButton(context,borderColor: primaryColor,
               color: primaryColor,txtColor: defTextColor,
                 function: (){
-                  navigateTo(context,const HomeLayout());
+                  navigateTo(context, LoginScreen());
+
                 },
                 text: 'confirm',
-                //AppLocalization.of(context)!.translate('confirm')!
+
               ),
           ],
           ),

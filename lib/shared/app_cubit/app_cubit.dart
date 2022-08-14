@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:bloc/bloc.dart';
 import 'package:deal_mart/models/home_model.dart';
 import 'package:deal_mart/modules/favourites/favourities_screen.dart';

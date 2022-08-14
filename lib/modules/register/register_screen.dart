@@ -36,7 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           //   if(state.RegisterModel.status){
           //     print(state.RegisterModel.message);
           //     print(state.RegisterModel.data?.token);
-          //     CacheHelper.saveData(key: 'token', value:state.RegisterModel.data?.token).
+          //     CacheHelper.saveData(key: 'token', value:state.RegisterModel.token).
           //     then((value){
           //       navigateAndFinish(context,const HomeLayout());
           //       snackBar(context: context,

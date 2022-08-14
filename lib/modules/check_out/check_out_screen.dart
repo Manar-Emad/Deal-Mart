@@ -25,6 +25,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
   int itemCount = 1;
   dynamic _value = 0;
   var formKey = GlobalKey<FormState>();
+
   bool isVisaNumAdded=false;
 
   @override

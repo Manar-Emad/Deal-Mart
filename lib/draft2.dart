@@ -1,68 +1,48 @@
-import 'package:deal_mart/shared/styles/colors.dart';
-import 'package:flutter/material.dart';
+class LoginModel {
+  late bool status;
+  String? message;
+  UserData? data;
 
-class ImageList {
-  final String image;
-  ImageList({required this.image,});
-}
+  LoginModel({required this.status, this.message, this.data});
 
-
-class Draft extends StatelessWidget {
-   Draft({Key? key}) : super(key: key);
-
-  final controller = PageController(
-    viewportFraction:1 ,
-    initialPage: 0,
-  );
-  var isLast = false;
-
-  List listimgs = [
-    ImageList(
-      image: 'assets/images/first.jpg',
-
-    ),
-    ImageList(
-      image: 'assets/images/second.jpg',
-
-    ),
-    ImageList(
-      image: 'assets/images/third.png',
-
-    ),
-
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          SizedBox(
-            height: 200,
-            child: ListView.builder(
-              itemCount: 3,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context,index) =>Container(
-                  height: 300,
-                  width: 300,
-                  color: primaryColor,
-                  padding:const EdgeInsets.all(10),
-                  child: Center(
-                  //     child:
-                  // Text('card$index',),
-                    child: Image(
-                      //width: double.infinity,
-                      image: AssetImage(
-                        listimgs[index].image,
-                      ),
-                    ),
-                  ),
-
-                ),
-            ),
-          ),
-        ],
-      ),
-    );
+  LoginModel.fromJson(Map<String, dynamic> json) {
+    status = json['status'];
+    message = json['message'];
+    ///الداتا دي لو انا دخلت يوزر غلط هترجعلي ف الباك ب null  ف بقوله لو رجع داتا اطبعلي اللي جوا دا لو مطلعش اطبعلي null
+    data = json['data']!= null ? UserData.fromJson(json['data']) : null ;
   }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['status'] = status;
+    data['message'] = message;
+    data['data'] = this.data;
+    return data;
+  }
+}
+class UserData{
+  int? id;
+  String? name;
+  String? email;
+  String? phone;
+  String? image;
+  int? points;
+  int? credit;
+  String? token;
+
+  /// دا كونستراكتور عادي
+  UserData({this.name,this.image,this.id,this.email,this.credit,this.phone,this.points,this.token});
+
+  /// دلوقتي هعمل named constructor
+  UserData.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    email = json['email'];
+    phone = json['phone'];
+    image = json['image'];
+    points = json['points'];
+    credit = json['credit'];
+    token = json['token'];
+  }
+
 }

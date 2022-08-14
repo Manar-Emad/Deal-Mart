@@ -385,7 +385,8 @@ Widget formFeild({
         style: black14bold(),
         enabled: isClikable,
         controller: controller,
-        validator: validate,onFieldSubmitted: onSubmit,
+        validator: validate,
+        onFieldSubmitted: onSubmit,
         keyboardType: type,
         textAlign: TextAlign.start,
         decoration: InputDecoration(
